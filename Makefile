@@ -9,8 +9,8 @@ LFLAGS = -ffreestanding -O2 -nostdlib
 
 BUILD_DIR = build
 SRC_DIR = src
+INCL_DIR = include
 KER_SRC = src/kernel
-KER_HEAD = include
 COMMON_SRC = src/common
 
 IMG_NAME=kernel.img
@@ -23,9 +23,12 @@ $(BUILD_DIR)/boot.o: $(KER_SRC)/boot.S
 	$(CC) $(SFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/kernel.o: $(KER_SRC)/kernel.c
-	$(CC) $(SFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(SFLAGS) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
 
-build: $(BUILD_DIR)/boot.o $(BUILD_DIR)/kernel.o
+$(BUILD_DIR)/uart.o: $(KER_SRC)/uart.c
+	$(CC) $(SFLAGS) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
+
+build: $(BUILD_DIR)/boot.o $(BUILD_DIR)/uart.o $(BUILD_DIR)/kernel.o
 	$(CC) -T $(KER_SRC)/linker.ld -o $(IMG_NAME) $(LFLAGS) $^
 
 run: build

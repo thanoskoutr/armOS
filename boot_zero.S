@@ -1,7 +1,7 @@
 /*
  * boot.S - Assembly Startup Code
  * AArch32 mode
- * Code for Raspberry Pi 2
+ * Code for Raspberry Pi Zero
  */
 
 @ To keep this in the first portion of the binary
