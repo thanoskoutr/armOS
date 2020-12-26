@@ -38,7 +38,7 @@ volatile unsigned int __attribute__((aligned(16))) mbox[MBOX_CHANNELS] = {
 	9*4, 0, 0x38002, 12, 8, 2, 3000000, 0, 0
 };
 
-void uart_init(int raspi_ver)
+void uart_init()
 {
 	/* Disable UART0 */
 	mmio_write(UART0_CR, 0x00000000);
@@ -73,16 +73,16 @@ void uart_init(int raspi_ver)
 	 * Set it to 3Mhz so that we can consistently set the baud rate
 	 */
 
-	if (raspi_ver >= 3) {
-		/* UART_CLOCK = 30000000; */
-		unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
-		/* Wait until we can talk to the VC */
-		while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
-		/* Send our msg to property channel and wait for the response */
-		mmio_write(MBOX_WRITE, r);
-		while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
-						mmio_read(MBOX_READ) != r ) { }
-	}
+	// if (raspi_ver >= 3) {
+	// 	/* UART_CLOCK = 30000000; */
+	// 	unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
+	// 	/* Wait until we can talk to the VC */
+	// 	while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
+	// 	/* Send our msg to property channel and wait for the response */
+	// 	mmio_write(MBOX_WRITE, r);
+	// 	while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
+	// 					mmio_read(MBOX_READ) != r ) { }
+	// }
 
 	/* Divider = 3000000 / (16 * 115200) = 1.627 = ~1 */
 	mmio_write(UART0_IBRD, 1);

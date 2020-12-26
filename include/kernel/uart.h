@@ -15,7 +15,12 @@ void delay(int32_t count);
 enum
 {
 	/* The MMIO area base address */
+#ifdef MODEL_0
+	MMIO_BASE = 0x20000000,
+#else
+	/* MODEL_2 */
 	MMIO_BASE = 0x3F000000,
+#endif
 	/*
 	 * For raspi 2,3: MMIO_BASE = 0x3F000000;
 	 * For raspi 4:   MMIO_BASE = 0xFE000000;
@@ -32,6 +37,7 @@ enum
 	GPPUDCLK0 = (GPIO_BASE + 0x98),
 
 	/* The base address for UART */
+
 	UART0_BASE = (GPIO_BASE + 0x1000),
 	/*
 	 * for raspi 2,3	0x3F201000
@@ -68,7 +74,7 @@ enum
 
 extern volatile unsigned int __attribute__((aligned(16))) mbox[MBOX_CHANNELS];
 
-void uart_init(int raspi_ver);
+void uart_init();
 
 void uart_putc(unsigned char c);
 

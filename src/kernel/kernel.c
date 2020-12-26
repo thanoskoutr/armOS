@@ -2,9 +2,6 @@
 #include <stdint.h>
 #include <kernel/uart.h>
 
-/* board type, raspi2 */
-int raspi = 2;
-
 /* Arguments for AArch32 */
 void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 {
@@ -13,7 +10,7 @@ void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 	(void) r1;
 	(void) atags;
 
-	uart_init(raspi);
+	uart_init();
 	uart_puts("Hello, beautiful kernel World!\r\n");
 
 	while (1) {
