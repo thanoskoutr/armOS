@@ -16,7 +16,7 @@ max_line_length = 80	# Not sure if supported
 # For all C files
 # For all ARM assembly files
 # For all linker files
-[*.{c,S,ld}]
+[*.{c,h,S,ld}]
 indent_style = tab
 indent_size = 8
 
