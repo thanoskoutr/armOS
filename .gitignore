@@ -4,3 +4,6 @@ Documentation
 # Build stuff
 build
 *.img
+
+# VS Code configs
+.vscode/
