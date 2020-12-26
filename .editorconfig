@@ -1,0 +1,36 @@
+# top-most EditorConfig file
+root = true
+
+# For all files
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = false
+trim_trailing_whitespace = true
+max_line_length = 80	# Not sure if supported
+
+# Matches multiple files with brace expansion notation
+# For all Source, Code files
+# [*.{c,h,S,sh}]
+
+# For all C files
+# For all ARM assembly files
+# For all linker files
+[*.{c,S,ld}]
+indent_style = tab
+indent_size = 8
+
+# Tab indentation (no size specified)
+# For all Makefile files
+[Makefile]
+indent_style = tab
+
+For all Shell Scripts
+[*.sh]
+indent_style = tab
+indent_size = 4
+
+# For all Markdown files
+# [*.md]
+# indent_style = tab
+# indent_size = 8
