@@ -4,7 +4,7 @@
  * Code for Raspberry Pi 2
  */
 
-@ To keep this in the first portion of the binary
+// To keep this in the first portion of the binary
 .section ".text.boot"
 
 .global _start
@@ -23,21 +23,21 @@ _start:
 	 * These lines will send three out of the four cores to halt,
 	 * effectively shutting them down.
 	 */
-	mrc p15, 0, r5, c0, c0, 5	@ Shut off extra cores.
+	mrc p15, 0, r5, c0, c0, 5	// Shut off extra cores.
 	and r5, r5, #3
 	cmp r5, #0
 	bne halt
 
 
-	mov sp, #0x8000			@ Setup the stack.
+	mov sp, #0x8000			// Setup the stack.
 
-	ldr r4, =__bss_start		@ Clear out BSS.
+	ldr r4, =__bss_start		// Clear out BSS.
 	ldr r9, =__bss_end
 	mov r5, #0
 	mov r6, #0
 	mov r7, #0
 	mov r8, #0
-	b 	2f			@ Unconditional jump forward to label 2.
+	b 	2f			// Unconditional jump forward to label 2.
 
 	/*
 	 * Store multiple, Increment after, Store incremented address back:
@@ -47,16 +47,16 @@ _start:
 	 * mem32[r4 + 12] := r8
 	 */
 1:
-	stmia r4!, {r5-r8}		@ Store multiple at r4 address.
+	stmia r4!, {r5-r8}		// Store multiple at r4 address.
 
 2:
-	cmp r4, r9			@ If we are still below bss_end,
-	blo 1b				@ loop backwards to label 1.
+	cmp r4, r9			// If we are still below bss_end,
+	blo 1b				// loop backwards to label 1.
 
-	ldr r3, =kernel_main		@ Call kernel_main (C Code).
-	blx r3				@ Should not return from here.
+	ldr r3, =kernel_main		// Call kernel_main (C Code).
+	blx r3				// Should not return from here.
 
 halt:
-	wfe				@ Wait For Event.
-	b halt				@ For failsafe, halt this core too.
+	wfe				// Wait For Event.
+	b halt				// For failsafe, halt this core too.
 
