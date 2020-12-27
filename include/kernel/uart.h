@@ -15,17 +15,22 @@ void delay(int32_t count);
 enum
 {
 	/* The MMIO area base address */
-#ifdef MODEL_0
-	MMIO_BASE = 0x20000000,
-#else
-	/* MODEL_2 */
-	MMIO_BASE = 0x3F000000,
-#endif
 	/*
+	 * For raspi 0,1: MMIO_BASE = 0x20000000;
 	 * For raspi 2,3: MMIO_BASE = 0x3F000000;
 	 * For raspi 4:   MMIO_BASE = 0xFE000000;
-	 * For raspi 0,1: MMIO_BASE = 0x20000000;
 	 */
+
+#ifdef MODEL_0
+	MMIO_BASE = 0x20000000,
+#elif MODEL_2
+	MMIO_BASE = 0x3F000000,
+#elif MODEL_3
+	MMIO_BASE = 0x3F000000,
+#else
+	/* MODEL_4 */
+	MMIO_BASE = 0xFE000000,
+#endif
 
 	/* The offsets for reach register */
 	GPIO_BASE = (MMIO_BASE + 0x200000),
@@ -40,9 +45,9 @@ enum
 
 	UART0_BASE = (GPIO_BASE + 0x1000),
 	/*
-	 * for raspi 2,3	0x3F201000
-	 * for raspi 4		0xFE201000
-	 * for raspi 0,1	0x20201000
+	 * For raspi 0,1	0x20201000
+	 * For raspi 2,3	0x3F201000
+	 * For raspi 4		0xFE201000
 	 */
 
 	/* The offsets for reach register for the UART */

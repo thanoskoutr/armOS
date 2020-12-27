@@ -68,21 +68,21 @@ void uart_init()
 	 * Baud = 115200
 	 */
 
+#if defined(MODEL_3) || defined(MODEL_4)
 	/*
-	 * For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default
-	 * Set it to 3Mhz so that we can consistently set the baud rate
-	 */
+	* For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default
+	* Set it to 3Mhz so that we can consistently set the baud rate
+	*/
 
-	// if (raspi_ver >= 3) {
-	// 	/* UART_CLOCK = 30000000; */
-	// 	unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
-	// 	/* Wait until we can talk to the VC */
-	// 	while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
-	// 	/* Send our msg to property channel and wait for the response */
-	// 	mmio_write(MBOX_WRITE, r);
-	// 	while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
-	// 					mmio_read(MBOX_READ) != r ) { }
-	// }
+	/* UART_CLOCK = 30000000; */
+	unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
+	/* Wait until we can talk to the VC */
+	while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
+	/* Send our msg to property channel and wait for the response */
+	mmio_write(MBOX_WRITE, r);
+	while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
+					mmio_read(MBOX_READ) != r ) { }
+#endif
 
 	/* Divider = 3000000 / (16 * 115200) = 1.627 = ~1 */
 	mmio_write(UART0_IBRD, 1);

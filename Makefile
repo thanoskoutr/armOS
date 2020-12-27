@@ -4,11 +4,21 @@ ifeq ($(RASPI_MODEL), 0)
 	CPU = arm1176jzf-s
 	DIRECTIVES = -D MODEL_0
 	ARCH_DIR = arch/raspberrypi0
-else
-	# Currently Model 2 support only
+else ifeq ($(RASPI_MODEL), 2)
 	CPU = cortex-a7
 	DIRECTIVES = -D MODEL_2
 	ARCH_DIR = arch/raspberrypi2
+else ifeq ($(RASPI_MODEL), 3)
+	# Not Ready
+	CPU =
+	DIRECTIVES = -D MODEL_3
+	ARCH_DIR = arch/raspberrypi-64bit
+else
+	# Model 4
+	# Not Ready
+	CPU =
+	DIRECTIVES = -D MODEL_4
+	ARCH_DIR = arch/raspberrypi-64bit
 endif
 
 SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding $(DIRECTIVES)
