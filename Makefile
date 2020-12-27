@@ -1,4 +1,13 @@
 CC = arm-none-eabi-gcc
+CC_64 = aarch64-none-elf-gcc
+OBJCOPY_64 = aarch64-none-elf-objcopy
+
+SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding $(DIRECTIVES)
+CFLAGS = -O2 -Wall -Wextra
+LDFLAGS = -ffreestanding -O2 -nostdlib
+
+IMG_NAME=kernel7.img
+IMG_NAME_64=kernel8.img
 
 ifeq ($(RASPI_MODEL), 0)
 	CPU = arm1176jzf-s
@@ -9,48 +18,56 @@ else ifeq ($(RASPI_MODEL), 2)
 	DIRECTIVES = -D MODEL_2
 	ARCH_DIR = arch/raspberrypi2
 else ifeq ($(RASPI_MODEL), 3)
-	# Not Ready
-	CPU =
+	## AS IS runs aarch64 code
+	SFLAGS = -mgeneral-regs-only -nostartfiles -ffreestanding $(DIRECTIVES)
+	# CPU = cortex-a7
+	# SFLAGS += -mgeneral-regs-only -nostartfiles
 	DIRECTIVES = -D MODEL_3
 	ARCH_DIR = arch/raspberrypi-64bit
-else
-	# Model 4
-	# Not Ready
-	CPU =
+	# ARCH_DIR = arch/raspberrypi2
+	CC = aarch64-none-elf-gcc
+else ifeq ($(RASPI_MODEL), 4)
+	SFLAGS = -mgeneral-regs-only -nostartfiles -ffreestanding $(DIRECTIVES)
 	DIRECTIVES = -D MODEL_4
 	ARCH_DIR = arch/raspberrypi-64bit
+	CC = aarch64-none-elf-gcc
 endif
-
-SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding $(DIRECTIVES)
-CFLAGS = -O2 -Wall -Wextra
-LFLAGS = -ffreestanding -O2 -nostdlib
 
 BUILD_DIR = build
 SRC_DIR = src
-INCL_DIR = include
+INC_DIR = include
 
 KER_SRC = src/kernel
 COMMON_SRC = src/common
 
-IMG_NAME=kernel.img
+.PHONY: clean all build
 
 all: build
 
+# ! Rename obj files -> *_c.o, *_s.o
 # ! Make targets for all .o, .c files
 
 $(BUILD_DIR)/boot.o: $(ARCH_DIR)/boot.S
+	mkdir -p $(@D)
 	$(CC) $(SFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/kernel.o: $(KER_SRC)/kernel.c
-	$(CC) $(SFLAGS) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
+	$(CC) $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 $(BUILD_DIR)/uart.o: $(KER_SRC)/uart.c
-	$(CC) $(SFLAGS) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
+	$(CC) $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 build: $(BUILD_DIR)/boot.o $(BUILD_DIR)/uart.o $(BUILD_DIR)/kernel.o
-	$(CC) -T $(KER_SRC)/linker.ld -o $(IMG_NAME) $(LFLAGS) $^
 
-run: build
+ifeq ($(ARCH_DIR), arch/raspberrypi-64bit)
+	$(CC) -T $(KER_SRC)/linker.ld -o $(IMG_NAME) $(LDFLAGS) $^
+	$(OBJCOPY_64) -O binary $(IMG_NAME) $(IMG_NAME_64)
+else
+	$(CC) -T $(KER_SRC)/linker.ld -o $(IMG_NAME) $(LDFLAGS) $^
+endif
+
+
+run2: build
 	# Run for Raspberry Pi 2
 	qemu-system-arm -m 256 -M raspi2 -serial stdio -kernel $(IMG_NAME)
 
@@ -58,5 +75,11 @@ run0: build
 	# Run for Raspberry Pi Zero
 	qemu-system-arm -cpu arm1176 -m 256 -M versatilepb -serial stdio -kernel $(IMG_NAME)
 
+run3: build
+	# Run for Raspberry Pi 3
+	qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME_64)
+	# qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME)
+
 clean:
-	rm -f $(BUILD_DIR)/*.o *.img
+	rm -rf $(BUILD_DIR) *.img
+	# rm -f $(BUILD_DIR)/*.o *.img
