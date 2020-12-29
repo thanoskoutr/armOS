@@ -1,4 +1,5 @@
 CC = arm-none-eabi-gcc
+OBJCOPY = arm-none-eabi-objcopy
 CC_64 = aarch64-none-elf-gcc
 OBJCOPY_64 = aarch64-none-elf-objcopy
 
@@ -64,6 +65,7 @@ ifeq ($(ARCH_DIR), arch/raspberrypi-64bit)
 	$(OBJCOPY_64) -O binary $(IMG_NAME) $(IMG_NAME_64)
 else
 	$(CC) -T $(KER_SRC)/linker.ld -o $(IMG_NAME) $(LDFLAGS) $^
+	$(OBJCOPY) -O binary $(IMG_NAME) $(IMG_NAME)
 endif
 
 
