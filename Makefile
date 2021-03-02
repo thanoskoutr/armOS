@@ -10,11 +10,7 @@ LDFLAGS = -ffreestanding -O2 -nostdlib
 IMG_NAME=kernel7.img
 IMG_NAME_64=kernel8.img
 
-ifeq ($(RASPI_MODEL), 0)
-	CPU = arm1176jzf-s
-	DIRECTIVES = -D MODEL_0
-	ARCH_DIR = arch/raspberrypi0
-else ifeq ($(RASPI_MODEL), 2)
+ifeq ($(RASPI_MODEL), 2)
 	CPU = cortex-a7
 	DIRECTIVES = -D MODEL_2
 	ARCH_DIR = arch/raspberrypi2
@@ -32,6 +28,11 @@ else ifeq ($(RASPI_MODEL), 4)
 	DIRECTIVES = -D MODEL_4
 	ARCH_DIR = arch/raspberrypi-64bit
 	CC = aarch64-none-elf-gcc
+else
+	# ($(RASPI_MODEL), 0)
+	CPU = arm1176jzf-s
+	DIRECTIVES = -D MODEL_0
+	ARCH_DIR = arch/raspberrypi0
 endif
 
 BUILD_DIR = build
