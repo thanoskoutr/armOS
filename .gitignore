@@ -1,9 +1,15 @@
 # Ignore it until is presentable
 docs
 
+# Ignore MkDocs yml configuration file
+*.yml
+
 # Build stuff
 build
 *.img
 
 # VS Code configs
 .vscode/
+
+# Screenshots
+Screenshot_*
