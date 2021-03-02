@@ -1,3 +1,11 @@
+/*
+ * uart.h - Definition of basic UART functions
+ * Definition of base MMIO, GPIO, AUX addresses
+ * MMIO: Memory Mapped IO
+ * GPIO: General Purpose IO
+ * AUX: Auxiliary Peripherals
+ */
+
 #include <stddef.h>
 #include <stdint.h>
 

@@ -1,3 +1,8 @@
+/*
+ * kernel.c - Main kernel function
+ * Code for Raspberry Pi
+ */
+
 #include <stddef.h>
 #include <stdint.h>
 #include <kernel/uart.h>
