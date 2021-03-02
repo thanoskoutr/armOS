@@ -3,7 +3,7 @@ OBJCOPY = arm-none-eabi-objcopy
 CC_64 = aarch64-none-elf-gcc
 OBJCOPY_64 = aarch64-none-elf-objcopy
 
-SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding $(DIRECTIVES)
+SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding -nostdlib -nostartfiles $(DIRECTIVES)
 CFLAGS = -O2 -Wall -Wextra
 LDFLAGS = -ffreestanding -O2 -nostdlib
 
@@ -20,7 +20,7 @@ else ifeq ($(RASPI_MODEL), 2)
 	ARCH_DIR = arch/raspberrypi2
 else ifeq ($(RASPI_MODEL), 3)
 	## AS IS runs aarch64 code
-	SFLAGS = -mgeneral-regs-only -nostartfiles -ffreestanding $(DIRECTIVES)
+	SFLAGS = -mgeneral-regs-only $(DIRECTIVES)
 	# CPU = cortex-a7
 	# SFLAGS += -mgeneral-regs-only -nostartfiles
 	DIRECTIVES = -D MODEL_3
@@ -28,7 +28,7 @@ else ifeq ($(RASPI_MODEL), 3)
 	# ARCH_DIR = arch/raspberrypi2
 	CC = aarch64-none-elf-gcc
 else ifeq ($(RASPI_MODEL), 4)
-	SFLAGS = -mgeneral-regs-only -nostartfiles -ffreestanding $(DIRECTIVES)
+	SFLAGS = -mgeneral-regs-only $(DIRECTIVES)
 	DIRECTIVES = -D MODEL_4
 	ARCH_DIR = arch/raspberrypi-64bit
 	CC = aarch64-none-elf-gcc
