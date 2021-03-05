@@ -35,7 +35,7 @@ enum
 	MMIO_BASE = 0x3F000000,
 #elif MODEL_3
 	MMIO_BASE = 0x3F000000,
-#else
+#elif MODEL_4
 	/* MODEL_4 */
 	MMIO_BASE = 0xFE000000,
 #endif
