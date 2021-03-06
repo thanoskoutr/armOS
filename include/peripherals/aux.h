@@ -15,6 +15,7 @@ enum
 	/*
 	 * AUX_BASE
 	 * For raspi 0,1: AUX_BASE = 0x20215000;
+	 * For raspi 4:   AUX_BASE = 0xFE215000;
 	 */
 	AUX_BASE = (GPIO_BASE + 0x15000),
 

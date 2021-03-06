@@ -14,6 +14,7 @@ enum
 	/*
 	 * GPIO_BASE
 	 * For raspi 0,1: GPIO_BASE = 0x20200000;
+	 * For raspi 4:   GPIO_BASE = 0xFE200000;
 	 */
 	GPIO_BASE = (MMIO_BASE + 0x200000),
 
@@ -23,6 +24,9 @@ enum
 	 * for pins 10-19
 	 */
 	GPFSEL1 = (GPIO_BASE + 0x04),
+
+#if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
+	/* Broadcom 2835, 2836, 2837 specific GPIO registers */
 	/*
 	 * GPIO Pin Pull-up/down Enable
 	 * Controls actuation of pull up/down to ALL GPIO pins
@@ -33,6 +37,15 @@ enum
 	 * Controls actuation of pull up/down for specific GPIO pin
 	 */
 	GPPUDCLK0 = (GPIO_BASE + 0x98)
+
+#elif defined(MODEL_4)
+	/* Broadcom 2711 specific GPIO registers */
+	/* GPIO Pull-up / Pull-down Register 0
+	 * Controls the actuation of the internal pull-up/down resistors.
+	 * Reading these registers gives the current pull-state.
+	 */
+	GPIO_PUP_PDN_CNTRL_REG0 = (GPIO_BASE + 0xE4)
+#endif
 };
 
 #endif

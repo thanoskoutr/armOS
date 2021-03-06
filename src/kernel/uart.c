@@ -13,18 +13,32 @@
 /*
  * Memory-Mapped I/O output
  */
+#ifdef AARCH_32
 void mmio_write(uint32_t reg, uint32_t data)
 {
 	*(volatile uint32_t*)reg = data;
 }
+#elif AARCH_64
+void mmio_write(uint64_t reg, uint32_t data)
+{
+	*(volatile uint32_t*)reg = data;
+}
+#endif
 
 /*
  * Memory-Mapped I/O input
  */
+#ifdef AARCH_32
 uint32_t mmio_read(uint32_t reg)
 {
 	return *(volatile uint32_t*)reg;
 }
+#elif AARCH_64
+uint32_t mmio_read(uint64_t reg)
+{
+	return *(volatile uint32_t*)reg;
+}
+#endif
 
 /*
  * Loop <count> times, so the compiler won't optimize away
@@ -53,14 +67,22 @@ void uart_init()
 	/*
 	 * Setup the GPIO pin 14 && 15
 	 */
-	/* For Raspi ZeroW/3/4? (mini UART) */
+
+	/* Set Alternative Function 5 for GPIO pins 14, 15
+	 * Enables mini UART for boards that use it as a primary UART
+	 * Boards: Raspi Zero W, Raspi 3, Raspi 4
+	 */
 	selector = mmio_read(GPFSEL1);
-	selector &= ~(7 << 12);		/* Clean GPIO PIN 14 */
+	selector &= ~(7 << 12);		/* Clear GPIO PIN 14 */
 	selector |= 2 << 12;		/* Set Alt 5 for GPIO PIN 14 */
-	selector &= ~(7 << 15);		/* Clean GPIO PIN 15 */
+	selector &= ~(7 << 15);		/* Clear GPIO PIN 15 */
 	selector |= 2 << 15;		/* Set Alt 5 for GPIO PIN 15 */
 	mmio_write(GPFSEL1, selector);
 
+	/*
+	 * Disable pull up/down for pin 14 && 15
+	 */
+#if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
 	/* Disable pull up/down for all GPIO pins & delay for 150 cycles */
 	mmio_write(GPPUD, 0x00000000);
 	delay(150);
@@ -72,23 +94,32 @@ void uart_init()
 	/* Write 0 to GPPUDCLK0 to make it take effect */
 	mmio_write(GPPUDCLK0, 0x00000000);
 
-
-
-#if defined(MODEL_3) || defined(MODEL_4)
-	/*
-	* For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default
-	* Set it to 3Mhz so that we can consistently set the baud rate
-	*/
-
-	/* UART_CLOCK = 30000000; */
-	unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
-	/* Wait until we can talk to the VC */
-	while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
-	/* Send our msg to property channel and wait for the response */
-	mmio_write(MBOX_WRITE, r);
-	while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
-					mmio_read(MBOX_READ) != r ) { }
+#elif defined(MODEL_4)
+	/* Disable pull up/down for pin 14 (TXD), 15 (RXD) */
+	selector = mmio_read(GPIO_PUP_PDN_CNTRL_REG0);
+	/* 31:30 bits - Resistor Select for GPIO15 */
+	/* 29:28 bits - Resistor Select for GPIO14 */
+	/* Clear GPIO15, GPIO14 Resistor Select pins -> Disables pull up/down */
+	selector &= ~((1 << 31) | (1 << 30) | (1 << 29) | (1 << 28));
+	mmio_write(GPIO_PUP_PDN_CNTRL_REG0, selector);
 #endif
+
+
+// #if defined(MODEL_3) || defined(MODEL_4)
+// 	/*
+// 	* For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default
+// 	* Set it to 3Mhz so that we can consistently set the baud rate
+// 	*/
+
+// 	/* UART_CLOCK = 30000000; */
+// 	unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
+// 	/* Wait until we can talk to the VC */
+// 	while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
+// 	/* Send our msg to property channel and wait for the response */
+// 	mmio_write(MBOX_WRITE, r);
+// 	while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
+// 					mmio_read(MBOX_READ) != r ) { }
+// #endif
 
 	/* Enable mini UART*/
 	mmio_write(AUX_ENABLES, 1);
@@ -106,9 +137,15 @@ void uart_init()
 	mmio_write(AUX_MU_MCR_REG, 0);
 
 	/* Set baud rate to 115200 */
+#if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
 	/* (( System_Clock_Freq / baudrate_reg) / 8 ) - 1 */
 	/* ((250,000,000 / 115200) / 8) - 1 = 270 */
 	mmio_write(AUX_MU_BAUD_REG, 270);
+#elif defined(MODEL_4)
+	/* (( System_Clock_Freq / baudrate_reg) / 8 ) - 1 */
+	/* ((500,000,000 / 115200) / 8) - 1 = 541 */
+	mmio_write(AUX_MU_BAUD_REG, 541);
+#endif
 
 	/* Finally, enable transmitter and receiver */
 	mmio_write(AUX_MU_CNTL_REG, 3);
