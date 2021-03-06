@@ -6,7 +6,7 @@
 #ifndef P_GPIO_H
 #define P_GPIO_H
 
-#include "peripherals/base.h"
+#include <peripherals/base.h>
 
 enum
 {

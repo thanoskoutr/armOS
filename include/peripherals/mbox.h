@@ -7,7 +7,7 @@
 #ifndef P_MBOX_H
 #define P_MBOX_H
 
-#include "peripherals/base.h"
+#include <peripherals/base.h>
 
 enum
 {
