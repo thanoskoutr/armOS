@@ -61,7 +61,7 @@ void uart_init()
 	mmio_write(GPPUD, 0x00000000);
 	delay(150);
 
-	/* Disable pull up/down for pin 14,15 & delay for 150 cycles */
+	/* Disable pull up/down for pin 14 (TXD), 15 (RXD) & delay for 150 cycles */
 	mmio_write(GPPUDCLK0, (1 << 14) | (1 << 15));
 	delay(150);
 
