@@ -55,21 +55,27 @@ COMMON_SRC = src/common
 
 all: build
 
-# ! Rename obj files -> *_c.o, *_s.o
-# ! Make targets for all .o, .c files
-
 # Compile project
-$(BUILD_DIR)/boot.o: $(ARCH_DIR)/boot.S
+## Compile every asm file in /arch/$(ARCH_DIR)
+$(BUILD_DIR)/%_s.o: $(ARCH_DIR)/%.S
 	mkdir -p $(@D)
 	$(ARMGNU)-gcc $(SFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/kernel.o: $(KER_SRC)/kernel.c
+## Compile every C file in /src/kernel
+$(BUILD_DIR)/%_c.o: $(KER_SRC)/%.c
+	mkdir -p $(@D)
 	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
-$(BUILD_DIR)/uart.o: $(KER_SRC)/uart.c
-	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+## Compile every C file in /src/common
 
-build: $(BUILD_DIR)/boot.o $(BUILD_DIR)/uart.o $(BUILD_DIR)/kernel.o
+## Find all object files (from corresponding C, asm files)
+ASM_FILES = $(wildcard $(ARCH_DIR)/*.S)
+C_FILES = $(wildcard $(KER_SRC)/*.c)
+OBJ_FILES = $(ASM_FILES:$(ARCH_DIR)/%.S=$(BUILD_DIR)/%_s.o)
+OBJ_FILES += $(C_FILES:$(KER_SRC)/%.c=$(BUILD_DIR)/%_c.o)
+
+## Link all object files and create final image
+build: $(OBJ_FILES)
 	@echo "----- Building for Raspberry Pi $(value RASPI_MODEL) -----"
 	@echo "----- Building for $(value AARCH) -----"
 
