@@ -8,7 +8,6 @@
 
 #include "peripherals/gpio.h"
 #include "peripherals/aux.h"
-#include "peripherals/mbox.h"
 
 /*
  * Memory-Mapped I/O output
@@ -55,11 +54,6 @@ void delay(int32_t count)
 }
 
 
-/* A Mailbox message with set clock rate of PL011 to 3MHz tag (For raspi 3,4) */
-volatile unsigned int __attribute__((aligned(16))) mbox[MBOX_CHANNELS] = {
-	9*4, 0, 0x38002, 12, 8, 2, 3000000, 0, 0
-};
-
 void uart_init()
 {
 	uint32_t selector;
@@ -104,23 +98,6 @@ void uart_init()
 	mmio_write(GPIO_PUP_PDN_CNTRL_REG0, selector);
 #endif
 
-
-// #if defined(MODEL_3) || defined(MODEL_4)
-// 	/*
-// 	* For Raspi3 and 4 the UART_CLOCK is system-clock dependent by default
-// 	* Set it to 3Mhz so that we can consistently set the baud rate
-// 	*/
-
-// 	/* UART_CLOCK = 30000000; */
-// 	unsigned int r = (((unsigned int)(&mbox) & ~0xF) | 8);
-// 	/* Wait until we can talk to the VC */
-// 	while ( mmio_read(MBOX_STATUS) & 0x80000000 ) { }
-// 	/* Send our msg to property channel and wait for the response */
-// 	mmio_write(MBOX_WRITE, r);
-// 	while ( (mmio_read(MBOX_STATUS) & 0x40000000) ||
-// 					mmio_read(MBOX_READ) != r ) { }
-// #endif
-
 	/* Enable mini UART*/
 	mmio_write(AUX_ENABLES, 1);
 	/* Disable auto flow control and disable receiver and transmitter */
@@ -138,10 +115,12 @@ void uart_init()
 
 	/* Set baud rate to 115200 */
 #if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
+	/* System_Clock_Freq = 250 MHz */
 	/* (( System_Clock_Freq / baudrate_reg) / 8 ) - 1 */
 	/* ((250,000,000 / 115200) / 8) - 1 = 270 */
 	mmio_write(AUX_MU_BAUD_REG, 270);
 #elif defined(MODEL_4)
+	/* System_Clock_Freq = 500 MHz */
 	/* (( System_Clock_Freq / baudrate_reg) / 8 ) - 1 */
 	/* ((500,000,000 / 115200) / 8) - 1 = 541 */
 	mmio_write(AUX_MU_BAUD_REG, 541);
