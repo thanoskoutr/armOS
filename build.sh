@@ -1,17 +1,28 @@
 #!/bin/bash
 
+# Get Raspi model number from 1st argument - Default: Model 0
+MODEL=${1:-0}
+MOUNT_DIR="/media/thanos"
+
 # Run script, after inserting SD card
 
 # Compile kernel
 make clean
-make RASPI_MODEL=0
+make RASPI_MODEL=${MODEL}
 
 # Unmount SD card if it was automatically mounted from OS
 # Create directory in /media in order to mount SD card
 # Mount /boot partition
 
+# Remove any previous kernel images on the /boot partition
+rm -f ${MOUNT_DIR}/boot/kernel*.img
+
 # Copy kernel to SD card
-sudo cp kernel7.img /media/thanos/boot/kernel.img
+if [ $MODEL == 0 ]; then
+	sudo cp kernel7.img ${MOUNT_DIR}/boot/kernel.img
+elif [ $MODEL == 4 ]; then
+	sudo cp kernel8.img ${MOUNT_DIR}/boot/kernel8.img
+fi
 
 # Forced cache data to be written to disk
 sudo sync
