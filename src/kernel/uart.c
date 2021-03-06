@@ -6,6 +6,10 @@
 #include <stdint.h>
 #include <kernel/uart.h>
 
+#include "peripherals/gpio.h"
+#include "peripherals/aux.h"
+#include "peripherals/mbox.h"
+
 /*
  * Memory-Mapped I/O output
  */
