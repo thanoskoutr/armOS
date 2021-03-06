@@ -7,7 +7,7 @@
 #ifndef P_AUX_H
 #define P_AUX_H
 
-#include "peripherals/gpio.h"
+#include <peripherals/gpio.h>
 
 enum
 {
