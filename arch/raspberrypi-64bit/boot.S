@@ -20,21 +20,20 @@
  */
 
 _start:
-	// read cpu id, stop slave cores
+	/* Check if processor ID is zero (executing on main core), else hang */
 	mrs x1, mpidr_el1
 	and x1, x1, #3
 	cbz x1, 2f
-	// cpu id > 0, stop
+	/* We are not on the main core, so hang in an infinite wait loop */
 1:	wfe
 	b 1b
-2: 	// cpu id == 0
+2: 	/* Code executing only by main core (cpu id == 0) */
 
 	/*
 	 * With the latest firmware, only the primary core runs (core 0), and
 	 * the secondary cores are awaiting in a spin loop.
 	 */
-	mov sp, #0x8000			// Setup the stack (32 bit).
-	//mov sp, #0x80000		// Setup the stack (64 bit).
+	mov sp, #0x80000		// Setup the stack (64 bit).
 
 	ldr x5, =__bss_start		// Clear out BSS.
 	ldr w6, =__bss_size

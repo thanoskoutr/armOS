@@ -28,14 +28,15 @@ else ifeq ($(RASPI_MODEL), 2)
 else ifeq ($(RASPI_MODEL), 3)
 	AARCH = AARCH_64
 	ARCH_DIR = arch/raspberrypi-64bit
-	SFLAGS = -mgeneral-regs-only $(DIRECTIVES)
+	SFLAGS += -mgeneral-regs-only $(DIRECTIVES)
 	DIRECTIVES = -D MODEL_3 -D $(AARCH)
 	ARMGNU = $(ARMGNU_64)
 	IMG_NAME = $(IMG_NAME_64)
 else ifeq ($(RASPI_MODEL), 4)
 	AARCH = AARCH_64
 	ARCH_DIR = arch/raspberrypi-64bit
-	SFLAGS = -mgeneral-regs-only $(DIRECTIVES)
+	SFLAGS += -mgeneral-regs-only $(DIRECTIVES)
+	CPU = cortex-a72
 	DIRECTIVES = -D MODEL_4 -D $(AARCH)
 	ARMGNU = $(ARMGNU_64)
 	IMG_NAME = $(IMG_NAME_64)
@@ -79,7 +80,7 @@ build: $(OBJ_FILES)
 	@echo "----- Building for Raspberry Pi $(value RASPI_MODEL) -----"
 	@echo "----- Building for $(value AARCH) -----"
 
-	$(ARMGNU)-gcc -T $(KER_SRC)/linker.ld -o $(IMG_NAME) $(LDFLAGS) $^
+	$(ARMGNU)-gcc -T $(ARCH_DIR)/linker.ld -o $(IMG_NAME) $(LDFLAGS) $^
 	$(ARMGNU)-objcopy -O binary $(IMG_NAME) $(IMG_NAME)
 
 
