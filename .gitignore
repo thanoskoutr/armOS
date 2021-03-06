@@ -13,3 +13,6 @@ build
 
 # Screenshots
 Screenshot_*
+
+# Config files for testing
+config-test-*.txt
