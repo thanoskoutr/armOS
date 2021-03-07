@@ -22,6 +22,7 @@ void kernel_main()
 	uart_init();
 
 	/* Print Initial Starting Message to Serial Console */
+	uart_puts("\r\n");
 	uart_puts("                  _____ _____ \r\n");
 	uart_puts(" ___ ___ _____   |     |   __|\r\n");
 	uart_puts("| . |  _|     |  |  |  |__   |\r\n");

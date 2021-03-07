@@ -1,0 +1,2 @@
+uart_2ndstage=1
+# Causes bootcode.bin to output diagnostic information to UART0.

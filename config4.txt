@@ -1,0 +1,7 @@
+core_freq_min=500
+uart_2ndstage=1
+# Causes bootcode.bin to output diagnostic information to UART0.
+
+#dtoverlay=miniuart-bt
+# Bluetooth uses 'ttyS0' (miniUART device) internally and
+# UART uses 'ttyAMA0' (first PL011 (UART0)) as the Serial Port on GPIO pins 14,15

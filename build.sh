@@ -20,9 +20,10 @@ rm -f ${MOUNT_DIR}/boot/kernel*.img
 # Copy kernel to SD card
 if [ $MODEL == 0 ]; then
 	rm -f ${MOUNT_DIR}/boot/config.txt
+	cp config0.txt ${MOUNT_DIR}/boot/config.txt
 	cp kernel7.img ${MOUNT_DIR}/boot/kernel.img
 elif [ $MODEL == 4 ]; then
-	cp config.txt ${MOUNT_DIR}/boot/config.txt
+	cp config4.txt ${MOUNT_DIR}/boot/config.txt
 	cp kernel8.img ${MOUNT_DIR}/boot/kernel8.img
 fi
 
