@@ -120,6 +120,9 @@ unsigned char uart_getc()
 
 void uart_puts(const char* str)
 {
-	for (size_t i = 0; str[i] != '\0'; i++)
+	for (size_t i = 0; str[i] != '\0'; i++) {
+		if (str[i] == '\n')
+			uart_putc('\r');
 		uart_putc((unsigned char)str[i]);
+	}
 }

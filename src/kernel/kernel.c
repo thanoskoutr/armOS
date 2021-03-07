@@ -22,30 +22,30 @@ void kernel_main()
 	uart_init();
 
 	/* Print Initial Starting Message to Serial Console */
-	uart_puts("\r\n");
-	uart_puts("                  _____ _____ \r\n");
-	uart_puts(" ___ ___ _____   |     |   __|\r\n");
-	uart_puts("| . |  _|     |  |  |  |__   |\r\n");
-	uart_puts("|__,|_| |_|_|_|  |_____|_____|\r\n");
+	uart_puts("\n");
+	uart_puts("                  _____ _____ \n");
+	uart_puts(" ___ ___ _____   |     |   __|\n");
+	uart_puts("| . |  _|     |  |  |  |__   |\n");
+	uart_puts("|__,|_| |_|_|_|  |_____|_____|\n");
 
-	uart_puts("\r\nCustom ARM OS initializing...\r\n");
+	uart_puts("\nCustom ARM OS initializing...\n");
 
 #ifdef MODEL_0
-	uart_puts("\r\n\tBoard: Raspberry Pi Zero / Zero W\r\n");
+	uart_puts("\n\tBoard: Raspberry Pi Zero / Zero W\n");
 #elif MODEL_2
-	uart_puts("\r\n\tBoard: Raspberry Pi 2\r\n");
+	uart_puts("\n\tBoard: Raspberry Pi 2\n");
 #elif MODEL_3
-	uart_puts("\r\n\tBoard: Raspberry Pi 3\r\n");
+	uart_puts("\n\tBoard: Raspberry Pi 3\n");
 #elif MODEL_4
-	uart_puts("\r\n\tBoard: Raspberry Pi 4\r\n");
+	uart_puts("\n\tBoard: Raspberry Pi 4\n");
 #endif
 
 #ifdef AARCH_32
-	uart_puts("\tArch: aarch32\r\n");
+	uart_puts("\tArch: aarch32\n");
 #elif AARCH_64
-	uart_puts("\tArch: aarch64\r\n");
+	uart_puts("\tArch: aarch64\n");
 #endif
-	uart_puts("Done\r\n");
+	uart_puts("Done\n");
 
 
 	while (1) {
