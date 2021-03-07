@@ -1,6 +1,6 @@
 # Set Compiler flags
 SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding -nostdlib -nostartfiles $(DIRECTIVES)
-CFLAGS = -O2 -Wall -Wextra
+CFLAGS = -O2 -Wall -Wextra -g
 LDFLAGS = -ffreestanding -O2 -nostdlib
 
 # Set Cross-Compiler Toolchain
@@ -68,17 +68,27 @@ $(BUILD_DIR)/%_c.o: $(KER_SRC)/%.c
 	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 ## Compile every C file in /src/common
+$(BUILD_DIR)/%_c.o: $(COMMON_SRC)/%.c
+	mkdir -p $(@D)
+	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 ## Find all object files (from corresponding C, asm files)
 ASM_FILES = $(wildcard $(ARCH_DIR)/*.S)
-C_FILES = $(wildcard $(KER_SRC)/*.c)
+KER_C_FILES = $(wildcard $(KER_SRC)/*.c)
+COMMON_C_FILES = $(wildcard $(COMMON_SRC)/*.c)
+
 OBJ_FILES = $(ASM_FILES:$(ARCH_DIR)/%.S=$(BUILD_DIR)/%_s.o)
-OBJ_FILES += $(C_FILES:$(KER_SRC)/%.c=$(BUILD_DIR)/%_c.o)
+OBJ_FILES += $(KER_C_FILES:$(KER_SRC)/%.c=$(BUILD_DIR)/%_c.o)
+OBJ_FILES += $(COMMON_C_FILES:$(COMMON_SRC)/%.c=$(BUILD_DIR)/%_c.o)
 
 ## Link all object files and create final image
 build: $(OBJ_FILES)
 	@echo "----- Building for Raspberry Pi $(value RASPI_MODEL) -----"
 	@echo "----- Building for $(value AARCH) -----"
+
+	$(info KER_C_FILES is $(KER_C_FILES))
+	$(info COMMON_C_FILES is $(COMMON_C_FILES))
+	$(info OBJ_FILES is $(OBJ_FILES))
 
 	$(ARMGNU)-gcc -T $(ARCH_DIR)/linker.ld -o $(IMG_NAME).elf $(LDFLAGS) $^
 	$(ARMGNU)-objcopy -O binary $(IMG_NAME).elf $(IMG_NAME).img
