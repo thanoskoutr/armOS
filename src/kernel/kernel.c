@@ -69,15 +69,51 @@ void kernel_main()
 	printk("itoa(%d): %s\n", x, itoa(x));
 	printk("itoa(%d): %s\n", y, itoa(y));
 
-	printk("strlen(%s) = %d\n", "HelloWorld", strlen("HelloWorld"));
-	/* Need to implement strcpy */
-	// char ch1[100] = "HelloWorld";
-	// printk("strlen(%s) = %d\n", ch1, strlen(ch1));
+	char s[21];
+	char c = 'x';
+	int num = 20;
+	memset(s, c, num);
+	s[20] = '\0';
+	printk("memset(s, %c, %d) = %s\n", c, num, s);
 
-	// char ch2[100] = "HelloKernelWorld";
-	// printk("strrev(%s) = ", ch2);
-	// strrev(ch2);
-	// printk("%s\n", ch2);
+	char src[20];
+	strcpy(src, "HeyManWhazup");
+	int src_len = strlen(src);
+	char dest[100];
+	memcpy(dest, src, src_len + 1);
+	printk("memcpy(dest, %s, %d) = %s\n", src, src_len + 1, dest);
+
+	printk("strlen(%s) = %d\n", "HelloWorld", strlen("HelloWorld"));
+
+	char sdest[200];
+	printk("strcpy(sdest, _HeyAgainMan__ !) = ");
+	strcpy(sdest, "_HeyAgainMan__ !");
+	printk("%s\n", sdest);
+
+	char ch2[100];
+	strcpy(ch2, "HelloKernelWorld");
+	printk("strrev(%s) = ", ch2);
+	strrev(ch2);
+	printk("%s\n", ch2);
+
+	char s1[50];
+	char s2[50];
+	strcpy(s1, "_HeyAgainMan__ !");
+	strcpy(s2, "_HEYAGAINMAN__");
+	printk("strcmp(%s, %s) = %d\n", s1, s2, strcmp(s1, s2));
+	strcpy(s1, "_HeyAgainMan__ !");
+	strcpy(s2, "smaller_str");
+	printk("strcmp(%s, %s) = %d\n", s1, s2, strcmp(s1, s2));
+	strcpy(s1, "_HeyAgainMan__ !");
+	strcpy(s2, "_HeyAgainMan__ !");
+	printk("strcmp(%s, %s) = %d\n", s1, s2, strcmp(s1, s2));
+
+	strcpy(s1, "I want to be...");
+	strcpy(s2, "concatinated!!");
+	printk("strcat(%s, %s) = ", s1, s2);
+	strcat(s1, s2);
+	printk("%s\n", s1);
+
 	printk("\n----- Done Testing string.h, stdlib.h -----\n\n");
 
 

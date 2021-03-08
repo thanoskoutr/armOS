@@ -13,9 +13,8 @@ Support for:
 - [x] mini UART
 - [x] Kernel printing info on start up
 - [x] `printk`
-- [ ] `string.h` functions
-    - [x] `strlen`, `strrev`
-    - [ ] `strcat`, `strcmp`, `strcpy`
-    - [ ] `memset`, `memcopy`
+- [x] `string.h` functions
+    - [x] `strlen`, `strcmp`, `strcpy`, `strcat`, `strrev`
+    - [x] `memset`, `memcpy`
 - [ ] `stdlib.h` functions
     - [x] `itoa`
