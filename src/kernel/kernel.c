@@ -9,6 +9,7 @@
 #include <kernel/printk.h>
 #include <common/string.h>
 #include <common/stdlib.h>
+#include <common/stdbool.h>
 
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
@@ -115,6 +116,20 @@ void kernel_main()
 	printk("%s\n", s1);
 
 	printk("\n----- Done Testing string.h, stdlib.h -----\n\n");
+
+	printk("\n----- Testing stdbool.h -----\n\n");
+	bool a = true;
+	bool b = false;
+
+	printk("a = %d, b = %d\n", a, b);
+	printk("a || b = %d\n", a || b);
+	printk("a && b = %d\n", a && b);
+	printk("!a = %d\n", !a);
+	printk("!b = %d\n", !b);
+	printk("a == b = %d\n", a == b);
+	printk("a != b = %d\n", a != b);
+
+	printk("\n----- Done Testing stdbool.h-----\n\n");
 
 
 	while (1) {

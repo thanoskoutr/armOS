@@ -18,3 +18,5 @@ Support for:
     - [x] `memset`, `memcpy`
 - [ ] `stdlib.h` functions
     - [x] `itoa`
+- [x] `stdbool`
+    - [x] `true`, `false`
