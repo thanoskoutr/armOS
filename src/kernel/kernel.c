@@ -5,8 +5,11 @@
 
 #include <stddef.h>
 #include <stdint.h>
+
 #include <kernel/uart.h>
 #include <kernel/printk.h>
+#include <kernel/utils.h>
+
 #include <common/string.h>
 #include <common/stdlib.h>
 #include <common/stdbool.h>
@@ -130,6 +133,14 @@ void kernel_main()
 	printk("a != b = %d\n", a != b);
 
 	printk("\n----- Done Testing stdbool.h-----\n\n");
+
+
+	/* Exception Levels */
+#ifdef AARCH_32
+#elif AARCH_64
+	int el = get_el();
+	printk("\n----- Exception level: %d -----\n", el);
+#endif
 
 
 	while (1) {

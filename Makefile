@@ -72,8 +72,6 @@ $(BUILD_DIR)/%_c.o: $(COMMON_SRC)/%.c
 	mkdir -p $(@D)
 	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
-# $(info KER_C_FILES is $(KER_C_FILES))
-
 ## Find all object files (from corresponding C, asm files)
 ASM_FILES = $(wildcard $(ARCH_DIR)/*.S)
 KER_C_FILES = $(wildcard $(KER_SRC)/*.c)
