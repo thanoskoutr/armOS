@@ -12,3 +12,5 @@ Support for:
     - [x] AUX
 - [x] mini UART
 - [x] Kernel printing info on start up
+- [x] `putc`
+- [x] `printf` (only for Raspberry Pi 4)
