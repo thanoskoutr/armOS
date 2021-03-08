@@ -17,24 +17,24 @@ RASPI_MODEL ?= 0
 # Set flags and variables dependent on the Raspi Model
 ifeq ($(RASPI_MODEL), 0)
 	AARCH = AARCH_32
-	ARCH_DIR = arch/raspberrypi0
+	ARCH_DIR = arch/armv6
 	CPU = arm1176jzf-s
 	DIRECTIVES = -D MODEL_0 -D $(AARCH)
 else ifeq ($(RASPI_MODEL), 2)
 	AARCH = AARCH_32
-	ARCH_DIR = arch/raspberrypi2
+	ARCH_DIR = arch/armv7-a
 	CPU = cortex-a7
 	DIRECTIVES = -D MODEL_2 -D $(AARCH)
 else ifeq ($(RASPI_MODEL), 3)
 	AARCH = AARCH_64
-	ARCH_DIR = arch/raspberrypi-64bit
+	ARCH_DIR = arch/armv8-a
 	SFLAGS += -mgeneral-regs-only $(DIRECTIVES)
 	DIRECTIVES = -D MODEL_3 -D $(AARCH)
 	ARMGNU = $(ARMGNU_64)
 	IMG_NAME = $(IMG_NAME_64)
 else ifeq ($(RASPI_MODEL), 4)
 	AARCH = AARCH_64
-	ARCH_DIR = arch/raspberrypi-64bit
+	ARCH_DIR = arch/armv8-a
 	SFLAGS += -mgeneral-regs-only $(DIRECTIVES)
 	CPU = cortex-a72
 	DIRECTIVES = -D MODEL_4 -D $(AARCH)
