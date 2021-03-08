@@ -12,3 +12,10 @@ Support for:
     - [x] AUX
 - [x] mini UART
 - [x] Kernel printing info on start up
+- [x] `printk`
+- [ ] `string.h` functions
+    - [x] `strlen`, `strrev`
+    - [ ] `strcat`, `strcmp`, `strcpy`
+    - [ ] `memset`, `memcopy`
+- [ ] `stdlib.h` functions
+    - [x] `itoa`
