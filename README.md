@@ -12,3 +12,4 @@ Support for:
     - [x] AUX
 - [x] mini UART
 - [x] Kernel printing info on start up
+- [x] `printk`
