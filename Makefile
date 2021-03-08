@@ -68,12 +68,20 @@ $(BUILD_DIR)/%_c.o: $(KER_SRC)/%.c
 	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 ## Compile every C file in /src/common
+$(BUILD_DIR)/%_c.o: $(COMMON_SRC)/%.c
+	mkdir -p $(@D)
+	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+
+# $(info KER_C_FILES is $(KER_C_FILES))
 
 ## Find all object files (from corresponding C, asm files)
 ASM_FILES = $(wildcard $(ARCH_DIR)/*.S)
-C_FILES = $(wildcard $(KER_SRC)/*.c)
+KER_C_FILES = $(wildcard $(KER_SRC)/*.c)
+COMMON_C_FILES = $(wildcard $(COMMON_SRC)/*.c)
+
 OBJ_FILES = $(ASM_FILES:$(ARCH_DIR)/%.S=$(BUILD_DIR)/%_s.o)
-OBJ_FILES += $(C_FILES:$(KER_SRC)/%.c=$(BUILD_DIR)/%_c.o)
+OBJ_FILES += $(KER_C_FILES:$(KER_SRC)/%.c=$(BUILD_DIR)/%_c.o)
+OBJ_FILES += $(COMMON_C_FILES:$(COMMON_SRC)/%.c=$(BUILD_DIR)/%_c.o)
 
 ## Link all object files and create final image
 build: $(OBJ_FILES)

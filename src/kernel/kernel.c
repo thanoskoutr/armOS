@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <kernel/uart.h>
 #include <kernel/printk.h>
+#include <common/string.h>
+#include <common/stdlib.h>
 
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
@@ -48,7 +50,7 @@ void kernel_main()
 #endif
 	uart_puts("Done\n");
 
-	/* Test printk, string.h*/
+	/* Testing */
 	printk("\n----- Testing printk -----\n\n");
 	uart_puts("uart: 0x2a\n");
 	printk("printk: %x\n", 0x2a);
@@ -59,6 +61,9 @@ void kernel_main()
 	printk("OK man, good %s, since %d\n", "job man", -29000);
 	printk("We got 30%%\n");
 
+	printk("\n----- Done Testing printk -----\n\n");
+
+	printk("\n----- Testing string.h, stdlib.h -----\n\n");
 	int x = -11299770;
 	int y = 2147483647;
 	printk("itoa(%d): %s\n", x, itoa(x));
@@ -73,7 +78,7 @@ void kernel_main()
 	// printk("strrev(%s) = ", ch2);
 	// strrev(ch2);
 	// printk("%s\n", ch2);
-	printk("\n----- Done Testing printk -----\n\n");
+	printk("\n----- Done Testing string.h, stdlib.h -----\n\n");
 
 
 	while (1) {
