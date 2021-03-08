@@ -20,3 +20,7 @@ Support for:
     - [x] `itoa`
 - [x] `stdbool`
     - [x] `true`, `false`
+- [x] Exception Levels
+    - [x] Kernel starts at EL2
+    - [x] Print EL
+    - [x] Change from EL2 to EL1

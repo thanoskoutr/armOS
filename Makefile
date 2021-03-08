@@ -60,7 +60,7 @@ all: build
 ## Compile every asm file in /arch/$(ARCH_DIR)
 $(BUILD_DIR)/%_s.o: $(ARCH_DIR)/%.S
 	mkdir -p $(@D)
-	$(ARMGNU)-gcc $(SFLAGS) -c $< -o $@
+	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 ## Compile every C file in /src/kernel
 $(BUILD_DIR)/%_c.o: $(KER_SRC)/%.c
