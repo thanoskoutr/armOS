@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <kernel/uart.h>
+#include <kernel/printk.h>
 
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
@@ -22,7 +23,7 @@ void kernel_main()
 	uart_init();
 
 	/* Print Initial Starting Message to Serial Console */
-	uart_puts("\n");
+	uart_puts("\n\n");
 	uart_puts("                  _____ _____ \n");
 	uart_puts(" ___ ___ _____   |     |   __|\n");
 	uart_puts("| . |  _|     |  |  |  |__   |\n");
@@ -46,6 +47,33 @@ void kernel_main()
 	uart_puts("\tArch: aarch64\n");
 #endif
 	uart_puts("Done\n");
+
+	/* Test printk, string.h*/
+	printk("\n----- Testing printk -----\n\n");
+	uart_puts("uart: 0x2a\n");
+	printk("printk: %x\n", 0x2a);
+
+	uart_puts("uart: hello 2232130 from s\n");
+	printk("printk: hello %d from %c\n", 2232130, 's');
+
+	printk("OK man, good %s, since %d\n", "job man", -29000);
+	printk("We got 30%%\n");
+
+	int x = -11299770;
+	int y = 2147483647;
+	printk("itoa(%d): %s\n", x, itoa(x));
+	printk("itoa(%d): %s\n", y, itoa(y));
+
+	printk("strlen(%s) = %d\n", "HelloWorld", strlen("HelloWorld"));
+	/* Need to implement strcpy */
+	// char ch1[100] = "HelloWorld";
+	// printk("strlen(%s) = %d\n", ch1, strlen(ch1));
+
+	// char ch2[100] = "HelloKernelWorld";
+	// printk("strrev(%s) = ", ch2);
+	// strrev(ch2);
+	// printk("%s\n", ch2);
+	printk("\n----- Done Testing printk -----\n\n");
 
 
 	while (1) {

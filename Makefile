@@ -1,6 +1,6 @@
 # Set Compiler flags
 SFLAGS = -mcpu=$(CPU) -fpic -ffreestanding -nostdlib -nostartfiles $(DIRECTIVES)
-CFLAGS = -O2 -Wall -Wextra
+CFLAGS = -O2 -Wall -Wextra -g
 LDFLAGS = -ffreestanding -O2 -nostdlib
 
 # Set Cross-Compiler Toolchain
