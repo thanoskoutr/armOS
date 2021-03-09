@@ -1,5 +1,5 @@
 /*
- * utils.h - Definition of basic UART functions
+ * utils.h - Definition of basic ARM assembly functions.
  */
 
 #ifndef UTILS_H
