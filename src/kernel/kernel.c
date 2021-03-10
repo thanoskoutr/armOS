@@ -64,17 +64,15 @@ void kernel_main()
 	printk("\n----- Exception level: EL%d -----\n", el);
 #endif
 
+	/* Interrupts */
 #ifdef AARCH_32
 #elif AARCH_64
 	printk("Initializing IRQs...\n");
 	irq_vector_init();
 	printk("Done\n");
-#endif
 	printk("Enabling IRQ controllers...\n");
 	enable_interrupt_controller();
 	printk("Done\n");
-#ifdef AARCH_32
-#elif AARCH_64
 	printk("Enabling IRQs...\n");
 	irq_enable();
 	printk("Done\n");
