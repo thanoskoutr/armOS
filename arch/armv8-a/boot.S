@@ -4,6 +4,7 @@
  * Code for Raspberry Pi 3, 4
  */
 
+#include <armv8-a/mm.h>
 #include <armv8-a/sysregs.h>
 
 // To keep this in the first portion of the binary
@@ -29,6 +30,7 @@ _start:
 	b proc_hang
 	/* We are not on the main core, so hang in an infinite wait loop */
 proc_hang:
+	wfe
 	b proc_hang
 
 master:
@@ -69,7 +71,7 @@ el1_entry:
 	 * With the latest firmware, only the primary core runs (core 0), and
 	 * the secondary cores are awaiting in a spin loop.
 	 */
-	mov sp, #0x80000		// Setup the stack (64 bit).
+	mov sp, #LOW_MEMORY		// Setup the stack at 4 MB (64 bit).
 
 	ldr x5, =__bss_start		// Clear out BSS.
 	ldr w6, =__bss_size
