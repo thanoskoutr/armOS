@@ -8,6 +8,7 @@ docs
 build
 *.img
 *.elf
+*.bin
 
 # VS Code configs
 .vscode/
