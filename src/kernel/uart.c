@@ -60,8 +60,11 @@ void uart_init()
 	mmio_write(AUX_ENABLES, 1);
 	/* Disable auto flow control and disable receiver and transmitter */
 	mmio_write(AUX_MU_CNTL_REG, 0);
+
 	/* Disable receive and transmit interrupts */
-	mmio_write(AUX_MU_IER_REG, 0);
+	// mmio_write(AUX_MU_IER_REG, 0);
+	/* Enable receive interrupts */
+	mmio_write(AUX_MU_IER_REG, 2);
 
 	/* Not possible read for Interrupt ID, FIFO enables */
 	// mmio_write(AUX_MU_IIR_REG, 0xC6);

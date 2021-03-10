@@ -9,10 +9,13 @@
 #include <kernel/uart.h>
 #include <kernel/printk.h>
 #include <kernel/utils.h>
+#include <kernel/irq.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
 #include <common/stdbool.h>
+
+#include <armv8-a/irq.h>
 
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
@@ -61,8 +64,26 @@ void kernel_main()
 	printk("\n----- Exception level: EL%d -----\n", el);
 #endif
 
+#ifdef AARCH_32
+#elif AARCH_64
+	printk("Initializing IRQs...\n");
+	irq_vector_init();
+	printk("Done\n");
+#endif
+	printk("Enabling IRQ controllers...\n");
+	enable_interrupt_controller();
+	printk("Done\n");
+#ifdef AARCH_32
+#elif AARCH_64
+	printk("Enabling IRQs...\n");
+	irq_enable();
+	printk("Done\n");
+#endif
+
+	printk("\nType Something: \n");
+
 	while (1) {
-		uart_putc(uart_getc());
+		// uart_putc(uart_getc());
 	}
 
 }
