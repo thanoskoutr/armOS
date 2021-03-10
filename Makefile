@@ -89,6 +89,22 @@ build: $(OBJ_FILES)
 	$(ARMGNU)-gcc -T $(ARCH_DIR)/linker.ld -o $(IMG_NAME).elf $(LDFLAGS) $^
 	$(ARMGNU)-objcopy -O binary $(IMG_NAME).elf $(IMG_NAME).img
 
+
+# Compile armstub
+STUB_DIR = armstub
+STUB_FILES = $(wildcard ${STUB_DIR}/$(SRC_DIR)/*.S)
+OBJ_STUB_FILES = $(STUB_FILES:${STUB_DIR}/$(SRC_DIR)/%.S=${STUB_DIR}/$(BUILD_DIR)/%_s.o)
+
+## Compile armstub in /armstub/src
+$(STUB_DIR)/$(BUILD_DIR)/%_s.o: $(STUB_FILES)
+	mkdir -p $(@D)
+	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -c $< -o $@
+
+armstub: $(OBJ_STUB_FILES)
+	$(ARMGNU)-ld --section-start=.text=0 -o ${STUB_DIR}/$(BUILD_DIR)/armstub.elf $<
+	$(ARMGNU)-objcopy ${STUB_DIR}/$(BUILD_DIR)/armstub.elf -O binary armstub-new.bin
+
+
 # Rules for running on QEMU
 run2: build
 	# Run for Raspberry Pi 2
@@ -104,4 +120,4 @@ run3: build
 	# qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME).img
 
 clean:
-	rm -rf $(BUILD_DIR) *.img *.elf
+	rm -rf $(BUILD_DIR) *.img *.elf *.bin $(STUB_DIR)/$(BUILD_DIR)

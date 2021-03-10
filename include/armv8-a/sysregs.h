@@ -8,7 +8,7 @@
 
 /*
  * SCTLR_EL1, System Control Register (EL1)
- * Page 2654 of AArch64-Reference-Manual.
+ * Section D13.2.116 of AArch64-Reference-Manual.
  */
 
 #define SCTLR_RESERVED		(3 << 28) | (3 << 22) | (1 << 20) | (1 << 11)
@@ -35,21 +35,40 @@
 
 /*
  * HCR_EL2, Hypervisor Configuration Register (EL2)
- * Page 2487 of AArch64-Reference-Manual.
+ * Section D13.2.48 of AArch64-Reference-Manual.
  */
 
 #define HCR_RW			(1 << 31)
 #define HCR_VALUE		HCR_RW
 
 /*
- * HCR_RW: Sets execution state to be AArch64.
+ * HCR_RW: Sets execution state at next lower level to be AArch64.
+ */
+
+
+
+/*
+ * SCR_EL3, Secure Configuration Register (EL3)
+ * Section G8.2.125 of AArch64-Reference-Manual.
+ */
+
+#define SCR_RESERVED                    (3 << 4)
+#define SCR_RW                          (1 << 10)
+#define SCR_NS                          (1 << 0)
+#define SCR_VALUE                       (SCR_RESERVED | SCR_RW | SCR_NS)
+
+/*
+ * SCR_RESERVED:	Reserved bits are initialized to 1.
+ * SCR_RW:		Sets execution state at next lower level to be AArch64.
+ * SCR_NS:		EL0 and EL1 are in Non-secure state, memory accesses
+ * 			from those exception levels cannot access Secure memory.
  */
 
 
 
 /*
  * SPSR_EL3, Saved Program Status Register (EL3)
- * Page 389 of AArch64-Reference-Manual.
+ * Section G8.2.128 of AArch64-Reference-Manual.
  */
 
 #define SPSR_MASK_ALL 		(7 << 6)

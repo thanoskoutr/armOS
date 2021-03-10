@@ -1,6 +1,11 @@
 core_freq_min=500
+
 uart_2ndstage=1
 # Causes bootcode.bin to output diagnostic information to UART0.
+
+armstub=armstub-new.bin
+# Sets the custom stub, that is run before the kernel and set up low-level
+# hardware like the interrupt controller before passing control to the kernel.
 
 # kernel_old=1
 # loads the kernel to the memory address 0x0

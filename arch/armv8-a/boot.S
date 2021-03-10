@@ -46,12 +46,19 @@ master:
 	ldr x0, =HCR_VALUE
 	msr hcr_el2, x0
 
+	/* Secure Configuration Register (SCR)
+	 * Setting execution state at EL2 to be AArch64,
+	 * and that all lower exception levels will be "non secure".
+	 */
+	ldr x0, =SCR_VALUE
+	msr scr_el3, x0
+
 	/* Saved Program Status Register (SPSR)
 	 * Preparing processor state.
 	 * See <armv8-a/sysregs.h> for configuration.
 	 */
 	ldr x0, =SPSR_VALUE
-	msr spsr_el2, x0
+	msr spsr_el3, x0
 
 	/* Exception Link Register (ELR)
 	 * Holds the address, to which we are going to return
@@ -59,7 +66,7 @@ master:
 	 * Here we set this address to the location of el1_entry label.
 	 */
 	adr x0, el1_entry
-	msr elr_el2, x0
+	msr elr_el3, x0
 
 	eret
 
