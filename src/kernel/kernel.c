@@ -83,7 +83,16 @@ void kernel_main()
 	printk("\nType Something: \n");
 
 	while (1) {
-		// uart_putc(uart_getc());
+		/* Read from serial */
+		// unsigned char c = uart_getc();
+		// if (c == '\r') {
+		// 	/* When user presses Enter a CR is returned */
+		// 	uart_putc(c);
+		// 	uart_putc('\n');
+		// }
+		// else {
+		// 	uart_putc(c);
+		// }
 	}
 
 }

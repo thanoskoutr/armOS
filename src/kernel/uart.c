@@ -129,3 +129,21 @@ void uart_puts(const char* str)
 		uart_putc((unsigned char)str[i]);
 	}
 }
+
+void handle_uart_irq()
+{
+	unsigned char c;
+
+	/* While the receiver holds a valid bit (on Read) */
+	while ((mmio_read(AUX_MU_IIR_REG) & (1 << 2)) == (1 << 2)) {
+		c = uart_getc();
+		if (c == '\r') {
+			/* When user presses Enter a CR is returned */
+			uart_putc(c);
+			uart_putc('\n');
+		}
+		else {
+			uart_putc(c);
+		}
+	}
+}

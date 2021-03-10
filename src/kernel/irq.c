@@ -79,12 +79,7 @@ void handle_irq()
 		if (irq & AUX_IRQ) {
 			/* Remove the bit we handled */
 			irq &= ~AUX_IRQ;
-			/* While the receiver holds a valid bit */
-			while ((mmio_read(AUX_MU_IIR_REG) & (1 << 2)) == (1 << 2)) {
-				printk("UART IRQ RECV: ");
-				uart_putc(uart_getc());
-				printk("\n");
-			}
+			handle_uart_irq();
 		}
 		else {
 			printk("Unknown pending irq: %x\n", irq);

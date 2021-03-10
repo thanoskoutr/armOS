@@ -13,4 +13,6 @@ unsigned char uart_getc();
 
 void uart_puts(const char* str);
 
+void handle_uart_irq();
+
 #endif
