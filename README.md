@@ -24,3 +24,4 @@ Support for:
     - [x] Kernel starts at EL2
     - [x] Print EL
     - [x] Change from EL2 to EL1
+- [x] Starts kernel at `0x0` instead of `0x80000`
