@@ -21,7 +21,7 @@ Support for:
 - [x] `stdbool`
     - [x] `true`, `false`
 - [x] Exception Levels (ARMv8-a)
-    - [x] Armstub starts kernel at EL3
+    - [x] `armstub` starts kernel at EL3
     - [x] Kernel starts at EL3
     - [x] Print EL
     - [x] Change from EL3 to EL1
