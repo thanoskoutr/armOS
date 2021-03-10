@@ -10,7 +10,7 @@
 
 enum
 {
-	/* The base address for UART */
+	/* The base address for IRQ */
 	/*
 	 * IRQ_BASE
 	 * For raspi 0,1: IRQ_BASE = 0x2000B000;
