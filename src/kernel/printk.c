@@ -4,8 +4,10 @@
  */
 
 #include <stdarg.h>
+
 #include <kernel/printk.h>
 #include <kernel/uart.h>
+
 #include <common/string.h>
 #include <common/stdlib.h>
 
