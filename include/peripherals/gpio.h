@@ -26,7 +26,7 @@ enum
 	 * GPFSEL2: pins 20-29
 	 * GPFSEL3: pins 30-39
 	 * GPFSEL4: pins 40-49
-	 * GPFSEL5: pins 50-59
+	 * GPFSEL5: pins 50-53 or 50-57
 	 */
 	GPFSEL0 = (GPIO_BASE + 0x00),
 	GPFSEL1 = (GPIO_BASE + 0x04),
