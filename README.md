@@ -30,4 +30,4 @@ Support for:
     - [x] Enable / Disable interrupts
     - [x] IRQ registers
     - [x] Handle mini UART interrupts
-    - [ ] Handle Timer interrupts
+    - [x] Handle Timer interrupts
