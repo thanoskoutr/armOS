@@ -31,3 +31,6 @@ Support for:
     - [x] IRQ registers
     - [x] Handle mini UART interrupts
     - [x] Handle Timer interrupts
+- [x] Timer
+    - [x] System Timer 1, 3 handler
+    - [x] Sleep (msec)

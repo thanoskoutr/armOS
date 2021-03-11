@@ -85,6 +85,23 @@ void kernel_main()
 	printk("Initializing Timer...\n");
 	timer_init();
 	printk("Done\n");
+
+	/* Test Sleep */
+	printk("Sleeping for 0.5 seconds...\n");
+	timer_msleep(500);
+	printk("Sleeping for 0.5 seconds...\n");
+	timer_msleep(500);
+	printk("Sleeping for 0.5 seconds...\n");
+	timer_msleep(500);
+	printk("Sleeping for 2 seconds...\n");
+	timer_msleep(2000);
+	printk("Sleeping for 2 seconds...\n");
+	timer_msleep(2000);
+	printk("Sleeping for 5 seconds...\n");
+	timer_msleep(5000);
+	printk("Sleeping for 5 seconds...\n");
+	timer_msleep(5000);
+
 #endif
 
 	printk("\nType Something: \n");

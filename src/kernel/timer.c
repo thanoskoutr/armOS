@@ -67,3 +67,32 @@ void handle_timer_3_irq()
 
 	// printk("Timer 3 Interrupt received\n");
 }
+
+uint64_t timer_get_ticks()
+{
+	uint32_t counter_hi = mmio_read(TIMER_CHI);
+	uint32_t counter_lo = mmio_read(TIMER_CLO);
+
+	/* Check if high value didn't change, after setting it */
+	while (counter_hi != mmio_read(TIMER_CHI)) {
+		counter_hi = mmio_read(TIMER_CHI);
+		counter_lo = mmio_read(TIMER_CLO);
+	}
+
+	/* Create the full 64-bit counter value */
+	uint64_t counter = ((uint64_t) counter_hi << 32) | counter_lo;
+
+	return counter;
+
+}
+
+void timer_msleep (uint32_t msec)
+{
+	/* Get counters current calue */
+	uint64_t start = timer_get_ticks();
+
+	/* Wait until msec have passed from start */
+	while (timer_get_ticks() < start + (msec * 1000)) {
+		;
+	}
+}
