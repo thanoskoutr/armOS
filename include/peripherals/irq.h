@@ -21,29 +21,16 @@ enum
 	/* The offsets for reach register for the IRQ */
 #if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
 	/* Broadcom 2835, 2836, 2837 specific IRQ registers */
-	IRQ0_PENDING_0     = (IRQ_BASE + 0x200),
-	IRQ0_PENDING_1     = (IRQ_BASE + 0x204),
-	IRQ0_PENDING_2     = (IRQ_BASE + 0x208),
-	FIQ_CONTROL        = (IRQ_BASE + 0x20C),
-	IRQ0_SET_EN_1      = (IRQ_BASE + 0x210),
-	IRQ0_SET_EN_2      = (IRQ_BASE + 0x214),
-	IRQ0_SET_EN_0      = (IRQ_BASE + 0x218),
-	IRQ0_CLR_EN_1      = (IRQ_BASE + 0x21C),
-	IRQ0_CLR_EN_2      = (IRQ_BASE + 0x220),
-	IRQ0_CLR_EN_0      = (IRQ_BASE + 0x224),
-
-	/*
-	IRQ_BASIC_PENDING  = (IRQ_BASE + 0x200),
-	IRQ_PENDING_1      = (IRQ_BASE + 0x204),
-	IRQ_PENDING_2      = (IRQ_BASE + 0x208),
-	FIQ_CONTROL        = (IRQ_BASE + 0x20C),
-	ENABLE_IRQS_1      = (IRQ_BASE + 0x210),
-	ENABLE_IRQS_2      = (IRQ_BASE + 0x214),
-	ENABLE_BASIC_IRQS  = (IRQ_BASE + 0x218),
-	DISABLE_IRQS_1     = (IRQ_BASE + 0x21C),
-	DISABLE_IRQS_2     = (IRQ_BASE + 0x220),
-	DISABLE_BASIC_IRQS = (IRQ_BASE + 0x224),
-	*/
+	IRQ0_PENDING_0     = (IRQ_BASE + 0x200),	/* IRQ_BASIC_PENDING  */
+	IRQ0_PENDING_1     = (IRQ_BASE + 0x204),	/* IRQ_PENDING_1      */
+	IRQ0_PENDING_2     = (IRQ_BASE + 0x208),	/* IRQ_PENDING_2      */
+	FIQ_CONTROL        = (IRQ_BASE + 0x20C),	/* FIQ_CONTROL        */
+	IRQ0_SET_EN_1      = (IRQ_BASE + 0x210),	/* ENABLE_IRQS_1      */
+	IRQ0_SET_EN_2      = (IRQ_BASE + 0x214),	/* ENABLE_IRQS_2      */
+	IRQ0_SET_EN_0      = (IRQ_BASE + 0x218),	/* ENABLE_BASIC_IRQS  */
+	IRQ0_CLR_EN_1      = (IRQ_BASE + 0x21C),	/* DISABLE_IRQS_1     */
+	IRQ0_CLR_EN_2      = (IRQ_BASE + 0x220),	/* DISABLE_IRQS_2     */
+	IRQ0_CLR_EN_0      = (IRQ_BASE + 0x224),	/* DISABLE_BASIC_IRQS */
 
 #elif defined(MODEL_4)
 	/* Broadcom 2711 specific IRQ registers */
