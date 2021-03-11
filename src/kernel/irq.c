@@ -81,12 +81,12 @@ void handle_irq()
 			irq &= ~SYSTEM_TIMER_IRQ_1;
 			handle_timer_1_irq();
 		}
-		if (irq & SYSTEM_TIMER_IRQ_3) {
+		else if (irq & SYSTEM_TIMER_IRQ_3) {
 			/* Remove the bit we handled */
 			irq &= ~SYSTEM_TIMER_IRQ_3;
 			handle_timer_3_irq();
 		}
-		if (irq & AUX_IRQ) {
+		else if (irq & AUX_IRQ) {
 			/* Remove the bit we handled */
 			irq &= ~AUX_IRQ;
 			handle_uart_irq();

@@ -63,14 +63,13 @@ void uart_init()
 
 	/* Disable receive and transmit interrupts */
 	// mmio_write(AUX_MU_IER_REG, 0);
-	/* Enable receive interrupts */
-	mmio_write(AUX_MU_IER_REG, 2);
-	// mmio_write(AUX_MU_IER_REG, (1 << 0) | (1 << 2) | (1 << 3)); //0xd
+
 	/*
 	 * Bit 0: Enable receive interrupt
 	 * Bit 1: Enable transmit interrupt
 	 * Bit 2&3: Required in order to receive interrupts
 	 */
+	mmio_write(AUX_MU_IER_REG, (1 << 0) | (1 << 2) | (1 << 3));
 
 	/* Clear the receive and transmit FIFO, and enables FIFO */
 	mmio_write(AUX_MU_IIR_REG, 0xC6);
