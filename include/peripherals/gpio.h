@@ -33,6 +33,7 @@ enum
 	GPFSEL2 = (GPIO_BASE + 0x08),
 	GPFSEL3 = (GPIO_BASE + 0x0C),
 	GPFSEL4 = (GPIO_BASE + 0x10),
+	GPFSEL5 = (GPIO_BASE + 0x14),
 
 	/*
 	 * GPIO Pin Output Set 0,1
