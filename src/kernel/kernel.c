@@ -10,6 +10,7 @@
 #include <kernel/printk.h>
 #include <kernel/utils.h>
 #include <kernel/irq.h>
+#include <kernel/timer.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -29,6 +30,7 @@ void kernel_main()
 	// (void) r1;
 	// (void) atags;
 
+	/* mini UART */
 	uart_init();
 
 	/* Print Initial Starting Message to Serial Console */
@@ -40,6 +42,7 @@ void kernel_main()
 
 	printk("\nCustom ARM OS initializing...\n");
 
+	/* Board Info */
 #ifdef MODEL_0
 	printk("\n\tBoard: Raspberry Pi Zero / Zero W\n");
 #elif MODEL_2
@@ -50,6 +53,7 @@ void kernel_main()
 	printk("\n\tBoard: Raspberry Pi 4\n");
 #endif
 
+	/* Arch Info */
 #ifdef AARCH_32
 	printk("\tArch: aarch32\n");
 #elif AARCH_64
@@ -75,6 +79,11 @@ void kernel_main()
 	printk("Done\n");
 	printk("Enabling IRQs...\n");
 	irq_enable();
+	printk("Done\n");
+
+	/* Timer */
+	printk("Initializing Timer...\n");
+	timer_init();
 	printk("Done\n");
 #endif
 

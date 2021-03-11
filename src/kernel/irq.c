@@ -4,12 +4,15 @@
  */
 
 #include <stdint.h>
+
 #include <kernel/printk.h>
 #include <kernel/mmio.h>
-#include <peripherals/irq.h>
-
-#include <peripherals/aux.h>
 #include <kernel/uart.h>
+#include <kernel/timer.h>
+
+#include <peripherals/irq.h>
+#include <peripherals/aux.h>
+
 
 /*
  * String array, for the invalid exception type messages.
@@ -38,14 +41,14 @@ const char entry_error_messages[16][32] = {
 
 void enable_interrupt_controller()
 {
-	/* Enable System Timer 1 interrupts */
-	// mmio_write(IRQ0_SET_EN_1, SYSTEM_TIMER_IRQ_1);
-
-	/* Enable AUX interrupts (for mini UART) */
+	/*
+	 * Enable AUX interrupts (for mini UART)
+	 * Enable System Timer 1 interrupts
+	 */
 #if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
-	mmio_write(IRQ0_SET_EN_1, AUX_IRQ);
+	mmio_write(IRQ0_SET_EN_1, AUX_IRQ | SYSTEM_TIMER_IRQ_1);
 #elif defined(MODEL_4)
-	mmio_write(IRQ0_SET_EN_0, AUX_IRQ);
+	mmio_write(IRQ0_SET_EN_0, AUX_IRQ | SYSTEM_TIMER_IRQ_1);
 #endif
 }
 
@@ -68,6 +71,7 @@ void handle_irq()
 #elif defined(MODEL_4)
 	irq = mmio_read(IRQ0_PENDING_0);
 #endif
+
 	/* While we have a valid value from the interrupt */
 	while (irq) {
 		/* Check which interrupt is it */
@@ -75,6 +79,7 @@ void handle_irq()
 		if (irq & SYSTEM_TIMER_IRQ_1) {
 			/* Remove the bit we handled */
 			irq &= ~SYSTEM_TIMER_IRQ_1;
+			handle_timer_irq();
 		}
 		if (irq & AUX_IRQ) {
 			/* Remove the bit we handled */
