@@ -57,18 +57,25 @@ int gpio_pin_set_func(uint8_t pin_num, gpio_func func)
 int gpio_pin_set(uint8_t pin_num)
 {
 	int num;
+	uint8_t bit_start;
 	uint32_t set_reg;
 
 	/* Get n for GPSETn */
 	num = pin_num / 31;
 
+	/*
+	 * Find the correct GPSETn based on n
+	 * Find the starting bit of the pin for the GPSETn
+	*/
 	switch (num)
 	{
 	case 0:
 		set_reg = GPSET0;
+		bit_start = pin_num;
 		break;
 	case 1:
 		set_reg = GPSET1;
+		bit_start = (pin_num - 32);
 		break;
 	default:
 		/* Not a valid GPIO PIN */
@@ -76,7 +83,7 @@ int gpio_pin_set(uint8_t pin_num)
 	}
 
 	/* Set GPIO pin */
-	mmio_write(set_reg, 1 << pin_num);
+	mmio_write(set_reg, 1 << bit_start);
 
 	return 0;
 }
@@ -87,18 +94,25 @@ int gpio_pin_set(uint8_t pin_num)
 int gpio_pin_clear(uint8_t pin_num)
 {
 	int num;
+	uint8_t bit_start;
 	uint32_t clr_reg;
 
 	/* Get n for GPCLRn */
 	num = pin_num / 31;
 
+	/*
+	 * Find the correct GPCLRn based on n
+	 * Find the starting bit of the pin for the GPCLRn
+	*/
 	switch (num)
 	{
 	case 0:
 		clr_reg = GPCLR0;
+		bit_start = pin_num;
 		break;
 	case 1:
 		clr_reg = GPCLR1;
+		bit_start = (pin_num - 32);
 		break;
 	default:
 		/* Not a valid GPIO PIN */
@@ -106,7 +120,7 @@ int gpio_pin_clear(uint8_t pin_num)
 	}
 
 	/* Clear GPIO pin */
-	mmio_write(clr_reg, 1 << pin_num);
+	mmio_write(clr_reg, 1 << bit_start);
 
 	return 0;
 }
