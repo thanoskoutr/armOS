@@ -17,7 +17,11 @@
 #include <common/stdlib.h>
 #include <common/stdbool.h>
 
+#ifdef AARCH_32
+#include <armv6/irq.h>
+#elif AARCH_64
 #include <armv8-a/irq.h>
+#endif
 
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
@@ -70,8 +74,6 @@ void kernel_main()
 #endif
 
 	/* Interrupts */
-#ifdef AARCH_32
-#elif AARCH_64
 	printk("Initializing IRQs...\n");
 	irq_vector_init();
 	printk("Done\n");
@@ -87,44 +89,58 @@ void kernel_main()
 	timer_init();
 	printk("Done\n");
 
+	printk("Sleeping for 0.5 seconds...\n");
+	timer_msleep(500);
+	printk("Sleeping for 0.5 seconds...\n");
+	timer_msleep(500);
+	printk("Sleeping for 2 seconds...\n");
+	timer_msleep(2000);
+	printk("Sleeping for 3 seconds...\n");
+	timer_msleep(3000);
+
 	/* LED */
 	/*
 	 * LEDs
 	 * Raspi Zero W -> GPIO 47 (ACT LED)
  	 * Raspi 3, 4   -> GPIO 17 (LED Connected on physical pin 11)
 	 */
+#ifdef AARCH_32
+	#define LED_PIN 47
+#elif AARCH_64
+	#define LED_PIN 17
+#endif
+
 	printk("Initializing LED...\n");
-	led_init(17);
+	led_init(LED_PIN);
 	printk("Done\n");
 
 	printk("Pulse LED for 1 sec...\n");
-	led_pulse(17, 1000);
+	led_pulse(LED_PIN, 1000);
 	printk("Done\n");
 
 	printk("Pulse LED for 2 sec...\n");
-	led_pulse(17, 2000);
+	led_pulse(LED_PIN, 2000);
 	printk("Done\n");
 
 	printk("Pulse LED for 2 sec...\n");
-	led_pulse(17, 2000);
+	led_pulse(LED_PIN, 2000);
 	printk("Done\n");
 
 	printk("Pulse LED 10 times, for 0.5 sec...\n");
-	led_blink_times(17, 10, 500);
+	led_blink_times(LED_PIN, 10, 500);
 	printk("Done\n");
 
 	printk("Turn LED ON, for 5 sec\n");
-	led_on(17);
+	led_on(LED_PIN);
 	timer_msleep(5000);
 	printk("Turn LED OFF\n");
-	led_off(17);
+	led_off(LED_PIN);
 
 	printk("LED SOS, with 0.2 sec time interval\n");
-	led_blink_sos(17, 200);
+	led_blink_sos(LED_PIN, 200);
 
-#endif
-
-	printk("\nType Something: \n");
+	// printk("\nType Something: \n");
+	printk("\nroot@pi# \n");
 
 	while (1) {
 		/* Read from serial */

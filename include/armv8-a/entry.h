@@ -3,8 +3,8 @@
  * Used to identify the invalid triggered exception.
  */
 
-#ifndef ENTRY_H
-#define ENTRY_H
+#ifndef ARM8_ENTRY_H
+#define ARM8_ENTRY_H
 
 /* Size of all saved registers (31 8byte registes) */
 #define S_FRAME_SIZE		256

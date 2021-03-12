@@ -17,6 +17,18 @@
 /*
  * String array, for the invalid exception type messages.
  */
+#ifdef AARCH_32
+const char entry_error_messages[8][32] = {
+	"Reset",
+	"Undefined instruction",
+	"Software Interrupt (SWI)",
+	"Prefetch Abort",
+	"Data Abort",
+	"Reserved",
+	"Interrupt Request (IRQ)",
+	"Fast Interrupt Request (FIQ)"
+};
+#elif AARCH_64
 const char entry_error_messages[16][32] = {
 	"SYNC_INVALID_EL1t",
 	"IRQ_INVALID_EL1t",
@@ -38,6 +50,7 @@ const char entry_error_messages[16][32] = {
 	"FIQ_INVALID_EL0_32",
 	"ERROR_INVALID_EL0_32"
 };
+#endif
 
 void enable_interrupt_controller()
 {
@@ -53,6 +66,10 @@ void enable_interrupt_controller()
 }
 
 #ifdef AARCH_32
+void show_invalid_entry_message(int type)
+{
+	printk("Received: %s\n", entry_error_messages[type]);
+}
 #elif AARCH_64
 void show_invalid_entry_message(int type, uint64_t esr, uint64_t address)
 {
