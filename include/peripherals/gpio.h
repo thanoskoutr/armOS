@@ -8,6 +8,17 @@
 
 #include <peripherals/base.h>
 
+typedef enum _gpio_func {
+	GF_INPUT  = 0,
+	GF_OUTPUT = 1,
+	GF_ALT_0  = 4,
+	GF_ALT_1  = 5,
+	GF_ALT_2  = 6,
+	GF_ALT_3  = 7,
+	GF_ALT_4  = 3,
+	GF_ALT_5  = 2,
+} gpio_func;
+
 enum
 {
 	/* The offsets for reach register */
