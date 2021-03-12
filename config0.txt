@@ -1,2 +1,5 @@
 uart_2ndstage=1
 # Causes bootcode.bin to output diagnostic information to UART0.
+
+dtparam=act_led_activelow=on
+# Inverts the sense of the ACT LED (SET -> ON, CLR -> OFF)

@@ -25,7 +25,7 @@ Support for:
     - [x] Kernel starts at EL3
     - [x] Print EL
     - [x] Change from EL3 to EL1
-- [x] Interrupts - IRQ (ARMv8-a)
+- [x] Interrupts - IRQ
     - [x] Initialize vector table
     - [x] Enable / Disable interrupts
     - [x] IRQ registers

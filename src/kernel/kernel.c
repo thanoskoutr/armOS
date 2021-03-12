@@ -89,15 +89,6 @@ void kernel_main()
 	timer_init();
 	printk("Done\n");
 
-	printk("Sleeping for 0.5 seconds...\n");
-	timer_msleep(500);
-	printk("Sleeping for 0.5 seconds...\n");
-	timer_msleep(500);
-	printk("Sleeping for 2 seconds...\n");
-	timer_msleep(2000);
-	printk("Sleeping for 3 seconds...\n");
-	timer_msleep(3000);
-
 	/* LED */
 	/*
 	 * LEDs

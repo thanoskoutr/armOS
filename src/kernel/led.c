@@ -31,7 +31,18 @@ void led_on(uint8_t pin_num)
 	int res;
 
 	/* Set LEDs output (Turn ON) */
+#ifdef MODEL_0
+	/*
+	 * Check if it is the ACT LED,
+	 * Inverted logic on ACT LED of Pi Zero / Zero W
+	 */
+	if (pin_num == 47)
+		res = gpio_pin_clear(pin_num);
+	else
+		res = gpio_pin_set(pin_num);
+#else
 	res = gpio_pin_set(pin_num);
+#endif
 
 	/* Print error message, for not valid pin */
 	if (res < 0) {
@@ -44,7 +55,18 @@ void led_off(uint8_t pin_num)
 	int res;
 
 	/* Clear LEDs output (Turn OFF) */
+#ifdef MODEL_0
+	/*
+	 * Check if it is the ACT LED,
+	 * Inverted logic on ACT LED of Pi Zero / Zero W
+	 */
+	if (pin_num == 47)
+		res = gpio_pin_set(pin_num);
+	else
+		res = gpio_pin_clear(pin_num);
+#else
 	res = gpio_pin_clear(pin_num);
+#endif
 
 	/* Print error message, for not valid pin */
 	if (res < 0) {
@@ -54,28 +76,14 @@ void led_off(uint8_t pin_num)
 
 void led_pulse(uint8_t pin_num, uint32_t msec)
 {
-	int res;
-
 	/* Set LEDs output (Turn ON) */
-	res = gpio_pin_set(pin_num);
-
-	/* Print error message, for not valid pin */
-	if (res < 0) {
-		printk("Error: Not a valid GPIO PIN\n");
-		return;
-	}
+	led_on(pin_num);
 
 	/* Sleep for 1 sec */
 	timer_msleep(msec);
 
 	/* Clear LEDs output (Turn OFF) */
-	res = gpio_pin_clear(pin_num);
-
-	/* Print error message, for not valid pin */
-	if (res < 0) {
-		printk("Error: Not a valid GPIO PIN\n");
-		return;
-	}
+	led_off(pin_num);
 
 	/* Sleep for 1 sec */
 	timer_msleep(msec);
