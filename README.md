@@ -34,3 +34,10 @@ Support for:
 - [x] Timer
     - [x] System Timer 1, 3 handler
     - [x] Sleep (msec)
+- [x] GPIO
+    - [x] Functions for set/clear pins
+    - [x] Function for seting Alt Func to GPIO pins
+- [x] LED
+    - [x] Functions for turning LED at a GPIO pin on/off
+    - [x] Functions for blinking LED at a GPIO pin
+    - [x] Functions for sending SOS, from a LED at a GPIO pin

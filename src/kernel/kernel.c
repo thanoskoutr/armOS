@@ -11,6 +11,7 @@
 #include <kernel/utils.h>
 #include <kernel/irq.h>
 #include <kernel/timer.h>
+#include <kernel/led.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -86,21 +87,40 @@ void kernel_main()
 	timer_init();
 	printk("Done\n");
 
-	/* Test Sleep */
-	printk("Sleeping for 0.5 seconds...\n");
-	timer_msleep(500);
-	printk("Sleeping for 0.5 seconds...\n");
-	timer_msleep(500);
-	printk("Sleeping for 0.5 seconds...\n");
-	timer_msleep(500);
-	printk("Sleeping for 2 seconds...\n");
-	timer_msleep(2000);
-	printk("Sleeping for 2 seconds...\n");
-	timer_msleep(2000);
-	printk("Sleeping for 5 seconds...\n");
+	/* LED */
+	/*
+	 * LEDs
+	 * Raspi Zero W -> GPIO 47 (ACT LED)
+ 	 * Raspi 3, 4   -> GPIO 17 (LED Connected on physical pin 11)
+	 */
+	printk("Initializing LED...\n");
+	led_init(17);
+	printk("Done\n");
+
+	printk("Pulse LED for 1 sec...\n");
+	led_pulse(17, 1000);
+	printk("Done\n");
+
+	printk("Pulse LED for 2 sec...\n");
+	led_pulse(17, 2000);
+	printk("Done\n");
+
+	printk("Pulse LED for 2 sec...\n");
+	led_pulse(17, 2000);
+	printk("Done\n");
+
+	printk("Pulse LED 10 times, for 0.5 sec...\n");
+	led_blink_times(17, 10, 500);
+	printk("Done\n");
+
+	printk("Turn LED ON, for 5 sec\n");
+	led_on(17);
 	timer_msleep(5000);
-	printk("Sleeping for 5 seconds...\n");
-	timer_msleep(5000);
+	printk("Turn LED OFF\n");
+	led_off(17);
+
+	printk("LED SOS, with 0.2 sec time interval\n");
+	led_blink_sos(17, 200);
 
 #endif
 
