@@ -44,3 +44,7 @@ Support for:
 - [ ] Console
     - [x] prompt
     - [x] Take users input
+    - [x] Command parser
+    - [x] Handle Commands
+    - [ ] Help Command
+    - [ ] Add functionality to commands
