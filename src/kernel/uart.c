@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <common/string.h>
+
 #include <kernel/uart.h>
 #include <kernel/mmio.h>
 
@@ -133,6 +135,30 @@ void uart_puts(const char* str)
 			uart_putc('\r');
 		uart_putc((unsigned char)str[i]);
 	}
+}
+
+char *uart_gets()
+{
+	static char str[MAX_INPUT_LENGTH];
+	int i = 0;
+
+	/* Initialize input string with null terminators */
+	memset(&str, '\0', MAX_INPUT_LENGTH);
+
+	/* Get up to console's maximum length chars */
+	for (i = 0; i < MAX_INPUT_LENGTH; i++) {
+		/* Get char from serial, echo back */
+		str[i] = (char) uart_getc();
+		uart_putc(str[i]);
+		/* If we get a NL or CR, break */
+		if (str[i] == '\r' || str[i] == '\n') {
+			break;
+		}
+	}
+	/* Always append a null terminator at end of string */
+	str[i] = '\0';
+
+	return str;
 }
 
 void handle_uart_irq()
