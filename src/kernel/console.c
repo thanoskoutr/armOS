@@ -5,6 +5,7 @@
 #include <kernel/console.h>
 #include <kernel/printk.h>
 #include <kernel/uart.h>
+#include <kernel/led.h>
 
 #include <common/string.h>
 
@@ -53,32 +54,46 @@ void console(char *device)
 		/* Read from serial */
 		input = uart_gets();
 		printk("\n");
-		printk("input: %s\n", input);
-
-		printk("prompt adr: %d\n", prompt);
-		printk("input  adr: %d\n", input);
-
+		printk("--DEBUG-- input: %s\n", input);
 
 		/* Find given command */
 		command cmd = console_get_cmd(input);
 
 		switch (cmd) {
 		case cmd_help:
-			printk("HELP\n");
+			console_help();
 			break;
 		case cmd_led_on:
-			printk("LED_ON\n");
+			printk("Turning LED on.\n");
+			led_on(LED_PIN);
 			break;
 		case cmd_led_off:
-			printk("LED_OFF\n");
+			printk("Turning LED off.\n");
+			led_off(LED_PIN);
 			break;
 		case cmd_halt:
-			printk("HALT\n");
-			break;
+			printk("Halt.\n");
+			printk("So long and thanks for all the fish...\n");
+			return;
 		default:
 			printk("%s: command not found\n", input);
+			printk("type 'help' to see the available commands\n");
 			break;
 		}
 	}
+
+}
+
+void console_help()
+{
+	printk("Available commands:\n");
+	printk("    help:\n");
+	printk("        Prints available commands to the console.\n");
+	printk("    led_on:\n");
+	printk("        Turns the LED on.\n");
+	printk("    led_off:\n");
+	printk("        Turns the LED on.\n");
+	printk("    halt:\n");
+	printk("        Halts the system.\n");
 
 }

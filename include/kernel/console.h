@@ -35,4 +35,11 @@ int console_get_cmd(char *input);
  */
 void console(char *device);
 
+/*
+ * Command: help
+ * Prints available commands to the console
+ */
+void console_help();
+
+
 #endif

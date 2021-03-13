@@ -9,6 +9,16 @@
 #include <stddef.h>
 
 /*
+ * Raspi Zero W -> GPIO 47 (ACT LED)
+ * Raspi 3, 4   -> GPIO 17 (LED Connected on physical pin 11)
+ */
+#ifdef AARCH_32
+#define LED_PIN 47
+#elif AARCH_64
+#define LED_PIN 17
+#endif
+
+/*
  * Sets pin_num GPIO pin as Output
  */
 void led_init(uint8_t pin_num);

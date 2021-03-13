@@ -46,5 +46,10 @@ Support for:
     - [x] Take users input
     - [x] Command parser
     - [x] Handle Commands
-    - [ ] Help Command
-    - [ ] Add functionality to commands
+    - [x] Commands
+        - [x] help
+        - [x] halt
+        - [x] led_on
+        - [x] led_off
+        - [ ] led_on pin
+        - [ ] led_off pin

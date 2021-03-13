@@ -98,15 +98,6 @@ void kernel_main()
 	printk("Done\n");
 
 	/* LED */
-	/*
-	 * Raspi Zero W -> GPIO 47 (ACT LED)
- 	 * Raspi 3, 4   -> GPIO 17 (LED Connected on physical pin 11)
-	 */
-#ifdef AARCH_32
-	#define LED_PIN 47
-#elif AARCH_64
-	#define LED_PIN 17
-#endif
 	printk("Initializing LED...");
 	led_init(LED_PIN);
 	printk("Done\n");
