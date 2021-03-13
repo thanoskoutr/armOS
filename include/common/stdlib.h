@@ -16,5 +16,12 @@
 char *itoa(int value);
 // char *itoa(int value, int base);
 
+/*
+ * atoi - Converts a string to an int
+ * @str: This is the string representation of an integral number.
+ * Returns: The converted integral number as an int value.
+ * 	If no valid conversion could be performed, it returns zero.
+ */
+int atoi(const char *str);
 
 #endif
