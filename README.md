@@ -16,8 +16,9 @@ Support for:
 - [x] `string.h` functions
     - [x] `strlen`, `strcmp`, `strcpy`, `strcat`, `strrev`
     - [x] `memset`, `memcpy`
-- [ ] `stdlib.h` functions
+- [x] `stdlib.h` functions
     - [x] `itoa`
+    - [x] `atoi`
 - [x] `stdbool`
     - [x] `true`, `false`
 - [x] Exception Levels (ARMv8-a)
