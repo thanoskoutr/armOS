@@ -16,5 +16,6 @@ Support for:
 - [x] `string.h` functions
     - [x] `strlen`, `strcmp`, `strcpy`, `strcat`, `strrev`
     - [x] `memset`, `memcpy`
-- [ ] `stdlib.h` functions
+- [x] `stdlib.h` functions
     - [x] `itoa`
+    - [x] `atoi`

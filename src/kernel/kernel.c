@@ -114,6 +114,24 @@ void kernel_main()
 	strcat(s1, s2);
 	printk("%s\n", s1);
 
+	char tst[20];
+	strcpy(tst, "2147483648");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "2147483647");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "11asas222");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "-1234");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "asdsad123213");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "1234 5678");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "a 1234");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+	strcpy(tst, "0");
+	printk("atoi(%s) = %d\n", tst, atoi(tst));
+
 	printk("\n----- Done Testing string.h, stdlib.h -----\n\n");
 
 
