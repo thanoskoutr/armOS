@@ -34,6 +34,11 @@ void led_on(uint8_t pin_num);
 void led_off(uint8_t pin_num);
 
 /*
+ * Turns LED at pin_num ON for msec milliseconds
+ */
+void led_on_ms(uint8_t pin_num, uint32_t msec);
+
+/*
  * Makes LED at pin_num, to blink once for msec milliseconds
  */
 void led_pulse(uint8_t pin_num, uint32_t msec);

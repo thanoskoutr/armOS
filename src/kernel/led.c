@@ -74,18 +74,30 @@ void led_off(uint8_t pin_num)
 	}
 }
 
+void led_on_ms(uint8_t pin_num, uint32_t msec)
+{
+	/* Set LEDs output (Turn ON) */
+	led_on(pin_num);
+
+	/* Sleep for msec milliseconds */
+	timer_msleep(msec);
+
+	/* Clear LEDs output (Turn OFF) */
+	led_off(pin_num);
+}
+
 void led_pulse(uint8_t pin_num, uint32_t msec)
 {
 	/* Set LEDs output (Turn ON) */
 	led_on(pin_num);
 
-	/* Sleep for 1 sec */
+	/* Sleep for msec milliseconds */
 	timer_msleep(msec);
 
 	/* Clear LEDs output (Turn OFF) */
 	led_off(pin_num);
 
-	/* Sleep for 1 sec */
+	/* Sleep for msec milliseconds */
 	timer_msleep(msec);
 }
 
