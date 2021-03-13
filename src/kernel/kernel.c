@@ -35,6 +35,9 @@ void kernel_main()
 	// (void) r1;
 	// (void) atags;
 
+	/* String for device name */
+	char device[5];
+
 	/* mini UART */
 	uart_init();
 
@@ -49,12 +52,16 @@ void kernel_main()
 
 	/* Board Info */
 #ifdef MODEL_0
+	strcpy(device, "pi-0");
 	printk("\n\tBoard: Raspberry Pi Zero / Zero W\n");
 #elif MODEL_2
+	strcpy(device, "pi-2");
 	printk("\n\tBoard: Raspberry Pi 2\n");
 #elif MODEL_3
+	strcpy(device, "pi-3");
 	printk("\n\tBoard: Raspberry Pi 3\n");
 #elif MODEL_4
+	strcpy(device, "pi-4");
 	printk("\n\tBoard: Raspberry Pi 4\n");
 #endif
 
@@ -64,7 +71,7 @@ void kernel_main()
 #elif AARCH_64
 	printk("\tArch: aarch64\n");
 #endif
-	printk("Done\n");
+	printk("\n");
 
 	/* Exception Levels */
 #ifdef AARCH_32
@@ -74,24 +81,23 @@ void kernel_main()
 #endif
 
 	/* Interrupts */
-	printk("Initializing IRQs...\n");
+	printk("Initializing IRQs...");
 	irq_vector_init();
 	printk("Done\n");
-	printk("Enabling IRQ controllers...\n");
+	printk("Enabling IRQ controllers...");
 	enable_interrupt_controller();
 	printk("Done\n");
-	printk("Enabling IRQs...\n");
+	printk("Enabling IRQs...");
 	irq_enable();
 	printk("Done\n");
 
 	/* Timer */
-	printk("Initializing Timer...\n");
+	printk("Initializing Timer...");
 	timer_init();
 	printk("Done\n");
 
 	/* LED */
 	/*
-	 * LEDs
 	 * Raspi Zero W -> GPIO 47 (ACT LED)
  	 * Raspi 3, 4   -> GPIO 17 (LED Connected on physical pin 11)
 	 */
@@ -100,41 +106,36 @@ void kernel_main()
 #elif AARCH_64
 	#define LED_PIN 17
 #endif
-
-	printk("Initializing LED...\n");
+	printk("Initializing LED...");
 	led_init(LED_PIN);
 	printk("Done\n");
 
-	printk("Pulse LED for 1 sec...\n");
-	led_pulse(LED_PIN, 1000);
+	/* Disable Interrupts */
+	printk("Disabling IRQs...");
+	irq_disable();
 	printk("Done\n");
 
-	printk("Pulse LED for 2 sec...\n");
-	led_pulse(LED_PIN, 2000);
-	printk("Done\n");
+	/* Console */
+	char *input;
+	char prompt[11];
 
-	printk("Pulse LED for 2 sec...\n");
-	led_pulse(LED_PIN, 2000);
-	printk("Done\n");
+	/* Create prompt */
+	strcpy(prompt, "root@");
+	strcat(prompt, device);
+	strcat(prompt, "#");
 
-	printk("Pulse LED 10 times, for 0.5 sec...\n");
-	led_blink_times(LED_PIN, 10, 500);
-	printk("Done\n");
-
-	printk("Turn LED ON, for 5 sec\n");
-	led_on(LED_PIN);
-	timer_msleep(5000);
-	printk("Turn LED OFF\n");
-	led_off(LED_PIN);
-
-	printk("LED SOS, with 0.2 sec time interval\n");
-	led_blink_sos(LED_PIN, 200);
-
-	// printk("\nType Something: \n");
-	printk("\nroot@pi# \n");
+	printk("\n");
+	printk("This is a minimal console, type 'help' to see the available commands. (Maximum Input Length: %d)\n", MAX_INPUT_LENGTH);
 
 	while (1) {
+		/* Print prompt */
+		printk("%s ", prompt);
 		/* Read from serial */
+		input = uart_gets();
+		printk("\n");
+		printk("input: %s\n", input);
+
+		/* Read from serial (dummy) */
 		// unsigned char c = uart_getc();
 		// if (c == '\r') {
 		// 	/* When user presses Enter a CR is returned */
