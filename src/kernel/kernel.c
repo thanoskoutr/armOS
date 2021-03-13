@@ -102,10 +102,6 @@ void kernel_main()
 	led_init(LED_PIN);
 	printk("Done\n");
 
-	printk("Turn LED on for 3 sec...");
-	led_on_ms(LED_PIN, 3000);
-	printk("Done\n");
-
 	/* Disable Interrupts */
 	printk("Disabling IRQs...");
 	irq_disable();

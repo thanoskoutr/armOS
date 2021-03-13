@@ -29,6 +29,12 @@ int console_get_cmd(char *input)
 		return cmd_led_on;
 	else if (strcmp(input, "led_off") == 0)
 		return cmd_led_off;
+	else if (strcmp(input, "led_on_ms") == 0)
+		return cmd_led_on_ms;
+	else if (strcmp(input, "led_blink_times") == 0)
+		return cmd_led_blink_times;
+	else if (strcmp(input, "led_blink_sos") == 0)
+		return cmd_led_blink_sos;
 	else if (strcmp(input, "halt") == 0)
 		return cmd_halt;
 	else
@@ -71,6 +77,18 @@ void console(char *device)
 			printk("Turning LED off.\n");
 			led_off(LED_PIN);
 			break;
+		case cmd_led_on_ms:
+			printk("Turning LED on for 3 sec.\n");
+			led_on_ms(LED_PIN, 3000);
+			break;
+		case cmd_led_blink_times:
+			printk("Blink LED 10 times with a 0.5sec pulse.\n");
+			led_blink_times(LED_PIN, 10, 500);
+			break;
+		case cmd_led_blink_sos:
+			printk("Blink SOS on LED, with a 0.3 sec time interval.\n");
+			led_blink_sos(LED_PIN, 300);
+			break;
 		case cmd_halt:
 			printk("Halt.\n");
 			printk("So long and thanks for all the fish...\n");
@@ -93,6 +111,12 @@ void console_help()
 	printk("        Turns the LED on.\n");
 	printk("    led_off:\n");
 	printk("        Turns the LED on.\n");
+	printk("    led_on_ms:\n");
+	printk("        Turns the LED on for msec milliseconds.\n");
+	printk("    led_blink_times:\n");
+	printk("        Blinks LED count times for msec milliseconds.\n");
+	printk("    led_blink_sos:\n");
+	printk("        Blinks SOS on LED with an msec milliseconds interval.\n");
 	printk("    halt:\n");
 	printk("        Halts the system.\n");
 
