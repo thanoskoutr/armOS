@@ -33,3 +33,19 @@ char *itoa(int value)
 
 	return s;
 }
+
+int atoi(const char *str)
+{
+	/* The converted number to be returned */
+	int num = 0;
+
+	/*
+	 *Loop till we have reached end of the string
+	 * or current character is non-numeric.
+	 */
+	while ((*str != '\0') && (*str >= '0' && *str <= '9')) {
+		num = num * 10 + (*str - '0');
+		str++;
+	}
+	return num;
+}
