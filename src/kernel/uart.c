@@ -139,11 +139,11 @@ void uart_puts(const char* str)
 
 char *uart_gets()
 {
-	static char str[MAX_INPUT_LENGTH];
+	static char str[MAX_INPUT_LENGTH + 1];
 	int i = 0;
 
 	/* Initialize input string with null terminators */
-	memset(&str, '\0', MAX_INPUT_LENGTH);
+	memset(&str, '\0', MAX_INPUT_LENGTH + 1);
 
 	/* Get up to console's maximum length chars */
 	for (i = 0; i < MAX_INPUT_LENGTH; i++) {
