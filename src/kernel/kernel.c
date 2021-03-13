@@ -12,6 +12,7 @@
 #include <kernel/irq.h>
 #include <kernel/timer.h>
 #include <kernel/led.h>
+#include <kernel/console.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -36,7 +37,7 @@ void kernel_main()
 	// (void) atags;
 
 	/* String for device name */
-	char device[5];
+	char device[DEVICE_LENGTH];
 
 	/* mini UART */
 	uart_init();
@@ -116,35 +117,19 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Console */
-	char *input;
-	char prompt[11];
+	console(device);
 
-	/* Create prompt */
-	strcpy(prompt, "root@");
-	strcat(prompt, device);
-	strcat(prompt, "#");
-
-	printk("\n");
-	printk("This is a minimal console, type 'help' to see the available commands. (Maximum Input Length: %d)\n", MAX_INPUT_LENGTH);
-
-	while (1) {
-		/* Print prompt */
-		printk("%s ", prompt);
-		/* Read from serial */
-		input = uart_gets();
-		printk("\n");
-		printk("input: %s\n", input);
-
-		/* Read from serial (dummy) */
-		// unsigned char c = uart_getc();
-		// if (c == '\r') {
-		// 	/* When user presses Enter a CR is returned */
-		// 	uart_putc(c);
-		// 	uart_putc('\n');
-		// }
-		// else {
-		// 	uart_putc(c);
-		// }
-	}
+	// while (1) {
+	// 	/* Read from serial (dummy) */
+	// 	unsigned char c = uart_getc();
+	// 	if (c == '\r') {
+	// 		/* When user presses Enter a CR is returned */
+	// 		uart_putc(c);
+	// 		uart_putc('\n');
+	// 	}
+	// 	else {
+	// 		uart_putc(c);
+	// 	}
+	// }
 
 }
