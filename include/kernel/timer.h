@@ -5,6 +5,9 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+/* The pulse time in milliseconds for the LED IRQ */
+#define LED_MSEC_IRQ 200
+
 /*
  * Initializes System Timers 1, 3, with a time interval of msec milliseconds
  */

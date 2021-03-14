@@ -13,6 +13,9 @@
 #include <common/string.h>
 #include <common/stdlib.h>
 
+/* Initialize default LED pin per device */
+uint8_t led_pin_num = LED_PIN;
+
 char *console_init(char *device)
 {
 	static char prompt[PROMPT_LENGTH];
@@ -65,9 +68,6 @@ void console(char *device)
 	printk("\n");
 	printk("This is a minimal console, type 'help' to see the available commands. (Maximum Input Length: %d)\n", MAX_INPUT_LENGTH);
 
-	/* Initialize default LED pin per device */
-	uint8_t led_pin_num = LED_PIN;
-
 	/* Main functionality */
 	while (1) {
 		/* Print prompt */
@@ -115,6 +115,10 @@ void console(char *device)
 			msec = atoi(args);
 			if (msec <= 0) {
 				printk("Not valid ms: %s\n", args);
+				break;
+			}
+			else if (msec <= LED_MSEC_IRQ) {
+				printk("Must be > %dms\n", LED_MSEC_IRQ);
 				break;
 			}
 			printk("Started System Timer Interrupt every %dms.\n", msec);

@@ -4,9 +4,11 @@
 
 #include <stdint.h>
 
+#include <kernel/timer.h>
 #include <kernel/mmio.h>
 #include <kernel/printk.h>
 #include <kernel/led.h>
+#include <kernel/console.h>
 
 #include <peripherals/timer.h>
 
@@ -68,8 +70,7 @@ void handle_timer_1_irq()
 	// printk("\nTimer 1 Interrupt received\n");
 
 	/* Use Timer 1 IRQ, to pulse LED for a small interval */
-	// MUST PASS: led_pin_num
-	led_on_ms(LED_PIN, 200);
+	led_on_ms(led_pin_num, LED_MSEC_IRQ);
 }
 
 void handle_timer_3_irq()

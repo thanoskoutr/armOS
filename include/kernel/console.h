@@ -25,6 +25,8 @@ typedef enum _command {
 	cmd_halt
 } command;
 
+extern uint8_t led_pin_num;
+
 /*
  * Creates the prompt for the minimal console, based on the device
  */
