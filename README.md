@@ -42,7 +42,7 @@ Support for:
     - [x] Functions for turning LED at a GPIO pin on/off
     - [x] Functions for blinking LED at a GPIO pin
     - [x] Functions for sending SOS, from a LED at a GPIO pin
-- [ ] Console
+- [x] Console
     - [x] prompt
     - [x] Take users input
     - [x] Command parser
@@ -50,7 +50,9 @@ Support for:
     - [x] Commands
         - [x] help
         - [x] halt
+        - [x] led_pin
         - [x] led_on
         - [x] led_off
-        - [ ] led_on pin
-        - [ ] led_off pin
+        - [x] led_on_ms
+        - [x] led_blink_times
+        - [x] led_blink_sos
