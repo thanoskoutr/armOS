@@ -49,7 +49,7 @@ void console(char *device)
 	char *input;
 	char *args;
 	char *prompt;
-	int msec;
+	int msec, count;
 
 	/* Get prompt */
 	prompt = console_init(device);
@@ -104,8 +104,16 @@ void console(char *device)
 				printk("Not valid ms: %s\n", args);
 				break;
 			}
-			printk("Blink LED 10 times with a %dms pulse.\n", msec);
-			led_blink_times(LED_PIN, 10, (uint32_t) msec);
+			printk("Enter times to blink: ");
+			args = uart_gets();
+			printk("\n");
+			count = atoi(args);
+			if (count <= 0) {
+				printk("Not a valid number: %s\n", args);
+				break;
+			}
+			printk("Blink LED %d times with a %dms pulse.\n", count, msec);
+			led_blink_times(LED_PIN, (size_t) count, (uint32_t) msec);
 			break;
 		case cmd_led_blink_sos:
 			printk("Enter milliseconds: ");
