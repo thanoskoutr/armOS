@@ -6,9 +6,10 @@
 #define TIMER_H
 
 /*
- * Initializes System Timer
+ * Initializes System Timers 1, 3, with a time interval of msec milliseconds
  */
-void timer_init();
+void timer_1_init(uint32_t msec);
+void timer_3_init(uint32_t msec);
 
 /*
  * Exception handler for System Timers 1, 3

@@ -7,6 +7,13 @@
 
 #include <peripherals/base.h>
 
+/*
+ * TIMER_CLK_HZ:	System's Timer Clock Frequency (for delays in sec)
+ * TIMER_CLK_1000_HZ:	System's Timer Clock Frequency / 1000 (for delays in msec)
+ */
+#define TIMER_CLK_HZ 1000000
+#define TIMER_CLK_1000_HZ 1000
+
 enum
 {
 	/* The base address for System Timer */

@@ -93,8 +93,9 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Timer */
-	printk("Initializing Timer...");
-	timer_init();
+	printk("Initializing Timers...");
+	timer_1_init(6000);
+	timer_3_init(3000);
 	printk("Done\n");
 
 	/* LED */
