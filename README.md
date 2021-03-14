@@ -63,4 +63,4 @@ Support for:
 - [x] LED IRQ with System Timer 1
     - [x] Start interrupt with msec interval
     - [x] Stop interrupt
-    - [ ] Take pin from user
+    - [x] Take LED pin from user
