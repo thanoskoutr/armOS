@@ -2,12 +2,15 @@
  * console.c - Implementation of a minimal console
  */
 
+#include <stdint.h>
+
 #include <kernel/console.h>
 #include <kernel/printk.h>
 #include <kernel/uart.h>
 #include <kernel/led.h>
 
 #include <common/string.h>
+#include <common/stdlib.h>
 
 char *console_init(char *device)
 {
@@ -44,7 +47,9 @@ int console_get_cmd(char *input)
 void console(char *device)
 {
 	char *input;
+	char *args;
 	char *prompt;
+	int msec;
 
 	/* Get prompt */
 	prompt = console_init(device);
@@ -78,16 +83,41 @@ void console(char *device)
 			led_off(LED_PIN);
 			break;
 		case cmd_led_on_ms:
-			printk("Turning LED on for 3 sec.\n");
-			led_on_ms(LED_PIN, 3000);
+			printk("Enter milliseconds: ");
+			args = uart_gets();
+			printk("\n");
+			msec = atoi(args);
+			if (msec <= 0) {
+				printk("Not valid ms: %s\n", args);
+				break;
+			}
+			printk("Turning LED on for %dms\n", msec);
+			led_on_ms(LED_PIN, (uint32_t) msec);
 			break;
+
 		case cmd_led_blink_times:
-			printk("Blink LED 10 times with a 0.5sec pulse.\n");
-			led_blink_times(LED_PIN, 10, 500);
+			printk("Enter milliseconds: ");
+			args = uart_gets();
+			printk("\n");
+			msec = atoi(args);
+			if (msec <= 0) {
+				printk("Not valid ms: %s\n", args);
+				break;
+			}
+			printk("Blink LED 10 times with a %dms pulse.\n", msec);
+			led_blink_times(LED_PIN, 10, (uint32_t) msec);
 			break;
 		case cmd_led_blink_sos:
-			printk("Blink SOS on LED, with a 0.3 sec time interval.\n");
-			led_blink_sos(LED_PIN, 300);
+			printk("Enter milliseconds: ");
+			args = uart_gets();
+			printk("\n");
+			msec = atoi(args);
+			if (msec <= 0) {
+				printk("Not valid ms: %s\n", args);
+				break;
+			}
+			printk("Blink SOS on LED, with a %dms time interval.\n", msec);
+			led_blink_sos(LED_PIN, (uint32_t) msec);
 			break;
 		case cmd_halt:
 			printk("Halt.\n");
@@ -116,7 +146,7 @@ void console_help()
 	printk("    led_blink_times:\n");
 	printk("        Blinks LED count times for msec milliseconds.\n");
 	printk("    led_blink_sos:\n");
-	printk("        Blinks SOS on LED with an msec milliseconds interval.\n");
+	printk("        Blinks SOS on LED with a msec milliseconds interval.\n");
 	printk("    halt:\n");
 	printk("        Halts the system.\n");
 
