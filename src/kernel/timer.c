@@ -66,6 +66,10 @@ void handle_timer_1_irq()
 	mmio_write(TIMER_CS, timer_cs_1);
 
 	// printk("\nTimer 1 Interrupt received\n");
+
+	/* Use Timer 1 IRQ, to pulse LED for a small interval */
+	// MUST PASS: led_pin_num
+	led_on_ms(LED_PIN, 200);
 }
 
 void handle_timer_3_irq()

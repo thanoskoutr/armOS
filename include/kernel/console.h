@@ -17,6 +17,8 @@ typedef enum _command {
 	cmd_led_pin,
 	cmd_led_on,
 	cmd_led_off,
+	cmd_led_irq_on,
+	cmd_led_irq_off,
 	cmd_led_on_ms,
 	cmd_led_blink_times,
 	cmd_led_blink_sos,

@@ -8,6 +8,7 @@
 #include <kernel/printk.h>
 #include <kernel/uart.h>
 #include <kernel/led.h>
+#include <kernel/timer.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -34,6 +35,10 @@ int console_get_cmd(char *input)
 		return cmd_led_on;
 	else if (strcmp(input, "led_off") == 0)
 		return cmd_led_off;
+	else if (strcmp(input, "led_irq_on") == 0)
+		return cmd_led_irq_on;
+	else if (strcmp(input, "led_irq_off") == 0)
+		return cmd_led_irq_off;
 	else if (strcmp(input, "led_on_ms") == 0)
 		return cmd_led_on_ms;
 	else if (strcmp(input, "led_blink_times") == 0)
@@ -103,6 +108,22 @@ void console(char *device)
 			printk("Turning LED off.\n");
 			led_off(led_pin_num);
 			break;
+		case cmd_led_irq_on:
+			printk("Enter milliseconds: ");
+			args = uart_gets();
+			printk("\n");
+			msec = atoi(args);
+			if (msec <= 0) {
+				printk("Not valid ms: %s\n", args);
+				break;
+			}
+			printk("Started System Timer Interrupt every %dms.\n", msec);
+			timer_1_init((uint32_t) msec);
+			break;
+		case cmd_led_irq_off:
+			printk("Stopped System Timer Interrupt.\n");
+			timer_1_stop();
+			break;
 		case cmd_led_on_ms:
 			printk("Enter milliseconds: ");
 			args = uart_gets();
@@ -171,7 +192,11 @@ void console_help()
 	printk("    led_on:\n");
 	printk("        Turns the LED on.\n");
 	printk("    led_off:\n");
-	printk("        Turns the LED on.\n");
+	printk("        Turns the LED off.\n");
+	printk("    led_irq_on:\n");
+	printk("        Pulses the LED with a msec milliseconds interval, using System Timer's Interrupt.\n");
+	printk("    led_irq_off:\n");
+	printk("        Stop the System Timer's Interrupt.\n");
 	printk("    led_on_ms:\n");
 	printk("        Turns the LED on for msec milliseconds.\n");
 	printk("    led_blink_times:\n");

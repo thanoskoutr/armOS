@@ -93,22 +93,15 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Timer */
-	printk("Initializing Timers...");
-	timer_1_init(6000);
-	timer_3_init(3000);
-	printk("Done\n");
-	/* Disable Timer 1 */
-	timer_1_stop();
+	// printk("Initializing Timers...");
+	// timer_1_init(6000);
+	// timer_3_init(3000);
+	// printk("Done\n");
 
 	/* LED */
 	printk("Initializing LED...");
 	led_init(LED_PIN);
 	printk("Done\n");
-
-	/* Disable Interrupts */
-	// printk("Disabling IRQs...");
-	// irq_disable();
-	// printk("Done\n");
 
 	/* Console */
 	console(device);
