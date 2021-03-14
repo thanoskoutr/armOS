@@ -55,6 +55,12 @@ Support for:
         - [x] led_pin
         - [x] led_on
         - [x] led_off
+        - [x] led_irq_on
+        - [x] led_irq_off
         - [x] led_on_ms
         - [x] led_blink_times
         - [x] led_blink_sos
+- [x] LED IRQ with System Timer 1
+    - [x] Start interrupt with msec interval
+    - [x] Stop interrupt
+    - [ ] Take pin from user
