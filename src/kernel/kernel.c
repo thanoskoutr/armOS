@@ -103,9 +103,9 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Disable Interrupts */
-	printk("Disabling IRQs...");
-	irq_disable();
-	printk("Done\n");
+	// printk("Disabling IRQs...");
+	// irq_disable();
+	// printk("Done\n");
 
 	/* Console */
 	console(device);

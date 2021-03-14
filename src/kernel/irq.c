@@ -59,9 +59,9 @@ void enable_interrupt_controller()
 	 * Enable System Timer 1, 3 interrupts
 	 */
 #if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)
-	mmio_write(IRQ0_SET_EN_1, AUX_IRQ | SYSTEM_TIMER_IRQ_1 | SYSTEM_TIMER_IRQ_3);
+	mmio_write(IRQ0_SET_EN_1, /* AUX_IRQ | */ SYSTEM_TIMER_IRQ_1 | SYSTEM_TIMER_IRQ_3);
 #elif defined(MODEL_4)
-	mmio_write(IRQ0_SET_EN_0, AUX_IRQ | SYSTEM_TIMER_IRQ_1 | SYSTEM_TIMER_IRQ_3);
+	mmio_write(IRQ0_SET_EN_0, /* AUX_IRQ | */ SYSTEM_TIMER_IRQ_1 | SYSTEM_TIMER_IRQ_3);
 #endif
 }
 
