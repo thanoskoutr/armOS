@@ -13,7 +13,7 @@
 #include <peripherals/gpio.h>
 
 
-void led_init(uint8_t pin_num)
+int led_init(uint8_t pin_num)
 {
 	int res;
 
@@ -22,8 +22,10 @@ void led_init(uint8_t pin_num)
 
 	/* Print error message, for not valid pin */
 	if (res < 0) {
-		printk("Error: Not a valid GPIO PIN\n");
+		// printk("Error: Not a valid GPIO PIN\n");
+		return -1;
 	}
+	return 0;
 }
 
 void led_on(uint8_t pin_num)

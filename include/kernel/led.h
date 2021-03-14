@@ -21,7 +21,7 @@
 /*
  * Sets pin_num GPIO pin as Output
  */
-void led_init(uint8_t pin_num);
+int led_init(uint8_t pin_num);
 
 /*
  * Turns LED at pin_num ON

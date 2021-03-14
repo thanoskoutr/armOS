@@ -14,6 +14,7 @@
  */
 typedef enum _command {
 	cmd_help,
+	cmd_led_pin,
 	cmd_led_on,
 	cmd_led_off,
 	cmd_led_on_ms,

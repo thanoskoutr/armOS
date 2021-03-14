@@ -28,6 +28,8 @@ int console_get_cmd(char *input)
 {
 	if (strcmp(input, "help") == 0)
 		return cmd_help;
+	else if (strcmp(input, "led_pin") == 0)
+		return cmd_led_pin;
 	else if (strcmp(input, "led_on") == 0)
 		return cmd_led_on;
 	else if (strcmp(input, "led_off") == 0)
@@ -49,7 +51,7 @@ void console(char *device)
 	char *input;
 	char *args;
 	char *prompt;
-	int msec, count;
+	int msec, count, pin_num;
 
 	/* Get prompt */
 	prompt = console_init(device);
@@ -57,6 +59,9 @@ void console(char *device)
 	/* Print console info */
 	printk("\n");
 	printk("This is a minimal console, type 'help' to see the available commands. (Maximum Input Length: %d)\n", MAX_INPUT_LENGTH);
+
+	/* Initialize default LED pin per device */
+	uint8_t led_pin_num = LED_PIN;
 
 	/* Main functionality */
 	while (1) {
@@ -74,13 +79,29 @@ void console(char *device)
 		case cmd_help:
 			console_help();
 			break;
+		case cmd_led_pin:
+			printk("Enter GPIO Pin: ");
+			args = uart_gets();
+			printk("\n");
+			pin_num = atoi(args);
+			if (pin_num <= 0) {
+				printk("Not valid Pin: %s\n", args);
+				break;
+			}
+			if (led_init(pin_num) < 0) {
+				printk("Error: Not a valid GPIO PIN\n");
+				break;
+			}
+			printk("Changed LED Pin to %d.\n", pin_num);
+			led_pin_num = pin_num;
+			break;
 		case cmd_led_on:
 			printk("Turning LED on.\n");
-			led_on(LED_PIN);
+			led_on(led_pin_num);
 			break;
 		case cmd_led_off:
 			printk("Turning LED off.\n");
-			led_off(LED_PIN);
+			led_off(led_pin_num);
 			break;
 		case cmd_led_on_ms:
 			printk("Enter milliseconds: ");
@@ -92,7 +113,7 @@ void console(char *device)
 				break;
 			}
 			printk("Turning LED on for %dms\n", msec);
-			led_on_ms(LED_PIN, (uint32_t) msec);
+			led_on_ms(led_pin_num, (uint32_t) msec);
 			break;
 
 		case cmd_led_blink_times:
@@ -113,7 +134,7 @@ void console(char *device)
 				break;
 			}
 			printk("Blink LED %d times with a %dms pulse.\n", count, msec);
-			led_blink_times(LED_PIN, (size_t) count, (uint32_t) msec);
+			led_blink_times(led_pin_num, (size_t) count, (uint32_t) msec);
 			break;
 		case cmd_led_blink_sos:
 			printk("Enter milliseconds: ");
@@ -125,7 +146,7 @@ void console(char *device)
 				break;
 			}
 			printk("Blink SOS on LED, with a %dms time interval.\n", msec);
-			led_blink_sos(LED_PIN, (uint32_t) msec);
+			led_blink_sos(led_pin_num, (uint32_t) msec);
 			break;
 		case cmd_halt:
 			printk("Halt.\n");
@@ -145,6 +166,8 @@ void console_help()
 	printk("Available commands:\n");
 	printk("    help:\n");
 	printk("        Prints available commands to the console.\n");
+	printk("    led_pin:\n");
+	printk("        Changes the GPIO Pin for the LED to control.\n");
 	printk("    led_on:\n");
 	printk("        Turns the LED on.\n");
 	printk("    led_off:\n");
@@ -157,5 +180,4 @@ void console_help()
 	printk("        Blinks SOS on LED with a msec milliseconds interval.\n");
 	printk("    halt:\n");
 	printk("        Halts the system.\n");
-
 }
