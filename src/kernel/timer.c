@@ -40,6 +40,18 @@ void timer_3_init(uint32_t msec)
 
 }
 
+void timer_1_stop()
+{
+	/* Set 0 to compare register, in order to stop timer interrupts */
+	mmio_write(TIMER_C1, 0);
+}
+
+void timer_3_stop()
+{
+	/* Set 0 to compare register, in order to stop timer interrupts */
+	mmio_write(TIMER_C3, 0);
+}
+
 void handle_timer_1_irq()
 {
 	/* Update current counter value, for next interrupt at same interval */

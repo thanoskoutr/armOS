@@ -12,6 +12,12 @@ void timer_1_init(uint32_t msec);
 void timer_3_init(uint32_t msec);
 
 /*
+ * Disables System Timers 1, 3
+ */
+void timer_1_stop();
+void timer_3_stop();
+
+/*
  * Exception handler for System Timers 1, 3
  */
 void handle_timer_1_irq();

@@ -97,6 +97,8 @@ void kernel_main()
 	timer_1_init(6000);
 	timer_3_init(3000);
 	printk("Done\n");
+	/* Disable Timer 1 */
+	timer_1_stop();
 
 	/* LED */
 	printk("Initializing LED...");

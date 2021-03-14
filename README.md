@@ -33,7 +33,9 @@ Support for:
     - [x] Handle mini UART interrupts
     - [x] Handle Timer interrupts
 - [x] Timer
+    - [x] System Timer 1, 3 init (set interval from param)
     - [x] System Timer 1, 3 handler
+    - [x] System Timer 1, 3 stop
     - [x] Sleep (msec)
 - [x] GPIO
     - [x] Functions for set/clear pins
