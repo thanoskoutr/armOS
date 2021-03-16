@@ -117,7 +117,7 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Creates process 1 */
-	printk("--- DEBUG: Forking process 1...");
+	printk("Forking process 1...");
 #ifdef AARCH_32
 	int res = copy_process((uint32_t) &process, (uint32_t) "12345");
 #elif AARCH_64
@@ -130,7 +130,7 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Creates process 2 */
-	printk("--- DEBUG: Forking process 2...");
+	printk("Forking process 2...");
 #ifdef AARCH_32
 	res = copy_process((uint32_t) &process, (uint32_t) "abcde");
 #elif AARCH_64
@@ -142,7 +142,7 @@ void kernel_main()
 	}
 	printk("Done\n");
 
-	printk("--- DEBUG: Entering in scheduling mode...\n");
+	printk("Entering in scheduling mode...\n");
 	while(1) {
 		/*
 		 * Core scheduler function.

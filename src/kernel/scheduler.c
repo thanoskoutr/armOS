@@ -123,6 +123,7 @@ void _schedule()
 		}
 	}
 	printk("--- DEBUG: Selected for scheduling task %d, located in %d\n", next, task[next]);
+	// printk("\nSelected for scheduling task %d, located in %d\n", next, task[next]);
 	/* Finally we switch to the selected task */
 	switch_to(task[next]);
 	/* Re-enable preemption at end of function */
