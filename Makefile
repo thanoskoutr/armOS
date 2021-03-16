@@ -12,7 +12,8 @@ IMG_NAME = kernel7
 IMG_NAME_64 = kernel8
 
 # Set Raspi Model, if not set
-RASPI_MODEL ?= 0
+# RASPI_MODEL ?= 0
+RASPI_MODEL ?= 4
 
 # Set flags and variables dependent on the Raspi Model
 ifeq ($(RASPI_MODEL), 0)

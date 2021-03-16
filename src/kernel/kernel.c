@@ -13,6 +13,9 @@
 #include <kernel/timer.h>
 #include <kernel/led.h>
 #include <kernel/console.h>
+#include <kernel/mmio.h>
+#include <kernel/scheduler.h>
+#include <kernel/fork.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -23,6 +26,8 @@
 #elif AARCH_64
 #include <armv8-a/irq.h>
 #endif
+
+void process(char *array);
 
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
@@ -104,7 +109,48 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Console */
-	console(device);
+	// console(device);
+
+	/* Scheduler */
+	printk("Initializing Timer 3...");
+	timer_3_init(2000); /* Initialize Timer 3 for scheduler */
+	printk("Done\n");
+
+	/* Creates process 1 */
+	printk("--- DEBUG: Forking process 1...");
+#ifdef AARCH_32
+	int res = copy_process((uint32_t) &process, (uint32_t) "12345");
+#elif AARCH_64
+	int res = copy_process((uint64_t) &process, (uint64_t) "12345");
+#endif
+	if (res != 0) {
+		printk("Error while starting process 1\n");
+		return;
+	}
+	printk("Done\n");
+
+	/* Creates process 2 */
+	printk("--- DEBUG: Forking process 2...");
+#ifdef AARCH_32
+	res = copy_process((uint32_t) &process, (uint32_t) "abcde");
+#elif AARCH_64
+	res = copy_process((uint64_t) &process, (uint64_t) "abcde");
+#endif
+	if (res != 0) {
+		printk("Error while starting process 2\n");
+		return;
+	}
+	printk("Done\n");
+
+	printk("--- DEBUG: Entering in scheduling mode...\n");
+	while(1) {
+		/*
+		 * Core scheduler function.
+		 * Checks whether there is a new task,
+		 * that needs to preempt the current one.
+		 */
+		schedule();
+	}
 
 	// while (1) {
 	// 	/* Read from serial (dummy) */
@@ -119,4 +165,19 @@ void kernel_main()
 	// 	}
 	// }
 
+}
+
+
+/*
+ * Dummy function that simulated a process.
+ * It just prints the items of its array.
+ */
+void process(char *array)
+{
+	while (1) {
+		for (int i = 0; i < 5; i++) {
+			printk("%c", array[i]);
+			delay(100000);
+		}
+	}
 }

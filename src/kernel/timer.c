@@ -9,6 +9,7 @@
 #include <kernel/printk.h>
 #include <kernel/led.h>
 #include <kernel/console.h>
+#include <kernel/scheduler.h>
 
 #include <peripherals/timer.h>
 
@@ -87,6 +88,9 @@ void handle_timer_3_irq()
 	mmio_write(TIMER_CS, timer_cs_3);
 
 	// printk("\nTimer 3 Interrupt received\n");
+
+	/* Use Timer 3 IRQ, for scheduler */
+	timer_tick();
 }
 
 uint64_t timer_get_ticks()

@@ -36,7 +36,20 @@
 	stp x24, x25, [sp, #16 * 12]
 	stp x26, x27, [sp, #16 * 13]
 	stp x28, x29, [sp, #16 * 14]
-	str x30,      [sp, #16 * 15]
+
+	/*
+	 * Because of context switching, it is possible to enter the interrupt
+	 * as one task, and exit as a different one.
+	 * eret, relies on the fact that return address is stored in elr_el1
+	 * and processor state in spsr_el1.
+	 * In order to switch tasks will processing an interrupt, we must save
+	 * these 2 registers, alongside the other general purpose registers.
+	 */
+	mrs x22, elr_el1
+	mrs x23, spsr_el1
+
+	stp x30, x22, [sp, #16 * 15]
+	str x23,      [sp, #16 * 16]
 .endm
 
 /*
@@ -45,6 +58,18 @@
  */
 	/* ldp: Loads a pair of registers */
 .macro kernel_exit
+
+	/*
+	 * Because of context switching, we do the opposite from kernel_entry.
+	 * We restore elr_el1 and spsr_el1, before restoring the other
+	 * general purpose registers.
+	 */
+	ldr x23,      [sp, #16 * 16]
+	ldp x30, x22, [sp, #16 * 15]
+
+	msr elr_el1, x22
+	msr spsr_el1, x23
+
 	ldp x0,  x1,  [sp, #16 * 0]
 	ldp x2,  x3,  [sp, #16 * 1]
 	ldp x4,  x5,  [sp, #16 * 2]
@@ -60,7 +85,6 @@
 	ldp x24, x25, [sp, #16 * 12]
 	ldp x26, x27, [sp, #16 * 13]
 	ldp x28, x29, [sp, #16 * 14]
-	ldr x30,      [sp, #16 * 15]
 	add sp, sp, #S_FRAME_SIZE
 	eret
 .endm
