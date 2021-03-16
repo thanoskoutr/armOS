@@ -142,6 +142,19 @@ void kernel_main()
 	}
 	printk("Done\n");
 
+	/* Creates process 3 */
+	printk("Forking process 3...");
+#ifdef AARCH_32
+	res = copy_process((uint32_t) &process, (uint32_t) "!@#$^");
+#elif AARCH_64
+	res = copy_process((uint64_t) &process, (uint64_t) "!@#$^");
+#endif
+	if (res != 0) {
+		printk("Error while starting process 3\n");
+		return;
+	}
+	printk("Done\n");
+
 	printk("Entering in scheduling mode...\n");
 	while(1) {
 		/*
