@@ -28,10 +28,10 @@ typedef struct _cpu_context {
 	uint32_t r9;
 	uint32_t r10;
 	uint32_t r11;
-	uint32_t cpsr;
 	uint32_t sp;
+	uint32_t cpsr;
 	uint32_t lr;
-	uint32_t pc;
+	// uint32_t pc;
 
 } cpu_context;
 #elif AARCH_64
@@ -67,18 +67,18 @@ typedef struct _cpu_context {
 #ifdef AARCH_32
 typedef struct _task_struct {
 	cpu_context cpu_context;
-	int64_t state;
-	int64_t counter;
-	int64_t priority;
-	int64_t preempt_count;
-} task_struct;
-#elif AARCH_64
-typedef struct _task_struct {
-	cpu_context cpu_context;
 	int32_t state;
 	int32_t counter;
 	int32_t priority;
 	int32_t preempt_count;
+} task_struct;
+#elif AARCH_64
+typedef struct _task_struct {
+	cpu_context cpu_context;
+	int64_t state;
+	int64_t counter;
+	int64_t priority;
+	int64_t preempt_count;
 } task_struct;
 #endif
 
@@ -121,7 +121,7 @@ extern int nr_tasks;
  */
 #ifdef AARCH_32
 #define INIT_TASK \
-/*cpu_context*/	{ {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, \
+/*cpu_context*/	{ {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, \
 /* state etc */	0,0,1, 0 \
 }
 #elif AARCH_64
