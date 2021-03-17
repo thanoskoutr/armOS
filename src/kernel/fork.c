@@ -6,6 +6,7 @@
 
 #include <kernel/scheduler.h>
 #include <kernel/mm.h>
+#include <kernel/printk.h>
 
 #ifdef AARCH_32
 int copy_process(uint32_t fn, uint32_t arg)
@@ -39,18 +40,28 @@ int copy_process(uint64_t fn, uint64_t arg)
 	p->counter = p->priority;	 /* Based on current task priority */
 	p->preempt_count = 1;		 /* Should not be rescheduled */
 
+#ifdef AARCH_32
+	/* Initialize the cpu_context of the new task
+	* r4: The function to call for the new task
+	* r5: The argument for the function of the new task
+	* pc: Points to the starting point for each new task (in asm)
+	* sp: The stack pointer is set to the top of the newly allocated memory page
+	* cpsr: Stay in supervisor mode (mode 0x13),
+	*	IRQs enabled on process start (bit 7 = 0)
+	*	Set bit 8 to disable a kind of exception that we are not using.
+	*/
+	p->cpu_context.r4 = fn;
+	p->cpu_context.r5 = arg;
+	p->cpu_context.pc = (uint32_t) ret_from_fork;
+	p->cpu_context.sp = (uint32_t) p + THREAD_SIZE;
+	p->cpu_context.cpsr = 0x13 | (8 << 1);
+#elif AARCH_64
 	/* Initialize the cpu_context of the new task
 	* x19: The function to call for the new task
 	* x20: The argument for the function of the new task
 	* pc: Points to the starting point for each new task (in asm)
 	* sp: The stack pointer is set to the top of the newly allocated memory page
 	*/
-#ifdef AARCH_32
-	p->cpu_context.r1 = fn;
-	p->cpu_context.r2 = arg;
-	p->cpu_context.pc = (uint32_t) ret_from_fork;
-	p->cpu_context.sp = (uint32_t) p + THREAD_SIZE;
-#elif AARCH_64
 	p->cpu_context.x19 = fn;
 	p->cpu_context.x20 = arg;
 	p->cpu_context.pc = (uint64_t) ret_from_fork;
@@ -59,6 +70,8 @@ int copy_process(uint64_t fn, uint64_t arg)
 	/* Add newly created task to the task array */
 	int pid = nr_tasks++;
 	task[pid] = p;
+
+	printk("--- DEBUG: Process created, pid: %d, sp: %x, pc: %x\n", pid, p->cpu_context.sp, p->cpu_context.pc);
 
 	/* Enable preemption for the current task (fork) */
 	preempt_enable();

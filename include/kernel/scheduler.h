@@ -30,8 +30,7 @@ typedef struct _cpu_context {
 	uint32_t r11;
 	uint32_t sp;
 	uint32_t cpsr;
-	uint32_t lr;
-	// uint32_t pc;
+	uint32_t pc;
 
 } cpu_context;
 #elif AARCH_64
@@ -122,12 +121,12 @@ extern int nr_tasks;
 #ifdef AARCH_32
 #define INIT_TASK \
 /*cpu_context*/	{ {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, \
-/* state etc */	0,0,1, 0 \
+/* state etc */	0,0,1,0 \
 }
 #elif AARCH_64
 #define INIT_TASK \
 /*cpu_context*/	{ {0,0,0,0,0,0,0,0,0,0,0,0,0}, \
-/* state etc */	0,0,1, 0 \
+/* state etc */	0,0,1,0 \
 }
 #endif
 
