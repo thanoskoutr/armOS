@@ -1,6 +1,7 @@
-/*
- * printk.c - Implementation of printk
- * Prints a kernel message to the serial console
+/**
+ * @file printk.c
+ * @brief Implementation of printk
+ * @details Prints a kernel message to the serial console.
  */
 
 #include <stdarg.h>
