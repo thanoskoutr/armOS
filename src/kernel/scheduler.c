@@ -43,16 +43,28 @@ void schedule_tail()
 	preempt_enable();
 }
 
-void switch_to(task_struct * next)
+void switch_to(task_struct *next)
 {
 	/* Check that the next process is not the same as the current */
 	if (current == next)
 		return;
 	/* If not, update the current process as the next */
+	printk("--- DEBUG: switch_to() call, FROM Task located in %d TO Task located in %d\n", current, next);
 	task_struct *prev = current;
 	current = next;
 	/* Call cpu_switch_to, for context switch */
 	cpu_switch_to(prev, next);
+}
+
+void DEBUG_print_tasks()
+{
+	task_struct *t = task[0];
+	for (int i = 0; (i < NR_TASKS) && t; i++){
+		t = task[i];
+		if (t) {
+			printk("--- DEBUG:    %d: sp: %x\n", i, t->cpu_context.sp);
+		}
+	}
 }
 
 void _schedule()
@@ -123,6 +135,9 @@ void _schedule()
 		}
 	}
 	printk("--- DEBUG: Selected for scheduling task %d, located in %d\n", next, task[next]);
+	printk("--- DEBUG: Task State:\n");
+	DEBUG_print_tasks();
+
 	// printk("\nSelected for scheduling task %d, located in %d\n", next, task[next]);
 	/* Finally we switch to the selected task */
 	switch_to(task[next]);
