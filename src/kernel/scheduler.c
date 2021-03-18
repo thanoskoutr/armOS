@@ -125,7 +125,7 @@ void _schedule()
 		}
 	}
 	// DEBUG_print_tasks();
-	printk("\nSelected for scheduling task %d, located in %d\n", next, task[next]);
+	printk("\nSelected for scheduling task %d, located at %d\n", next, task[next]);
 
 	/* Finally we switch to the selected task */
 	switch_to(task[next]);
