@@ -60,7 +60,8 @@ Support for:
         - [x] led_on_ms
         - [x] led_blink_times
         - [x] led_blink_sos
-        - [x] process
+        - [x] create_procs
+        - [x] run_procs
 - [x] LED IRQ with System Timer 1
     - [x] Start interrupt with msec interval
     - [x] Stop interrupt
@@ -72,6 +73,6 @@ Support for:
     - [x] Process initialization
     - [ ] Parameterize processes:
         - [x] Number
-        - [ ] Argument
-        - [ ] Function
+        - [x] Argument
         - [ ] Kill process
+        - [ ] (Select argument, function)
