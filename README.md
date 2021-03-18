@@ -1,4 +1,4 @@
-# minimARM-OS
+# armOS
 
 ## Boards
 Support for:
