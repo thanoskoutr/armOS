@@ -1,5 +1,9 @@
-/*
- * string.c - Implementation of some string.h functions
+/**
+ * \ingroup string
+ * Implementation of a small subset of string.h.
+ * @{
+ * @file string.c
+ * @brief Implementation of some string.h functions
  */
 
 #include <stddef.h>
@@ -105,3 +109,5 @@ void strrev(char *s)
 		s[j] = tmp;
 	}
 }
+
+/** @} */
