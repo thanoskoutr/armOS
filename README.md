@@ -60,7 +60,17 @@ Support for:
         - [x] led_on_ms
         - [x] led_blink_times
         - [x] led_blink_sos
+        - [x] process
 - [x] LED IRQ with System Timer 1
     - [x] Start interrupt with msec interval
     - [x] Stop interrupt
     - [x] Take LED pin from user
+- [x] Processes
+    - [x] Scheduler
+    - [x] Context Switch
+    - [x] Fork
+    - [x] Process initialization
+    - [ ] Parameterize processes:
+        - [ ] Number
+        - [ ] Argument
+        - [ ] Function
