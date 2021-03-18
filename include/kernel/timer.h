@@ -5,6 +5,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+#include <stdint.h>
+
 /* The pulse time in milliseconds for the LED IRQ */
 #define LED_MSEC_IRQ 200
 

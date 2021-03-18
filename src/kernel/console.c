@@ -9,6 +9,8 @@
 #include <kernel/uart.h>
 #include <kernel/led.h>
 #include <kernel/timer.h>
+#include <kernel/scheduler.h>
+#include <kernel/process.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -48,6 +50,8 @@ int console_get_cmd(char *input)
 		return cmd_led_blink_times;
 	else if (strcmp(input, "led_blink_sos") == 0)
 		return cmd_led_blink_sos;
+	else if (strcmp(input, "process") == 0)
+		return cmd_process;
 	else if (strcmp(input, "halt") == 0)
 		return cmd_halt;
 	else
@@ -173,6 +177,36 @@ void console(char *device)
 			printk("Blink SOS on LED, with a %dms time interval.\n", msec);
 			led_blink_sos(led_pin_num, (uint32_t) msec);
 			break;
+		case cmd_process:
+			printk("Runs 3 kernel processes concurrently.\n");
+			/* Initialize Timer 3 for scheduler */
+			printk("Initializing Timer 3...");
+			timer_3_init(2000);
+			printk("Done\n");
+			/* Schedule */
+			printk("Entering in scheduling mode...\n");
+			while(1) {
+				/*
+				* Core scheduler function.
+				* Checks whether there is a new task,
+				* that needs to preempt the current one.
+				*/
+				schedule();
+				/* Continue or Stop, based on user input */
+				timer_3_stop();
+				printk("Continue? [y/n]: ");
+				args = uart_gets();
+				printk("\n");
+				if (strcmp(args, "n") == 0)
+					break;
+				else {
+					timer_3_init(2000);
+					continue;
+				}
+			}
+			/* Stop Timer 3 from calling the scheduler */
+			timer_3_stop();
+			break;
 		case cmd_halt:
 			printk("Halt.\n");
 			printk("So long and thanks for all the fish...\n");
@@ -207,6 +241,8 @@ void console_help()
 	printk("        Blinks LED count times for msec milliseconds.\n");
 	printk("    led_blink_sos:\n");
 	printk("        Blinks SOS on LED with a msec milliseconds interval.\n");
+	printk("    process:\n");
+	printk("        Runs 3 kernel processes concurrently.\n");
 	printk("    halt:\n");
 	printk("        Halts the system.\n");
 }
