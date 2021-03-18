@@ -16,6 +16,7 @@
 #include <kernel/mmio.h>
 #include <kernel/scheduler.h>
 #include <kernel/fork.h>
+#include <kernel/process.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -54,7 +55,7 @@ void kernel_main()
 	printk("| . |  _|     |  |  |  |__   |\n");
 	printk("|__,|_| |_|_|_|  |_____|_____|\n");
 
-	printk("\nCustom ARM OS initializing...\n");
+	printk("\narmOS initializing...\n");
 
 	/* Board Info */
 #ifdef MODEL_0
@@ -108,62 +109,13 @@ void kernel_main()
 	led_init(LED_PIN);
 	printk("Done\n");
 
-	/* Console */
-	// console(device);
-
 	/* Scheduler */
-	printk("Initializing Timer 3...");
-	timer_3_init(2000); /* Initialize Timer 3 for scheduler */
+	printk("Initializing processes...\n");
+	init_processes();
 	printk("Done\n");
 
-	/* Creates process 1 */
-	printk("Forking process 1...");
-#ifdef AARCH_32
-	int res = copy_process((uint32_t) &process, (uint32_t) "12345");
-#elif AARCH_64
-	int res = copy_process((uint64_t) &process, (uint64_t) "12345");
-#endif
-	if (res != 0) {
-		printk("Error while starting process 1\n");
-		return;
-	}
-	printk("Done\n");
-
-	/* Creates process 2 */
-	printk("Forking process 2...");
-#ifdef AARCH_32
-	res = copy_process((uint32_t) &process, (uint32_t) "abcde");
-#elif AARCH_64
-	res = copy_process((uint64_t) &process, (uint64_t) "abcde");
-#endif
-	if (res != 0) {
-		printk("Error while starting process 2\n");
-		return;
-	}
-	printk("Done\n");
-
-	/* Creates process 3 */
-	printk("Forking process 3...");
-#ifdef AARCH_32
-	res = copy_process((uint32_t) &process, (uint32_t) "!@#$^");
-#elif AARCH_64
-	res = copy_process((uint64_t) &process, (uint64_t) "!@#$^");
-#endif
-	if (res != 0) {
-		printk("Error while starting process 3\n");
-		return;
-	}
-	printk("Done\n");
-
-	printk("Entering in scheduling mode...\n");
-	while(1) {
-		/*
-		 * Core scheduler function.
-		 * Checks whether there is a new task,
-		 * that needs to preempt the current one.
-		 */
-		schedule();
-	}
+	/* Console */
+	console(device);
 
 	// while (1) {
 	// 	/* Read from serial (dummy) */
@@ -178,19 +130,4 @@ void kernel_main()
 	// 	}
 	// }
 
-}
-
-
-/*
- * Dummy function that simulated a process.
- * It just prints the items of its array.
- */
-void process(char *array)
-{
-	while (1) {
-		for (int i = 0; i < 5; i++) {
-			printk("%c", array[i]);
-			delay(100000);
-		}
-	}
 }
