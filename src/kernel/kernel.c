@@ -110,8 +110,8 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Scheduler */
-	printk("Initializing processes...\n");
-	init_processes(5);
+	printk("Creating processes...\n");
+	create_processes(5);
 	printk("Done\n");
 
 	/* Console */
