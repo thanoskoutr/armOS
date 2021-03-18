@@ -34,6 +34,8 @@ int console_get_cmd(char *input)
 {
 	if (strcmp(input, "help") == 0)
 		return cmd_help;
+	else if (strcmp(input, "help_led") == 0)
+		return cmd_help_led;
 	else if (strcmp(input, "led_pin") == 0)
 		return cmd_led_pin;
 	else if (strcmp(input, "led_on") == 0)
@@ -89,6 +91,9 @@ void console(char *device)
 		switch (cmd) {
 		case cmd_help:
 			console_help();
+			break;
+		case cmd_help_led:
+			console_help_led();
 			break;
 		case cmd_led_pin:
 			printk("Enter GPIO Pin: ");
@@ -240,6 +245,19 @@ void console_help()
 	printk("Available commands:\n");
 	printk("    help:\n");
 	printk("        Prints available commands to the console.\n");
+	printk("    help_led:\n");
+	printk("        Prints available LED commands to the console.\n");
+	printk("    create_procs:\n");
+	printk("        Creates proc_num kernel processes.\n");
+	printk("    run_procs:\n");
+	printk("        Runs the created kernel processes concurrently.\n");
+	printk("    halt:\n");
+	printk("        Halts the system.\n");
+}
+
+void console_help_led()
+{
+	printk("Available LED commands:\n");
 	printk("    led_pin:\n");
 	printk("        Changes the GPIO Pin for the LED to control.\n");
 	printk("    led_on:\n");
@@ -256,10 +274,4 @@ void console_help()
 	printk("        Blinks LED count times for msec milliseconds.\n");
 	printk("    led_blink_sos:\n");
 	printk("        Blinks SOS on LED with a msec milliseconds interval.\n");
-	printk("    create_procs:\n");
-	printk("        Creates proc_num kernel processes.\n");
-	printk("    run_procs:\n");
-	printk("        Runs the created kernel processes concurrently.\n");
-	printk("    halt:\n");
-	printk("        Halts the system.\n");
 }

@@ -14,6 +14,7 @@
  */
 typedef enum _command {
 	cmd_help,
+	cmd_help_led,
 	cmd_led_pin,
 	cmd_led_on,
 	cmd_led_off,
@@ -50,6 +51,12 @@ void console(char *device);
  * Prints available commands to the console
  */
 void console_help();
+
+/*
+ * Command: help_led
+ * Prints available LED commands to the console
+ */
+void console_help_led();
 
 
 #endif
