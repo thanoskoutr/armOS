@@ -12,6 +12,7 @@
 #include <kernel/fork.h>
 #include <kernel/scheduler.h>
 #include <kernel/uart.h>
+#include <kernel/mm.h>
 
 #include <common/string.h>
 #include <common/stdlib.h>
@@ -70,4 +71,41 @@ void create_processes(size_t proc_num)
 		}
 		printk("Done\n");
 	}
+}
+
+
+void kill_processes()
+{
+	/*
+	 * Preemption is disabled for the current task.
+	 * We don't want to be rescheduled to a different task
+	 * in the middle of killing another task.
+	 */
+	preempt_disable();
+
+	/* Allocate pointer for the new task */
+	task_struct *p;
+
+	/*
+	 * Iterate over all tasks and try to kill all runing ones.
+	 */
+	for (size_t i = 0; i < NR_TASKS; i++) {
+		p = task[i];
+		/* If it is an allocated task, and not the init task */
+		if (p != 0 && i != 0) {
+			/* Free allocated memory of task */
+#ifdef AARCH_32
+			free_page((uint32_t) p);
+#elif AARCH_64
+			free_page((uint64_t) p);
+#endif
+			/* Decrease number of processes */
+			nr_tasks--;
+			/* Remove task_struct from task array */
+			task[i] = 0;
+
+			printk("Killed task %d, located at %d\n", i, p);
+		}
+	}
+
 }

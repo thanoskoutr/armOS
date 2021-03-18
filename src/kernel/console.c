@@ -56,6 +56,8 @@ int console_get_cmd(char *input)
 		return cmd_create_procs;
 	else if (strcmp(input, "run_procs") == 0)
 		return cmd_run_procs;
+	else if (strcmp(input, "kill_procs") == 0)
+		return cmd_kill_procs;
 	else if (strcmp(input, "halt") == 0)
 		return cmd_halt;
 	else
@@ -227,6 +229,11 @@ void console(char *device)
 			/* Stop Timer 3 from calling the scheduler */
 			timer_3_stop();
 			break;
+		case cmd_kill_procs:
+			printk("Killing all process(es)...\n");
+			kill_processes();
+			printk("Done\n");
+			break;
 		case cmd_halt:
 			printk("Halt.\n");
 			printk("So long and thanks for all the fish...\n");
@@ -251,6 +258,8 @@ void console_help()
 	printk("        Creates proc_num kernel processes.\n");
 	printk("    run_procs:\n");
 	printk("        Runs the created kernel processes concurrently.\n");
+	printk("    kill_procs:\n");
+	printk("        Kills all created kernel processes.\n");
 	printk("    halt:\n");
 	printk("        Halts the system.\n");
 }

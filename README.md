@@ -71,8 +71,8 @@ Support for:
     - [x] Context Switch
     - [x] Fork
     - [x] Process initialization
-    - [ ] Parameterize processes:
+    - [x] Parameterize processes:
         - [x] Number
         - [x] Argument
-        - [ ] Kill process
+        - [x] Kill process
         - [ ] (Select argument, function)
