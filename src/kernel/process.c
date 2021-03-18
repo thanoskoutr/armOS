@@ -32,7 +32,7 @@ void process(char *array)
 }
 
 
-void init_processes(size_t proc_num)
+void create_processes(size_t proc_num)
 {
 	/* String array, for the message of each process */
 	static char args[NR_TASKS][MAX_INPUT_LENGTH];

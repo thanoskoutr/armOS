@@ -10,13 +10,13 @@
 /*
  * Creates processes using copy_process.
  */
-void init_processes(size_t proc_num);
+void create_processes(size_t proc_num);
 
 
 /*
  * Run:
- * - If init_processes() is before console(): At halt.
- * - If init_processes() is in cmd_process: On end of cmd_process
+ * - If create_processes() is before console(): At halt.
+ * - If create_processes() is in cmd_process: On end of cmd_process
  * Must do for each process:
  * - Get starting address of process
  * - Check that it is not current process
