@@ -110,9 +110,9 @@ void kernel_main()
 	printk("Done\n");
 
 	/* Scheduler */
-	printk("Creating processes...\n");
-	create_processes(5);
-	printk("Done\n");
+	// printk("Creating processes...\n");
+	// create_processes(5);
+	// printk("Done\n");
 
 	/* Console */
 	console(device);

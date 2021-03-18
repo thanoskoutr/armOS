@@ -50,8 +50,10 @@ int console_get_cmd(char *input)
 		return cmd_led_blink_times;
 	else if (strcmp(input, "led_blink_sos") == 0)
 		return cmd_led_blink_sos;
-	else if (strcmp(input, "process") == 0)
-		return cmd_process;
+	else if (strcmp(input, "create_procs") == 0)
+		return cmd_create_procs;
+	else if (strcmp(input, "run_procs") == 0)
+		return cmd_run_procs;
 	else if (strcmp(input, "halt") == 0)
 		return cmd_halt;
 	else
@@ -63,7 +65,7 @@ void console(char *device)
 	char *input;
 	char *args;
 	char *prompt;
-	int msec, count, pin_num;
+	int msec, count, pin_num, proc_num;
 
 	/* Get prompt */
 	prompt = console_init(device);
@@ -177,8 +179,21 @@ void console(char *device)
 			printk("Blink SOS on LED, with a %dms time interval.\n", msec);
 			led_blink_sos(led_pin_num, (uint32_t) msec);
 			break;
-		case cmd_process:
-			printk("Runs 3 kernel processes concurrently.\n");
+		case cmd_create_procs:
+			printk("Enter number of process(es): ");
+			args = uart_gets();
+			printk("\n");
+			proc_num = atoi(args);
+			if (proc_num <= 0 || proc_num >= NR_TASKS) {
+				printk("Not a valid number: %s\n", args);
+				printk("Total processes must be: 0 < procs < %d \n", NR_TASKS);
+				break;
+			}
+			printk("Creating %d process(es)...\n", proc_num);
+			create_processes(proc_num);
+			printk("Done\n");
+			break;
+		case cmd_run_procs:
 			/* Initialize Timer 3 for scheduler */
 			printk("Initializing Timer 3...");
 			timer_3_init(2000);
@@ -241,8 +256,10 @@ void console_help()
 	printk("        Blinks LED count times for msec milliseconds.\n");
 	printk("    led_blink_sos:\n");
 	printk("        Blinks SOS on LED with a msec milliseconds interval.\n");
-	printk("    process:\n");
-	printk("        Runs 3 kernel processes concurrently.\n");
+	printk("    create_procs:\n");
+	printk("        Creates proc_num kernel processes.\n");
+	printk("    run_procs:\n");
+	printk("        Runs the created kernel processes concurrently.\n");
 	printk("    halt:\n");
 	printk("        Halts the system.\n");
 }

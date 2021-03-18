@@ -22,7 +22,8 @@ typedef enum _command {
 	cmd_led_on_ms,
 	cmd_led_blink_times,
 	cmd_led_blink_sos,
-	cmd_process,
+	cmd_create_procs,
+	cmd_run_procs,
 	cmd_halt
 } command;
 
