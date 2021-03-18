@@ -18,3 +18,8 @@ Screenshot_*
 
 # Config files for testing
 config-test-*.txt
+
+# Doxygen stuff
+html
+latex
+man
