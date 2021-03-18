@@ -71,8 +71,6 @@ int copy_process(uint64_t fn, uint64_t arg)
 	int pid = nr_tasks++;
 	task[pid] = p;
 
-	printk("--- DEBUG: Process created, pid: %d, sp: %x, pc: %x\n", pid, p->cpu_context.sp, p->cpu_context.pc);
-
 	/* Enable preemption for the current task (fork) */
 	preempt_enable();
 

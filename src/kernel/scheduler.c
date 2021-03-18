@@ -49,7 +49,6 @@ void switch_to(task_struct *next)
 	if (current == next)
 		return;
 	/* If not, update the current process as the next */
-	printk("--- DEBUG: switch_to() call, FROM Task located in %d TO Task located in %d\n", current, next);
 	task_struct *prev = current;
 	current = next;
 	/* Call cpu_switch_to, for context switch */
@@ -92,22 +91,16 @@ void _schedule()
 		for (size_t i = 0; i < NR_TASKS; i++) {
 			p = task[i];
 
-			if (i <= 2) {
-				printk("--- DEBUG: 1st for loop, checking Task %d, counter = %d, c = %d\n", i, p->counter, c);
-			}
-
 			/* If such a running task is found */
 			if (p && p->state == TASK_RUNNING && p->counter > c) {
 				/* Update maximum counter, and pid for next task */
 				c = p->counter;
 				next = i;
-				printk("--- DEBUG: 1st for loop, FOUND Task %d, counter = %d, c = %d\n", i, p->counter, c);
 			}
 		}
 		/* If a task to be scheduled is found, break and switch to task */
-		/* Its counter is greater then 0 (c > 0) ?? */
+		/* Its counter is greater then 0 (c > 0) */
 		if (c) {
-			printk("--- DEBUG: Breaking scheduler with, Task %d, c = %d\n", next, c);
 			break;
 		}
 		/*
@@ -118,9 +111,6 @@ void _schedule()
 		 */
 		for (size_t i = 0; i < NR_TASKS; i++) {
 			p = task[i];
-			if (i <= 2) {
-				printk("--- DEBUG: 2nd for loop, checking Task %d, counter = %d\n", i, p->counter);
-			}
 			/* p > 0 */
 			if (p) {
 				/*
@@ -134,21 +124,17 @@ void _schedule()
 			}
 		}
 	}
-	printk("--- DEBUG: Selected for scheduling task %d, located in %d\n", next, task[next]);
-	printk("--- DEBUG: Task State:\n");
-	DEBUG_print_tasks();
+	// DEBUG_print_tasks();
+	printk("\nSelected for scheduling task %d, located in %d\n", next, task[next]);
 
-	// printk("\nSelected for scheduling task %d, located in %d\n", next, task[next]);
 	/* Finally we switch to the selected task */
 	switch_to(task[next]);
 	/* Re-enable preemption at end of function */
-	printk("--- DEBUG: Succesfully did context switch with task %d, located in %d\n", next, task[next]);
 	preempt_enable();
 }
 
 void schedule()
 {
-	printk("\n--- DEBUG: schedule() call, in Task located in %d, with counter = %d\n", current, current->counter);
 	/* Set current task as reschedulable */
 	current->counter = 0;
 	/* Call, core scheduler function */
@@ -157,7 +143,6 @@ void schedule()
 
 void timer_tick()
 {
-	printk("\n--- DEBUG: timer_tick() call, in Task located in, with counter = %d\n", current, current->counter);
 	/* Decreases current's task counter */
 	--current->counter;
 	/* Check if task has time left or preemption is disabled */
