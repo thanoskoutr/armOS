@@ -111,7 +111,7 @@ void kernel_main()
 
 	/* Scheduler */
 	printk("Initializing processes...\n");
-	init_processes();
+	init_processes(5);
 	printk("Done\n");
 
 	/* Console */
