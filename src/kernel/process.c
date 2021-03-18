@@ -4,13 +4,17 @@
 
 
 #include <stdint.h>
+#include <stddef.h>
 
 #include <kernel/printk.h>
 #include <kernel/mmio.h>
 #include <kernel/timer.h>
 #include <kernel/fork.h>
 #include <kernel/scheduler.h>
+#include <kernel/uart.h>
 
+#include <common/string.h>
+#include <common/stdlib.h>
 
 /*
  * Dummy function that simulated a process.
@@ -18,8 +22,9 @@
  */
 void process(char *array)
 {
+	size_t items = strlen(array);
 	while (1) {
-		for (int i = 0; i < 5; i++) {
+		for (size_t i = 0; i < items; i++) {
 			printk("%c", array[i]);
 			delay(100000);
 		}
@@ -27,44 +32,29 @@ void process(char *array)
 }
 
 
-void init_processes()
+void init_processes(size_t proc_num)
 {
-	/* Creates process 1 */
-	printk("Forking process 1...");
-#ifdef AARCH_32
-	int res = copy_process((uint32_t) &process, (uint32_t) "12345");
-#elif AARCH_64
-	int res = copy_process((uint64_t) &process, (uint64_t) "12345");
-#endif
-	if (res != 0) {
-		printk("Error while starting process 1\n");
-		return;
-	}
-	printk("Done\n");
+	/* String array, for the message of each process */
+	static char args[NR_TASKS][MAX_INPUT_LENGTH];
 
-	/* Creates process 2 */
-	printk("Forking process 2...");
-#ifdef AARCH_32
-	res = copy_process((uint32_t) &process, (uint32_t) "abcde");
-#elif AARCH_64
-	res = copy_process((uint64_t) &process, (uint64_t) "abcde");
-#endif
-	if (res != 0) {
-		printk("Error while starting process 2\n");
-		return;
-	}
-	printk("Done\n");
+	for (size_t i = 0; i < proc_num; i++) {
+		printk("Forking process %d...", i);
 
-	/* Creates process 3 */
-	printk("Forking process 3...");
+		strcpy(args[i], "Hello from proc ");
+		strcat(args[i], itoa(i));
+		strcat(args[i], ", ");
+
 #ifdef AARCH_32
-	res = copy_process((uint32_t) &process, (uint32_t) "!@#$^");
+		// int res = copy_process((uint32_t) &process, (uint32_t) "12345");
+		int res = copy_process((uint32_t) &process, (uint32_t) args[i]);
 #elif AARCH_64
-	res = copy_process((uint64_t) &process, (uint64_t) "!@#$^");
+		// int res = copy_process((uint64_t) &process, (uint64_t) "12345");
+		int res = copy_process((uint64_t) &process, (uint64_t) args[i]);
 #endif
-	if (res != 0) {
-		printk("Error while starting process 3\n");
-		return;
+		if (res != 0) {
+			printk("Error while starting process 1\n");
+			return;
+		}
+		printk("Done\n");
 	}
-	printk("Done\n");
 }
