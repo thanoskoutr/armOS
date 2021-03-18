@@ -71,6 +71,7 @@ Support for:
     - [x] Fork
     - [x] Process initialization
     - [ ] Parameterize processes:
-        - [ ] Number
+        - [x] Number
         - [ ] Argument
         - [ ] Function
+        - [ ] Kill process
