@@ -22,3 +22,4 @@ config-test-*.txt
 # Doxygen stuff
 html
 latex
+man

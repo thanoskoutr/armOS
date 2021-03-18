@@ -1,6 +1,9 @@
 /**
+ * \defgroup string string
+ * Small subset of string.h.
+ * @{
  * @file string.h
- * @brief Definition of some string.h functions
+ * @brief Definition of some string.h functions.
  */
 
 #include <stddef.h>
@@ -63,5 +66,7 @@ char *strcat(char *dest, const char *src);
  * @param s A string pointer.
  */
 void strrev(char *s);
+
+/** @} */
 
 #endif
