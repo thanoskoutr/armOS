@@ -17,6 +17,7 @@
  * @return
  * - On success: 0
  * - On failure: -1
+ * @see gpio_func
  */
 int gpio_pin_set_func(uint8_t pin_num, gpio_func func);
 

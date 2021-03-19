@@ -15,6 +15,7 @@ void enable_interrupt_controller();
 /**
  * Prints information about the error, on an invalid exception.
  * @param type Type of exception, defined in include/armv6/entry.h
+ * @see include/armv6/entry.h
  */
 void show_invalid_entry_message(int type);
 #elif AARCH_64
@@ -25,6 +26,7 @@ void show_invalid_entry_message(int type);
  * contains detailed information about what causes an exception.
  * @param address The address of the instruction that had been executed
  * when the exception was generated.
+ * @see include/armv8-a/entry.h
  */
 void show_invalid_entry_message(int type, unsigned long esr, \
 						unsigned long address);
