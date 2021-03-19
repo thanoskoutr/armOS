@@ -25,7 +25,7 @@
 #define IRQ_INVALID_EL1t	1
 #define FIQ_INVALID_EL1t	2
 #define ERROR_INVALID_EL1t	3
-/* @} */
+/** @} */
 
 /**
  * \name EL1h
@@ -37,7 +37,7 @@
 #define IRQ_INVALID_EL1h	5
 #define FIQ_INVALID_EL1h	6
 #define ERROR_INVALID_EL1h	7
-/* @} */
+/** @} */
 
 /**
  * \name EL0_64
@@ -48,7 +48,7 @@
 #define IRQ_INVALID_EL0_64	9
 #define FIQ_INVALID_EL0_64	10
 #define ERROR_INVALID_EL0_64	11
-/* @} */
+/** @} */
 
 /**
  * \name EL0_32
@@ -59,9 +59,9 @@
 #define IRQ_INVALID_EL0_32	13
 #define FIQ_INVALID_EL0_32	14
 #define ERROR_INVALID_EL0_32	15
-/* @} */
+/** @} */
 
 
-/* @} */
+/** @} */
 
 #endif

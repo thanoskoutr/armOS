@@ -19,6 +19,6 @@ typedef enum bool {
 	true = 1	/**< 1 */
 } bool;
 
-/* @} */
+/** @} */
 
 #endif
