@@ -1,5 +1,7 @@
-/*
- * mmio.c - Provides functions for reading and writing from/to Memory Mapped IO
+/**
+ * @file mmio.c
+ * @brief Implementation of MMIO functions.
+ * @details Reading and writing from/to Memory Mapped IO.
  */
 
 #include <kernel/mmio.h>
