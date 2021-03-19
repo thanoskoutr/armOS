@@ -1,6 +1,6 @@
-/*
- * irq.h - Implementation of interrupt handling functions.
- *
+/**
+ * @file irq.c
+ * @brief Implementation of interrupt handling functions.
  */
 
 #include <stdint.h>
@@ -14,7 +14,7 @@
 #include <peripherals/aux.h>
 
 
-/*
+/**
  * String array, for the invalid exception type messages.
  */
 #ifdef AARCH_32

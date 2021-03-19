@@ -12,6 +12,8 @@
 /**
  * printk - print a kernel message
  * @param fmt format string
+ * @return
+ * - On success: 0
  * @details The formats supported by this implementation are: 'd' 'c' 's', 'x'.
  * To be supported: u', 'l', 'll'.
  */

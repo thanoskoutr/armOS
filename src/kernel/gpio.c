@@ -1,5 +1,6 @@
-/*
- * gpio.c - Implementation of functions for manipulating GPIO registers
+/**
+ * @file gpio.c
+ * @brief Implementation of functions for manipulating GPIO registers.
  */
 
 #include <stdint.h>
