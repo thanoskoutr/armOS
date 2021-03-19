@@ -10,6 +10,13 @@
 #define STDLIB_H
 
 /**
+ * itoa - Converts an int (Only base 10 supported for now)
+ * to a null-terminated string using the specified base.
+ * @param value Value to be converted to a string.
+ * @return A pointer to the resulting null-terminated string.
+ */
+char *itoa(int value);
+/*
  * itoa - Converts an int to a null-terminated string using the specified base.
  * @param value Value to be converted to a string.
  * @param base Numerical base used to represent the value as a string.
@@ -17,7 +24,6 @@
  * (Only base 10 supported for now)
  * @return A pointer to the resulting null-terminated string.
  */
-char *itoa(int value);
 // char *itoa(int value, int base);
 
 /**
