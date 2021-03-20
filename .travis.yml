@@ -1,6 +1,11 @@
 # Specify system and language
 language: generic
 
+# Build only on main
+branches:
+  only:
+    - main
+
 # Install dependencies
 addons:
   apt:
@@ -17,9 +22,8 @@ script:
 # Deploy docs to GitHub Pages
 deploy:
   provider: pages
-  skip_cleanup: true
+  cleanup: false
   github_token: $GITHUB_TOKEN
   local_dir: docs/doxygen/html
-  # keep_history: true
   on:
     branch: main
