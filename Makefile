@@ -146,4 +146,4 @@ clean:
 	rm -rf $(BUILD_DIR) *.img *.elf *.bin $(STUB_DIR)/$(BUILD_DIR)
 
 clean_docs:
-	rm -rf $(DOCS_DIR)
+	rm -rf $(DOXYGEN_DIR)
