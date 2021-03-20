@@ -113,7 +113,7 @@ armstub: $(OBJ_STUB_FILES)
 
 # Generating Documentation
 ## Docs directories and config file
-DOXYGEN_DIR = docs/doxygen
+DOXYGEN_DIR = $(DOCS_DIR)/doxygen
 DOXYFILE = .doxygenconfig
 
 ## Rule for genereting docs with doxygen
