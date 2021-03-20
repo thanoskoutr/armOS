@@ -58,7 +58,7 @@ COMMON_SRC = src/common
 
 KERNEL_VERSION = 0.1.0
 
-.PHONY: clean all build docs clean_docs
+.PHONY: clean all build docs docs_pdf clean_docs
 
 all: build
 
@@ -125,7 +125,9 @@ docs:
 	echo "PROJECT_NUMBER = $(KERNEL_VERSION)" )        \
 	| doxygen -
 
-
+docs_pdf:
+	( cd $(DOXYGEN_DIR)/latex; pdflatex refman.tex ; \
+	echo "\nThe PDF reference manual is located at $(DOXYGEN_DIR)/latex/refman.pdf" )
 
 # Rules for running on QEMU (not working)
 run2: build
