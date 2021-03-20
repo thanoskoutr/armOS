@@ -47,15 +47,16 @@ else ifeq ($(RASPI_MODEL), 4)
 	IMG_NAME = $(IMG_NAME_64)
 endif
 
-# Set Build / Source / Include directories
+# Set Build / Source / Include / Docs directories
 BUILD_DIR = build
 SRC_DIR = src
 INC_DIR = include
+DOCS_DIR = docs
 
 KER_SRC = src/kernel
 COMMON_SRC = src/common
 
-# KERNEL_VERSION = 0.1.0
+KERNEL_VERSION = 0.1.0
 
 .PHONY: clean all build docs clean_docs
 
@@ -112,12 +113,18 @@ armstub: $(OBJ_STUB_FILES)
 
 # Generating Documentation
 ## Docs directories and config file
-DOCS_DIR = docs/doxygen
+DOXYGEN_DIR = docs/doxygen
 DOXYFILE = Doxyfile
 
 ## Rule for genereting docs with doxygen
 docs:
-	( cat $(DOXYFILE) ; echo "PREDEFINED = $(MODEL) $(AARCH)" ; echo "OUTPUT_DIRECTORY = $(DOCS_DIR)" ) | doxygen -
+	( cat $(DOXYFILE) ;                                \
+	echo "PREDEFINED = $(MODEL) $(AARCH)" ;            \
+	echo "OUTPUT_DIRECTORY = $(DOXYGEN_DIR)" ;         \
+	echo "INPUT = $(SRC_DIR) $(INC_DIR) $(DOCS_DIR)" ; \
+	echo "PROJECT_NUMBER = $(KERNEL_VERSION)" )        \
+	| doxygen -
+
 
 
 # Rules for running on QEMU (not working)
