@@ -2,7 +2,7 @@
 doc
 
 # Ignore MkDocs yml configuration file
-*.yml
+mkdocs.yml
 
 # Build stuff
 build
