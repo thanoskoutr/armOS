@@ -1,6 +1,10 @@
 # Specify system and language
 language: generic
 
+# Build only on master
+branches:
+  only:
+    - master
 
 # Install dependencies
 addons:
@@ -10,3 +14,17 @@ addons:
       - doxygen-doc
       - doxygen-latex
       - graphviz
+
+# Generate documentation
+script:
+  make docs
+
+# Deploy docs to GitHub Pages
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: docs/doxygen/html
+  # keep_history: true
+  on:
+    branch: main
