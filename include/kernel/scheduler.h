@@ -18,7 +18,7 @@
  * register, so its value need not be preserved.
  */
 #ifdef AARCH_32
-typedef struct _cpu_context {
+typedef struct {
 	uint32_t r0;   /**< Unbanked register R0 */
 	uint32_t r1;   /**< Unbanked register R1 */
 	uint32_t r2;   /**< Unbanked register R2 */
@@ -37,7 +37,7 @@ typedef struct _cpu_context {
 
 } cpu_context;
 #elif AARCH_64
-typedef struct _cpu_context {
+typedef struct {
 	uint64_t x19; /**< General Purpose 64-bit register X19 (Callee-saved) */
 	uint64_t x20; /**< General Purpose 64-bit register X20 (Callee-saved) */
 	uint64_t x21; /**< General Purpose 64-bit register X21 (Callee-saved) */
@@ -67,7 +67,7 @@ typedef struct _cpu_context {
  * 			interrupted.
  */
 #ifdef AARCH_32
-typedef struct _task_struct {
+typedef struct {
 	cpu_context cpu_context; /**< A struct for the registers to be saved for the process. */
 	int32_t state; /**< The state of the currently running task. */
 	int32_t counter; /**< Used to determine how long the current task has been running. */
@@ -75,7 +75,7 @@ typedef struct _task_struct {
 	int32_t preempt_count; /**< Non-zero value indicates critical task, that must not be interrupted. */
 } task_struct;
 #elif AARCH_64
-typedef struct _task_struct {
+typedef struct {
 	cpu_context cpu_context; /**< A struct for the registers to be saved for the process. */
 	int64_t state; /**< The state of the currently running task. */
 	int64_t counter; /**< Used to determine how long the current task has been running. */

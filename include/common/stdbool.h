@@ -12,7 +12,7 @@
 /**
  * Booleans expand to integer constants 0, 1.
  */
-typedef enum bool {
+typedef enum {
 	false = 0,	/**< 0 */
 	true = 1	/**< 1 */
 } bool;

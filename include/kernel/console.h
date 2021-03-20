@@ -22,7 +22,7 @@
 /**
  * Available commands for the console.
  */
-typedef enum _command {
+typedef enum {
 	cmd_help,            /**< Prints available commands to the console. */
 	cmd_help_led,        /**< Prints available LED commands to the console. */
 	cmd_led_pin,         /**< Changes the GPIO Pin for the LED to control. */

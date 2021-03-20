@@ -12,7 +12,7 @@
 /**
  * GPIO Pins available functionalities: 5 Alternative Functions, Input, Output.
  */
-typedef enum _gpio_func {
+typedef enum {
 	GF_INPUT  = 0, /**< Input */
 	GF_OUTPUT = 1, /**< Output */
 	GF_ALT_0  = 4, /**< Alternative Function 0 */
