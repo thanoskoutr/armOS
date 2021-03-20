@@ -6,7 +6,8 @@ branches:
   only:
     - main
 
-# Install dependencies
+# Install dependencies (Ubuntu 20.04)
+dist: focal
 addons:
   apt:
     packages:
