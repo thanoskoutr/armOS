@@ -1,11 +1,6 @@
 # Specify system and language
 language: generic
 
-# Build only on master
-# branches:
-#   only:
-#     - master
-
 # Install dependencies
 addons:
   apt:
