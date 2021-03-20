@@ -1,5 +1,6 @@
-/*
- * uart.c - Implementation of basic UART functions
+/**
+ * @file uart.c
+ * @brief Implementation of basic UART functions
  */
 
 #include <stddef.h>

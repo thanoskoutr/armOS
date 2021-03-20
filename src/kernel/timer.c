@@ -1,5 +1,6 @@
-/*
- * timer.c - Implementation of basic System Timer functions
+/**
+ * @file timer.c
+ * @brief Implementation of basic System Timer functions.
  */
 
 #include <stdint.h>
@@ -13,10 +14,10 @@
 
 #include <peripherals/timer.h>
 
-uint32_t interval_1;
-uint32_t interval_3;
-uint32_t cur_val_1 = 0;
-uint32_t cur_val_3 = 0;
+uint32_t interval_1; /**< Time interval for System Timer 1. */
+uint32_t interval_3; /**< Time interval for System Timer 3. */
+uint32_t cur_val_1 = 0; /**< Current value of System Timer 1. */
+uint32_t cur_val_3 = 0; /**< Current value of System Timer 3. */
 
 void timer_1_init(uint32_t msec)
 {

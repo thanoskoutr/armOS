@@ -12,58 +12,59 @@
 #define STRING_H
 
 /**
- * memset - Fills the first n bytes of the memory area pointed to by s
- * 	with the constant byte c.
+ * Fills the first @a n bytes of the memory area pointed to by @a s
+ * 	with the constant byte @a c.
  * @return A pointer to the memory area s.
  */
 void *memset(void *s, int c, size_t n);
 
 /**
- * memcpy - Copies n bytes from memory area src to memory area dest.
+ * Copies @a n bytes from memory area @a src to memory area @a dest.
  * 	The memory areas must not overlap.
  * @return A pointer to dest.
  */
 void *memcpy(void *dest, const void *src, size_t n);
 
 /**
- * strlen - Calculates the length of the string pointed to by s,
+ * Calculates the length of the string pointed to by @a s,
  * 	excluding the terminating null byte ('\0').
  * @param s A string pointer.
- * @return The number of bytes in the string pointed to by s.
+ * @return The number of bytes in the string pointed to by @a s.
  */
 size_t strlen(const char *s);
 
 /**
- * strcmp - Compares the two strings s1 and s2.
+ * Compares the two strings @a s1 and @a s2.
  * @param s1 A string pointer.
  * @param s2 A string pointer.
- * @return An integer less than, equal to, or greater than 0 if s1 is found,
- * 	respectively, to be less than, to match, or be greater than s2.
+ * @return An integer less than, equal to, or greater than 0 if @a s1 is found,
+ * 	respectively, to be less than, to match, or be greater than @a s2.
  */
 int strcmp(const char *s1, const char *s2);
 
 /**
- * strcpy - Copies the string pointed to by src, including the terminating null
- * 	byte ('\0'), to the buffer pointed to by dest.
+ * Copies the string pointed to by @a src, including the terminating null
+ * 	byte ('\0'), to the buffer pointed to by @a dest.
  * @param dest A string pointer.
  * @param src A string pointer.
- * @return A pointer to the destination string dest.
+ * @return A pointer to the destination string @a dest.
  */
 char *strcpy(char *dest, const char *src);
 
 /**
- * strcat - Appends the src string to the dest string, overwriting the
- * 	terminating null byte ('\0') at the end of dest,
+ * Appends the @a src string to the @a dest string, overwriting the
+ * 	terminating null byte ('\0') at the end of @a dest,
  * 	and then adds a terminating null byte.
  * @param dest A string pointer.
  * @param src A string pointer.
- * @return A pointer to the resulting string dest.
+ * @return A pointer to the resulting string @a dest.
  */
 char *strcat(char *dest, const char *src);
 
 /**
- * strrev - Reverses a given string in place.
+ * Reverses a given string in place.
  * @param s A string pointer.
+ * @see strlen()
  */
 void strrev(char *s);
 

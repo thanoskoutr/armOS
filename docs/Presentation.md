@@ -12,7 +12,7 @@ marp: true
 <!-- ![bg left:40% 80% w:256 h:256](images/raspberrypi.svg) -->
 <!-- ![bg left:50% 80%](images/arm-logo.svg) -->
 
-![bg left:40% 100%](images/logo_transparent.png)
+![bg left:40% 100%](images/logo.png)
 <!-- ![bg left:40% 80% w:256 h:256 opacity:70%](images/logo_cropped.png) -->
 
 # Custom ARM OS from scratch

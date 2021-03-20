@@ -1,5 +1,6 @@
-/*
- * console.c - Implementation of a minimal console
+/**
+ * @file console.c
+ * @brief Implementation of a minimal console.
  */
 
 #include <stdint.h>

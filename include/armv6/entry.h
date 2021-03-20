@@ -26,6 +26,6 @@
 #define EXCEPT_IRQ 6
 /** One select hardware can do the above faster than all others. */
 #define EXCEPT_FIQ 7
-/* @} */
+/** @} */
 
 #endif

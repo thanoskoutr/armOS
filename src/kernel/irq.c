@@ -1,6 +1,6 @@
-/*
- * irq.h - Implementation of interrupt handling functions.
- *
+/**
+ * @file irq.c
+ * @brief Implementation of interrupt handling functions.
  */
 
 #include <stdint.h>
@@ -14,7 +14,7 @@
 #include <peripherals/aux.h>
 
 
-/*
+/**
  * String array, for the invalid exception type messages.
  */
 #ifdef AARCH_32
@@ -80,7 +80,6 @@ void show_invalid_entry_message(int type, uint64_t esr, uint64_t address)
 
 void handle_irq()
 {
-	/* Enable AUX interrupts (for mini UART) */
 	uint32_t irq;
 
 #if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)

@@ -1,13 +1,13 @@
 # Custom ARM OS from scratch
 
 ## Contents
-- Υλοποίηση της άσκησης
+- Implementation of project:
     - `Guide.md`
     - `Memory-Map.md`
     - `Documentation.md`
-- Αποτελέσματα (Screenshots)
+- Results (Screenshots):
     - `README.md`
-- Οδηγίες εκτέλεσης κώδικα
+- Guide for compiling and running:
     - `Development-Environment.md`
     - `README.md`
 

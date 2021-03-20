@@ -1,5 +1,6 @@
-/*
- * led.c - Implementation of functions for manipulating a LED to a GPIO pin
+/**
+ * @file led.c
+ * @brief Implementation of functions for manipulating a LED to a GPIO pin.
  */
 
 #include <stdint.h>

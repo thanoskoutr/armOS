@@ -1,5 +1,9 @@
-/*
- * stdlib.h - Implementation of some stdlib.h functions
+/**
+ * \ingroup stdlib
+ * Implementation of a small subset of stdlib.h.
+ * @{
+ * @file stdlib.c
+ * @brief Implementation of some stdlib.h functions
  */
 
 #include <common/stdlib.h>
@@ -49,3 +53,5 @@ int atoi(const char *str)
 	}
 	return num;
 }
+
+/** @} */
