@@ -22,7 +22,7 @@ script:
 # Deploy docs to GitHub Pages
 deploy:
   provider: pages
-  cleanup: false
+  skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: docs/doxygen/html
   on:
