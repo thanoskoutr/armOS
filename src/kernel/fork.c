@@ -1,5 +1,6 @@
-/*
- * fork.h - Implementation of fork-related functions.
+/**
+ * @file fork.c
+ * @brief Implementation of fork-related functions.
  */
 
 #include <stdint.h>

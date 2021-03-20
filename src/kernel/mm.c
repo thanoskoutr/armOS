@@ -1,12 +1,13 @@
-/*
- * mm.c - Implementation of basic memory functions.
+/**
+ * @file mm.c
+ * @brief Implementation of basic memory functions.
  */
 
 #include <stddef.h>
 
 #include <kernel/mm.h>
 
-/*
+/**
  * Array that holds status for each page in the system.
  * Status:
  * - Allocated	= 1

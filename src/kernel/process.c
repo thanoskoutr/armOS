@@ -1,5 +1,6 @@
-/*
- * process.c - Creates processes.
+/**
+ * @file process.c
+ * @brief Implementation of functions for creating and killing processes.
  */
 
 
@@ -20,9 +21,10 @@
 /* String array, for the message of each process */
 static char proc_args[NR_TASKS][MAX_INPUT_LENGTH];
 
-/*
- * Dummy function that simulated a process.
- * It just prints the items of its array.
+/**
+ * Dummy function that simulates a process.
+ * @param array A char array pointer.
+ * @details It just prints the items of its char array.
  */
 void process(char *array)
 {

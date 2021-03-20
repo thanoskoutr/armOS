@@ -1,5 +1,6 @@
-/*
- * scheduler.c - Implementation of scheduler functions
+/**
+ * @file scheduler.c
+ * @brief Implementation of scheduler functions.
  */
 
 #include <stdint.h>
@@ -15,16 +16,14 @@
 #endif
 
 
-/*
- * init_task: The first task that is run on kernel startup
- * current: Holds a pointer to the init_task
- * task: Appends a pointer to the init_task
- */
+/** The first task that is run on kernel startup. */
 static task_struct init_task = INIT_TASK;
+/** Holds a pointer to the `init_task`. */
 task_struct *current = &(init_task);
+/** Appends a pointer to the `init_task`. */
 task_struct *task[NR_TASKS] = {&(init_task), };
 
-/* Number of currently running tasks = 1 (init_task) */
+/** Number of currently running tasks = 1 (`init_task`) */
 int nr_tasks = 1;
 
 
@@ -55,6 +54,10 @@ void switch_to(task_struct *next)
 	cpu_switch_to(prev, next);
 }
 
+/**
+ * Function for printing the @ref task_struct of all running task's.
+ * @details For debugging.
+ */
 void DEBUG_print_tasks()
 {
 	task_struct *t = task[0];
@@ -66,6 +69,12 @@ void DEBUG_print_tasks()
 	}
 }
 
+/**
+ * Core scheduler function.
+ * @details Gets called from:
+ * - schedule()
+ * - timer_tick()
+ */
 void _schedule()
 {
 	/*
