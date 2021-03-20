@@ -158,7 +158,7 @@ A Rasberry Pi board. One of the following:
 - Raspberry Pi Zero or Zero W
 
 ### Tools
-- A USB to TTL serial cable ([not sponsored](https://www.adafruit.com/product/954)).
+- A USB to TTL serial cable.
 - An a SD Card.
 
 ### Software
@@ -175,30 +175,30 @@ An ARM Cross-Compiler Toolchain:
 ## Instructions
 
 ### Install Toolchain
-For detailed instructions, see [Install-Toolchain]().
+For detailed instructions, see the [Install Toolchain](https://github.com/thanoskoutr/armOS/wiki/Install-Toolchain) wiki page.
 
 ### Serial Connection with Raspberry PI
-For detailed instructions, see [Serial-Connection]().
+For detailed instructions, see the [Serial Connection](https://github.com/thanoskoutr/armOS/wiki/Serial-Connection) wiki page.
 
 
 ### Running on Raspberry Pi
-For detailed instructions, see [Running-on-Pi]().
+For detailed instructions, see the [Installation](https://github.com/thanoskoutr/armOS/wiki/Installation) wiki page.
 
 Basic overview of the steps:
 
-- Clone project
-- Format SD card
-- Makefile set cross-compiler
-- Build project (automatic or manual)
-- Transfer `.img`/`config.txt` to SD Card
-- Unmount SD card
-- Put SD card on Pi
-- Connect USB-to-TTL serial cable to Pi, Computer
-- Open screen
-- Power on the Pi
+- Clone the project.
+- Format the SD card, with the Raspberry Pi Imager.
+- Set cross-compiler path on the Makefile.
+- Build project using make.
+- Transfer `.img`/`config.txt` to SD Card.
+- Unmount SD card.
+- Put SD card on Pi.
+- Connect USB-to-TTL serial cable to the Pi and Linux host.
+- Open `screen`.
+- Power on the Pi.
 
 ### Generating Documentation
-In order to generate the Doxygen documentation locally, see [Generating-Docs]().
+In order to generate the Doxygen documentation locally, see the [Generate Docs](https://github.com/thanoskoutr/armOS/wiki/Generate-Docs) wiki page.
 
 
 ## Resources
