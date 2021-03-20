@@ -80,7 +80,6 @@ void show_invalid_entry_message(int type, uint64_t esr, uint64_t address)
 
 void handle_irq()
 {
-	/* Enable AUX interrupts (for mini UART) */
 	uint32_t irq;
 
 #if defined(MODEL_0) || defined(MODEL_2) || defined(MODEL_3)

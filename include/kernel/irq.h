@@ -34,6 +34,11 @@ void show_invalid_entry_message(int type, unsigned long esr, \
 
 /**
  * Exception handler for all IRQs.
+ * @details Reads from the interrupt pending registers ( @ref IRQ0_PENDING_0 or
+ *  @ref IRQ0_PENDING_1), and if a valid value is found we have an interrupt.
+ * Checks each bit for the interrupts we have enabled, and if it is set,
+ * it removes the bit we handled and calls the corresponding handler.
+ * @see handle_timer_1_irq(), handle_timer_3_irq(), handle_uart_irq()
  */
 void handle_irq();
 
