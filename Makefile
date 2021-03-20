@@ -18,42 +18,47 @@ RASPI_MODEL ?= 4
 # Set flags and variables dependent on the Raspi Model
 ifeq ($(RASPI_MODEL), 0)
 	AARCH = AARCH_32
+	MODEL = MODEL_0
 	ARCH_DIR = arch/armv6
 	CPU = arm1176jzf-s
-	DIRECTIVES = -D MODEL_0 -D $(AARCH)
+	DIRECTIVES = -D $(MODEL) -D $(AARCH)
 else ifeq ($(RASPI_MODEL), 2)
 	AARCH = AARCH_32
+	MODEL = MODEL_2
 	ARCH_DIR = arch/armv7-a
 	CPU = cortex-a7
-	DIRECTIVES = -D MODEL_2 -D $(AARCH)
+	DIRECTIVES = -D $(MODEL) -D $(AARCH)
 else ifeq ($(RASPI_MODEL), 3)
 	AARCH = AARCH_64
+	MODEL = MODEL_3
 	ARCH_DIR = arch/armv8-a
-	SFLAGS += -mgeneral-regs-only $(DIRECTIVES)
-	DIRECTIVES = -D MODEL_3 -D $(AARCH)
+	SFLAGS += -mgeneral-regs-only
+	DIRECTIVES = -D $(MODEL) -D $(AARCH)
 	ARMGNU = $(ARMGNU_64)
 	IMG_NAME = $(IMG_NAME_64)
 else ifeq ($(RASPI_MODEL), 4)
 	AARCH = AARCH_64
+	MODEL = MODEL_4
 	ARCH_DIR = arch/armv8-a
-	SFLAGS += -mgeneral-regs-only $(DIRECTIVES)
+	SFLAGS += -mgeneral-regs-only
 	CPU = cortex-a72
-	DIRECTIVES = -D MODEL_4 -D $(AARCH)
+	DIRECTIVES = -D $(MODEL) -D $(AARCH)
 	ARMGNU = $(ARMGNU_64)
 	IMG_NAME = $(IMG_NAME_64)
 endif
 
-# Set Build / Source / Include directories
+# Set Build / Source / Include / Docs directories
 BUILD_DIR = build
 SRC_DIR = src
 INC_DIR = include
+DOCS_DIR = docs
 
 KER_SRC = src/kernel
 COMMON_SRC = src/common
 
-# KERNEL_VERSION = 0.1.0
+KERNEL_VERSION = 0.1.0
 
-.PHONY: clean all build
+.PHONY: clean all build docs clean_docs
 
 all: build
 
@@ -106,7 +111,23 @@ armstub: $(OBJ_STUB_FILES)
 	$(ARMGNU)-objcopy ${STUB_DIR}/$(BUILD_DIR)/armstub.elf -O binary armstub-new.bin
 
 
-# Rules for running on QEMU
+# Generating Documentation
+## Docs directories and config file
+DOXYGEN_DIR = docs/doxygen
+DOXYFILE = Doxyfile
+
+## Rule for genereting docs with doxygen
+docs:
+	( cat $(DOXYFILE) ;                                \
+	echo "PREDEFINED = $(MODEL) $(AARCH)" ;            \
+	echo "OUTPUT_DIRECTORY = $(DOXYGEN_DIR)" ;         \
+	echo "INPUT = $(SRC_DIR) $(INC_DIR) $(DOCS_DIR)" ; \
+	echo "PROJECT_NUMBER = $(KERNEL_VERSION)" )        \
+	| doxygen -
+
+
+
+# Rules for running on QEMU (not working)
 run2: build
 	# Run for Raspberry Pi 2
 	qemu-system-arm -m 256 -M raspi2 -serial stdio -kernel $(IMG_NAME).img
@@ -117,8 +138,12 @@ run0: build
 
 run3: build
 	# Run for Raspberry Pi 3
-	qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME_64).img
-	# qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME).img
+	qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME).img
 
+
+# Clean rules
 clean:
 	rm -rf $(BUILD_DIR) *.img *.elf *.bin $(STUB_DIR)/$(BUILD_DIR)
+
+clean_docs:
+	rm -rf $(DOXYGEN_DIR)

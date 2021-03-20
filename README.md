@@ -6,6 +6,8 @@ Support for:
 - [x] Raspberry Pi Zero W
 - [x] Raspberry Pi 4
 ## Features
+- [x] Documentation
+    - [x] Doxygen
 - [x] Basic Directory Structure
 - [x] Register Addresses
     - [x] GPIO
