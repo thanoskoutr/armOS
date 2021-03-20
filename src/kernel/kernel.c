@@ -1,6 +1,6 @@
-/*
- * kernel.c - Main kernel function
- * Code for Raspberry Pi
+/**
+ * @file kernel.c
+ * @brief Main kernel function
  */
 
 #include <stddef.h>
@@ -13,14 +13,8 @@
 #include <kernel/timer.h>
 #include <kernel/led.h>
 #include <kernel/console.h>
-#include <kernel/mmio.h>
-#include <kernel/scheduler.h>
-#include <kernel/fork.h>
-#include <kernel/process.h>
 
 #include <common/string.h>
-#include <common/stdlib.h>
-#include <common/stdbool.h>
 
 #ifdef AARCH_32
 #include <armv6/irq.h>
@@ -28,13 +22,25 @@
 #include <armv8-a/irq.h>
 #endif
 
-void process(char *array);
-
 /* Arguments for AArch32 */
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 /* arguments for AArch64 */
 // void kernel_main(uint64_t dtb_ptr32, uint64_t x1, uint64_t x2, uint64_t x3)
 
+/**
+ * Main kernel function.
+ * @details Entry point for the kernel in C code after bootloader.
+ * Main functionalities:
+ * - Initializes devices, system:
+ * 	- UART
+ * 	- Interrupts
+ * 	- LED
+ * - Prints starting message and device info.
+ * - Calls console(), in order to start and run a console.
+ *
+ * @see uart_init(), irq_vector_init(), enable_interrupt_controller(),
+ *  irq_enable(), led_init(), console()
+ */
 void kernel_main()
 {
 	/* Declare as unused */
