@@ -10,12 +10,13 @@
 #define PRINTK_H
 
 /**
- * printk - print a kernel message
+ * Prints a kernel message, like printf.
  * @param fmt format string
  * @return
  * - On success: 0
- * @details The formats supported by this implementation are: 'd' 'c' 's', 'x'.
- * To be supported: u', 'l', 'll'.
+ * @details The formats supported by this implementation are: `d, c, s, x`.
+ * To be supported: `u, l, ll`.
+ * @see uart_putc(), itoa()
  */
 int printk(const char *fmt, ...);
 

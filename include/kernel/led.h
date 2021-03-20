@@ -28,18 +28,22 @@
  * @return
  * - On success: 0
  * - On failure: -1
+ *
+ * @see gpio_pin_set_func()
  */
 int led_init(uint8_t pin_num);
 
 /**
  * Turns LED at @a pin_num ON.
  * @param pin_num GPIO pin number.
+ * @see gpio_pin_set()
  */
 void led_on(uint8_t pin_num);
 
 /**
  * Turns LED at @a pin_num OFF.
  * @param pin_num GPIO pin number.
+ * @see gpio_pin_clear()
  */
 void led_off(uint8_t pin_num);
 
@@ -47,6 +51,7 @@ void led_off(uint8_t pin_num);
  * Turns LED at @a pin_num ON for @a msec milliseconds.
  * @param pin_num GPIO pin number.
  * @param msec Time to sleep in milliseconds.
+ * @see led_on(), led_off(), timer_msleep()
  */
 void led_on_ms(uint8_t pin_num, uint32_t msec);
 
@@ -54,6 +59,7 @@ void led_on_ms(uint8_t pin_num, uint32_t msec);
  * Makes LED at @a pin_num, to blink once for @a msec milliseconds.
  * @param pin_num GPIO pin number.
  * @param msec Time to sleep in milliseconds.
+ * @see led_on(), led_off(), timer_msleep()
  */
 void led_pulse(uint8_t pin_num, uint32_t msec);
 
@@ -62,6 +68,7 @@ void led_pulse(uint8_t pin_num, uint32_t msec);
  * @param pin_num GPIO pin number.
  * @param count Number of times to blink.
  * @param msec Time to sleep in milliseconds.
+ * @see led_pulse()
  * ### Example
  * ```c
  * led_blink_times(LED_PIN, 10, 500);
@@ -74,6 +81,7 @@ void led_blink_times(uint8_t pin_num, size_t count, uint32_t msec);
  * (in milliseconds).
  * @param pin_num GPIO pin number.
  * @param msec Time to sleep in milliseconds.
+ * @see led_on(), led_off(), timer_msleep()
  */
 void led_blink_sos(uint8_t pin_num, uint32_t msec);
 

@@ -27,16 +27,16 @@ uint32_t mmio_read(uint32_t reg);
 
 #elif AARCH_64
 /**
- * Memory-Mapped I/O output
- * @param reg 64-bit register address
- * @param data 32-bit data
+ * Memory-Mapped I/O output.
+ * @param reg 64-bit register address.
+ * @param data 32-bit data.
  * @details Writes the @a data value to the register at @a reg address.
 */
 void mmio_write(uint64_t reg, uint32_t data);
 /**
- * Memory-Mapped I/O input
- * @param reg 64-bit register address
- * @return 32-bit data
+ * Memory-Mapped I/O input.
+ * @param reg 64-bit register address.
+ * @return 32-bit data.
  * @details Reads register at @a reg address and returns its @a data.
 */
 uint32_t mmio_read(uint64_t reg);

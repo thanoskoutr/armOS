@@ -8,6 +8,7 @@
 
 /**
  * Enables System Timer and UART interrupts.
+ * @see peripherals/irq.h
  */
 void enable_interrupt_controller();
 

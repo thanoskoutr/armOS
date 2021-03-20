@@ -12,21 +12,21 @@
 #define STRING_H
 
 /**
- * memset - Fills the first @a n bytes of the memory area pointed to by @a s
+ * Fills the first @a n bytes of the memory area pointed to by @a s
  * 	with the constant byte @a c.
  * @return A pointer to the memory area s.
  */
 void *memset(void *s, int c, size_t n);
 
 /**
- * memcpy - Copies @a n bytes from memory area @a src to memory area @a dest.
+ * Copies @a n bytes from memory area @a src to memory area @a dest.
  * 	The memory areas must not overlap.
  * @return A pointer to dest.
  */
 void *memcpy(void *dest, const void *src, size_t n);
 
 /**
- * strlen - Calculates the length of the string pointed to by @a s,
+ * Calculates the length of the string pointed to by @a s,
  * 	excluding the terminating null byte ('\0').
  * @param s A string pointer.
  * @return The number of bytes in the string pointed to by @a s.
@@ -34,7 +34,7 @@ void *memcpy(void *dest, const void *src, size_t n);
 size_t strlen(const char *s);
 
 /**
- * strcmp - Compares the two strings @a s1 and @a s2.
+ * Compares the two strings @a s1 and @a s2.
  * @param s1 A string pointer.
  * @param s2 A string pointer.
  * @return An integer less than, equal to, or greater than 0 if @a s1 is found,
@@ -43,7 +43,7 @@ size_t strlen(const char *s);
 int strcmp(const char *s1, const char *s2);
 
 /**
- * strcpy - Copies the string pointed to by @a src, including the terminating null
+ * Copies the string pointed to by @a src, including the terminating null
  * 	byte ('\0'), to the buffer pointed to by @a dest.
  * @param dest A string pointer.
  * @param src A string pointer.
@@ -52,7 +52,7 @@ int strcmp(const char *s1, const char *s2);
 char *strcpy(char *dest, const char *src);
 
 /**
- * strcat - Appends the @a src string to the @a dest string, overwriting the
+ * Appends the @a src string to the @a dest string, overwriting the
  * 	terminating null byte ('\0') at the end of @a dest,
  * 	and then adds a terminating null byte.
  * @param dest A string pointer.
@@ -62,8 +62,9 @@ char *strcpy(char *dest, const char *src);
 char *strcat(char *dest, const char *src);
 
 /**
- * strrev - Reverses a given string in place.
+ * Reverses a given string in place.
  * @param s A string pointer.
+ * @see strlen()
  */
 void strrev(char *s);
 

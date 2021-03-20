@@ -68,6 +68,8 @@ int console_get_cmd(char *input);
  * Main console function.
  * @param device A string pointer for the name of the device.
  * @details Executes the commands from console input in an endless loop.
+ * @see command, console_init(), console_help(), console_help_led(),
+ * uart_gets(), kernel/timer.h, kernel/led.h, kernel/process.h
  */
 void console(char *device);
 

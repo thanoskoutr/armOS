@@ -6,8 +6,6 @@
  * @brief Definition of boolean type and values.
  */
 
-// #include <stddef.h>
-
 #ifndef STDBOOL_H
 #define STDBOOL_H
 

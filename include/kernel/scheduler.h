@@ -113,15 +113,16 @@ extern int nr_tasks;
 #define LAST_TASK task[NR_TASKS-1]
 
 /**
- * Defines size of each process == Page Size
+ * Defines size of each process.
+ * @details Equal to the Page size ( @ref PAGE_SIZE).
  */
 #define THREAD_SIZE 4096
 
 /**
- * Defines the init task's @ref task_struct (kernel_main) that is run on kernel startup.
+ * Defines the init task's @ref task_struct ( @ref kernel_main()) that is run on kernel startup.
  * @details Fields:
  * - cpu_context: All registers initialized to 0.
- * - state = 0 (TASK_RUNNING)
+ * - state = 0 ( @ref TASK_RUNNING)
  * - counter = 0
  * - priority = 1
  * - preempt_count = 0 (can be rescheduled)
@@ -136,7 +137,8 @@ extern int nr_tasks;
 
 
 /**
- * Starting point for each new task (pc reg. of each new task points here)
+ * Starting point for each new task.
+ * @details PC register (cpu_context.pc) of each new task points here.
  * @see scheduler.S
  */
 void ret_from_fork();
