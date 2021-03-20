@@ -121,7 +121,7 @@ docs:
 	( cat $(DOXYFILE) ;                                \
 	echo "PREDEFINED = $(MODEL) $(AARCH)" ;            \
 	echo "OUTPUT_DIRECTORY = $(DOXYGEN_DIR)" ;         \
-	echo "INPUT = $(SRC_DIR) $(INC_DIR) $(DOCS_DIR)" ; \
+	echo "INPUT = $(SRC_DIR) $(INC_DIR)" ;             \
 	echo "PROJECT_NUMBER = $(KERNEL_VERSION)" )        \
 	| doxygen -
 
