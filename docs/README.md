@@ -11,6 +11,10 @@ Simple ARM Operating System for the Raspberry Pi, supporting Aarch32 and Aarch64
 
 This project was made for the Embedded Systems course at NTUA 2020-2021.
 
+**Quick Links:**
+- Wiki Documentation: https://github.com/thanoskoutr/armOS/wiki
+- Doxygen Documentation: https://thanoskoutr.github.io/armOS/
+
 ## Table of Contents
 
 - [armOS](#armos)
@@ -213,7 +217,7 @@ Basic overview of the steps:
 - Set cross-compiler path on the Makefile.
 - Clone the project.
 - Build project using `Makefile`.
-- Transfer `.img`/`config.txt` to SD Card.
+- Transfer `.img`, `config.txt` to SD Card.
 - Unmount SD card.
 - Put SD card on Pi.
 - Connect USB-to-TTL serial cable to the Pi and Linux host.
