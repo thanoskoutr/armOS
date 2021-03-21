@@ -127,7 +127,7 @@ Features to be implemented in the near feature:
 - Video drivers
 
 ### Demo of kernel
-A screenshot of the kernel in action, displaying all available commands using the `help` command.
+A screenshot of the kernel in action, after booting up:
 
 ```
                   _____ _____
@@ -135,16 +135,39 @@ A screenshot of the kernel in action, displaying all available commands using th
 | . |  _|     |  |  |  |__   |
 |__,|_| |_|_|_|  |_____|_____|
 
-Custom ARM OS initializing...
+armOS initializing...
 
-    Board: Raspberry Pi 4
-    Arch: aarch64
-Done
+        Board: Raspberry Pi 4
+        Arch: aarch64
+
+
+----- Exception level: EL1 -----
+Initializing IRQs...Done
+Enabling IRQ controllers...Done
+Enabling IRQs...Done
+Initializing LED...Done
+
+This is a minimal console, type 'help' to see the available commands. (Maximum Input Length: 80)
+root@pi-4#
 ```
 
 ### Available Commands
-The available commands of the console:
+Showing the available commands of the console, using the `help` command:
 ```
+root@pi-4# help
+Available commands:
+    help:
+        Prints available commands to the console.
+    help_led:
+        Prints available LED commands to the console.
+    create_procs:
+        Creates proc_num kernel processes.
+    run_procs:
+        Runs the created kernel processes concurrently.
+    kill_procs:
+        Kills all created kernel processes.
+    halt:
+        Halts the system.
 ```
 
 
@@ -186,10 +209,10 @@ For detailed instructions, see the [Installation](https://github.com/thanoskoutr
 
 Basic overview of the steps:
 
-- Clone the project.
 - Format the SD card, with the Raspberry Pi Imager.
 - Set cross-compiler path on the Makefile.
-- Build project using make.
+- Clone the project.
+- Build project using `Makefile`.
 - Transfer `.img`/`config.txt` to SD Card.
 - Unmount SD card.
 - Put SD card on Pi.
