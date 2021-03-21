@@ -129,19 +129,6 @@ docs_pdf:
 	( cd $(DOXYGEN_DIR)/latex; pdflatex refman.tex ; \
 	echo "\nThe PDF reference manual is located at $(DOXYGEN_DIR)/latex/refman.pdf" )
 
-# Rules for running on QEMU (not working)
-run2: build
-	# Run for Raspberry Pi 2
-	qemu-system-arm -m 256 -M raspi2 -serial stdio -kernel $(IMG_NAME).img
-
-run0: build
-	# Run for Raspberry Pi Zero
-	qemu-system-arm -cpu arm1176 -m 256 -M versatilepb -serial stdio -kernel $(IMG_NAME).img
-
-run3: build
-	# Run for Raspberry Pi 3
-	qemu-system-aarch64 -M raspi3 -serial stdio -kernel $(IMG_NAME).img
-
 
 # Clean rules
 clean:
