@@ -121,7 +121,7 @@ docs:
 	( cat $(DOXYFILE) ;                                \
 	echo "PREDEFINED = $(MODEL) $(AARCH)" ;            \
 	echo "OUTPUT_DIRECTORY = $(DOXYGEN_DIR)" ;         \
-	echo "INPUT = $(SRC_DIR) $(INC_DIR)" ;             \
+	echo "INPUT = $(SRC_DIR) $(INC_DIR) README.md" ;             \
 	echo "PROJECT_NUMBER = $(KERNEL_VERSION)" ;        \
 	echo "PROJECT_BRIEF = \"Minimal ARM Operating System for the Raspberry Pi \
 						- Documentation generated for Pi $(RASPI_MODEL).\" ") \
