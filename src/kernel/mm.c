@@ -1,4 +1,5 @@
 /**
+ * \ingroup memory
  * @file mm.c
  * @brief Implementation of basic memory functions.
  */

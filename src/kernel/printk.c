@@ -1,4 +1,5 @@
 /**
+ * \ingroup printk
  * @file printk.c
  * @brief Implementation of printk
  * @details Prints a kernel message to the serial console.

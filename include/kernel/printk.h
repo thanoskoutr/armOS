@@ -1,4 +1,8 @@
 /**
+ * \ingroup lib
+ * \defgroup printk printk
+ * Basic print function.
+ * @{
  * @file printk.h
  * @brief Definition of printk.
  * @details Prints a kernel message to the serial console.
@@ -20,5 +24,6 @@
  */
 int printk(const char *fmt, ...);
 
+/** @} */
 
 #endif

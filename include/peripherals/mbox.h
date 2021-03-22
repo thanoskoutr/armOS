@@ -1,4 +1,5 @@
 /**
+ * \ingroup peripherals
  * @file mbox.h
  * @brief Definition of Mailbox registers addresses
  * @details Mailboxes are a inter-processor communication mechanism between
@@ -11,6 +12,7 @@
 #include <peripherals/base.h>
 
 /**
+ * \ingroup peripherals
  * The offsets for Mailbox registers (For raspi 3,4).
  */
 enum

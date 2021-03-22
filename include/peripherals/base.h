@@ -1,4 +1,7 @@
 /**
+ * \defgroup peripherals peripherals
+ * Raspberry Pi Peripherals addresses.
+ * @{
  * @file base.h
  * @brief Definition of base MMIO registers addresses.
  * @details MMIO : Memory Mapped IO
@@ -27,5 +30,7 @@ enum
 #endif
 
 };
+
+/** @} */
 
 #endif

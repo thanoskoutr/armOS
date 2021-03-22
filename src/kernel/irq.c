@@ -1,4 +1,5 @@
 /**
+ * \ingroup exceptions
  * @file irq.c
  * @brief Implementation of interrupt handling functions.
  */

@@ -1,4 +1,5 @@
 /**
+ * \ingroup peripherals
  * @file timer.h
  * @brief Definition of System Timer registers addresses
  */
@@ -8,12 +9,19 @@
 
 #include <peripherals/base.h>
 
-/** System's Timer Clock Frequency (for delays in sec). */
+/**
+ * \ingroup peripherals
+ * System's Timer Clock Frequency (for delays in sec).
+ */
 #define TIMER_CLK_HZ 1000000
-/** System's Timer Clock Frequency / 1000 (for delays in msec). */
+/**
+ * \ingroup peripherals
+ * System's Timer Clock Frequency / 1000 (for delays in msec).
+ */
 #define TIMER_CLK_1000_HZ 1000
 
 /**
+ * \ingroup peripherals
  * System Timer registers
  */
 enum

@@ -1,4 +1,7 @@
 /**
+ * \defgroup lib lib
+ * Basic C Library.
+ * @{
  * \defgroup string string
  * Small subset of string.h.
  * @{
@@ -68,6 +71,7 @@ char *strcat(char *dest, const char *src);
  */
 void strrev(char *s);
 
+/** @} */
 /** @} */
 
 #endif

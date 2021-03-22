@@ -1,4 +1,5 @@
 /**
+ * \ingroup peripherals
  * @file gpio.h
  * @brief Definition of GPIO registers addresses.
  * @details GPIO : General Purpose IO
@@ -10,6 +11,7 @@
 #include <peripherals/base.h>
 
 /**
+ * \ingroup peripherals
  * GPIO Pins available functionalities: 5 Alternative Functions, Input, Output.
  */
 typedef enum {
@@ -24,6 +26,7 @@ typedef enum {
 } gpio_func;
 
 /**
+ * \ingroup peripherals
  * GPIO registers addresses.
  */
 enum

@@ -1,4 +1,5 @@
 /**
+ * \ingroup processes
  * @file fork.c
  * @brief Implementation of fork-related functions.
  */

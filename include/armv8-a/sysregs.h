@@ -1,4 +1,5 @@
 /**
+ * \ingroup entry8
  * @file sysregs.h
  * @brief Definition of armv8-a system registers
  * @details Needed for Exception level change.
@@ -8,13 +9,14 @@
 #define SYSREGS_H
 
 /**
+ * \ingroup entry8
  * \name SCTLR_EL1
  * @{
  * SCTLR_EL1, System Control Register (EL1) \n
  * Section D13.2.116 of AArch64-Reference-Manual.
  */
 
-/** Reserved bits are initialized to 1. */
+/** \ingroup entry8 Reserved bits are initialized to 1. */
 #define SCTLR_RESERVED		(3 << 28) | (3 << 22) | (1 << 20) | (1 << 11)
 /** Work only with little-endian format at EL1. */
 #define SCTLR_EE_LITTLE_ENDIAN	(0 << 25)
@@ -34,13 +36,14 @@
 
 
 /**
+ * \ingroup entry8
  * \name HCR_EL2
  * @{
  * HCR_EL2, Hypervisor Configuration Register (EL2) \n
  * Section D13.2.48 of AArch64-Reference-Manual.
  */
 
-/** Sets execution state at next lower level to be AArch64. */
+/** \ingroup entry8 Sets execution state at next lower level to be AArch64. */
 #define HCR_RW			(1 << 31)
 /** All other HCR options or'ed. */
 #define HCR_VALUE		HCR_RW
@@ -50,12 +53,13 @@
 
 
 /**
+ * \ingroup entry8
  * \name SCR_EL3
  * @{
  * SCR_EL3, Secure Configuration Register (EL3) \n
  * Section G8.2.125 of AArch64-Reference-Manual.
  */
-/** Reserved bits are initialized to 1. */
+/** \ingroup entry8 Reserved bits are initialized to 1. */
 #define SCR_RESERVED                    (3 << 4)
 /** Sets execution state at next lower level to be AArch64. */
 #define SCR_RW                          (1 << 10)
@@ -70,13 +74,14 @@
 
 
 /**
+ * \ingroup entry8
  * \name SPSR_EL3
  * @{
  * SPSR_EL3, Saved Program Status Register (EL3) \n
  * Section G8.2.128 of AArch64-Reference-Manual.
  */
 
-/** After we change EL to EL1 all types of interrupts will be masked (disabled). */
+/** \ingroup entry8 After we change EL to EL1 all types of interrupts will be masked (disabled). */
 #define SPSR_MASK_ALL 		(7 << 6)
 /** EL1h mode: We are using EL1 dedicated stack pointer. */
 #define SPSR_EL1h		(5 << 0)

@@ -1,6 +1,6 @@
 /**
  * \defgroup entry8 entry
- * Exception type values - ARMv8-a
+ * Exception type values - System Registers - ARMv8-a
  * @{
  * @file entry.h
  * @brief Definition of armv8-a Invalid exception type values.

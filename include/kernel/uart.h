@@ -1,4 +1,7 @@
 /**
+ * \defgroup drivers drivers
+ * Drivers for Raspberry Pi Peripherals.
+ * @{
  * @file uart.h
  * @brief Definition of basic UART functions.
  */
@@ -71,7 +74,10 @@ void uart_puts(const char* str);
  */
 char *uart_gets();
 
+/** @} */
+
 /**
+ * \ingroup exceptions
  * Exception handler for the UART (Asynchronous read from the serial input).
  * @details Gets called when an interrupt is triggered from the UART.
  * While the receiver holds a valid bit, reads the byte and echoes back.

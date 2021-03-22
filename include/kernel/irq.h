@@ -1,4 +1,7 @@
 /**
+ * \defgroup exceptions exceptions
+ * Code for handling exceptions/interupts.
+ * @{
  * @file irq.h
  * @brief Definition of interrupt handling functions.
  */
@@ -43,5 +46,6 @@ void show_invalid_entry_message(int type, unsigned long esr, \
  */
 void handle_irq();
 
+/** @} */
 
 #endif

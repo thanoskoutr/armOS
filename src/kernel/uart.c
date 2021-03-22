@@ -1,4 +1,5 @@
 /**
+ * \ingroup drivers
  * @file uart.c
  * @brief Implementation of basic UART functions
  */

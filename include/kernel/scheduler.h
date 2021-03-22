@@ -1,4 +1,7 @@
 /**
+ * \defgroup processes processes
+ * Code for managing processes.
+ * @{
  * @file scheduler.h
  * @brief Definition of scheduler structs and functions.
  */
@@ -196,5 +199,6 @@ extern void schedule();
  */
 extern void timer_tick();
 
+/** @} */
 
 #endif

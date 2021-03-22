@@ -1,4 +1,5 @@
 /**
+ * \ingroup drivers
  * @file mmio.h
  * @brief Definition of MMIO functions.
  * @details Reading and writing from/to Memory Mapped IO.
@@ -11,6 +12,7 @@
 
 #ifdef AARCH_32
 /**
+ * \ingroup drivers
  * Memory-Mapped I/O output
  * @param reg 32-bit register address
  * @param data 32-bit data
@@ -18,6 +20,7 @@
 */
 void mmio_write(uint32_t reg, uint32_t data);
 /**
+ * \ingroup drivers
  * Memory-Mapped I/O input
  * @param reg 32-bit register address
  * @return 32-bit data
@@ -27,6 +30,7 @@ uint32_t mmio_read(uint32_t reg);
 
 #elif AARCH_64
 /**
+ * \ingroup drivers
  * Memory-Mapped I/O output.
  * @param reg 64-bit register address.
  * @param data 32-bit data.
@@ -34,6 +38,7 @@ uint32_t mmio_read(uint32_t reg);
 */
 void mmio_write(uint64_t reg, uint32_t data);
 /**
+ * \ingroup drivers
  * Memory-Mapped I/O input.
  * @param reg 64-bit register address.
  * @return 32-bit data.
@@ -43,6 +48,7 @@ uint32_t mmio_read(uint64_t reg);
 #endif
 
 /**
+ * \ingroup drivers
  * Delays @a count of clock cycles.
  * @param count Number of cycles.
 */

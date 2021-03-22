@@ -1,4 +1,5 @@
 /**
+ * \ingroup lib
  * \defgroup stdlib stdlib
  * Small subset of stdlib.h.
  * @{

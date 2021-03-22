@@ -1,4 +1,5 @@
 /**
+ * \ingroup processes
  * @file scheduler.c
  * @brief Implementation of scheduler functions.
  */

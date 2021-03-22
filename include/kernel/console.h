@@ -1,10 +1,15 @@
 /**
+ * \defgroup console console
+ * Code for system console.
+ * @{
  * @file console.h
  * @brief Definition of functions and types for a minimal console.
  */
 
 #ifndef CONSOLE_H
 #define CONSOLE_H
+
+#include <stdint.h>
 
 /**
  * Length of device name, based on running device.
@@ -85,5 +90,6 @@ void console_help();
  */
 void console_help_led();
 
+/** @} */
 
 #endif

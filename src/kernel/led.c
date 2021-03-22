@@ -1,4 +1,5 @@
 /**
+ * \ingroup drivers
  * @file led.c
  * @brief Implementation of functions for manipulating a LED to a GPIO pin.
  */

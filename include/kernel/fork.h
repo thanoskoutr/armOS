@@ -1,4 +1,5 @@
 /**
+ * \ingroup processes
  * @file fork.h
  * @brief Definition of fork-related functions.
  */
@@ -9,6 +10,7 @@
 #include <stdint.h>
 
 /**
+ * \ingroup processes
  * Function for creating a new process.
  * @param fn A function to execute in a new thread.
  * @param arg An argument that need to be passed to this function.

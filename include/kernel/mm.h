@@ -1,4 +1,7 @@
 /**
+ * \defgroup memory memory
+ * Code for managing  memory.
+ * @{
  * @file mm.h
  * @brief Definition of basic memory sizes and functions.
  */
@@ -60,5 +63,7 @@ uint64_t get_free_page();
  */
 void free_page(uint64_t p);
 #endif
+
+/** @} */
 
 #endif

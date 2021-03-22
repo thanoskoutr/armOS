@@ -1,4 +1,5 @@
 /**
+ * \ingroup processes
  * @file process.c
  * @brief Implementation of functions for creating and killing processes.
  */

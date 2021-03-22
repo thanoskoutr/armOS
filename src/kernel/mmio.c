@@ -1,4 +1,5 @@
 /**
+ * \ingroup drivers
  * @file mmio.c
  * @brief Implementation of MMIO functions.
  * @details Reading and writing from/to Memory Mapped IO.

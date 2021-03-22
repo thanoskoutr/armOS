@@ -1,4 +1,5 @@
 /**
+ * \ingroup drivers
  * @file gpio.c
  * @brief Implementation of functions for manipulating GPIO registers.
  */

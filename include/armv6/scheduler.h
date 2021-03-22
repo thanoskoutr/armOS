@@ -1,4 +1,5 @@
 /**
+ * \ingroup processes
  * @file scheduler.h
  * @brief Definition of armv6 scheduler helper functions.
  */
@@ -7,6 +8,7 @@
 #define ARM6_SCHEDULER_H
 
 /**
+ * \ingroup processes
  * Offset of cpu_context in task_struct.
  */
 #define THREAD_CPU_CONTEXT 0

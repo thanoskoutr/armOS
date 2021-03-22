@@ -1,4 +1,5 @@
 /**
+ * \ingroup exceptions
  * @file irq.h
  * @brief Definition of armv8-a interrupt initialization functions.
  */

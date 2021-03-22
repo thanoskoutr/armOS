@@ -1,4 +1,5 @@
 /**
+ * \ingroup lib
  * \defgroup stdbool stdbool
  * The stdbool.h header.
  * @{

@@ -1,4 +1,7 @@
 /**
+ * \defgroup kernel kernel
+ * Code for main kernel function.
+ * @{
  * @file kernel.c
  * @brief Main kernel function
  */
@@ -26,24 +29,6 @@
 // void kernel_main(uint32_t r0, uint32_t r1, uint32_t atags)
 /* arguments for AArch64 */
 // void kernel_main(uint64_t dtb_ptr32, uint64_t x1, uint64_t x2, uint64_t x3)
-
-#ifdef MODEL_0
-	/** \mainpage Main Page
-	 * Documentation generated for Aarch32 and Raspberry Pi Zero / Zero W.
-	 */
-#elif MODEL_2
-	/** \mainpage Main Page
-	 * Documentation generated for Aarch32 and Raspberry Pi 2.
-	 */
-#elif MODEL_3
-	/** \mainpage Main Page
-	 * Documentation generated for Aarch64 and Raspberry Pi 3.
-	 */
-#elif MODEL_4
-	/** \mainpage Main Page
-	 * Documentation generated for Aarch64 and Raspberry Pi 4.
-	 */
-#endif
 
 /**
  * Main kernel function.
@@ -155,3 +140,5 @@ void kernel_main()
 	// }
 
 }
+
+/** @} */

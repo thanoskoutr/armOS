@@ -1,4 +1,5 @@
 /**
+ * \ingroup drivers
  * @file timer.c
  * @brief Implementation of basic System Timer functions.
  */

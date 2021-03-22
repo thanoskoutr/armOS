@@ -1,4 +1,5 @@
 /**
+ * \ingroup peripherals
  * @file irq.h
  * @brief Definition of IRQ registers addresses
  * @details IRQ : Interrupt Request
@@ -10,6 +11,7 @@
 #include <peripherals/base.h>
 
 /**
+ * \ingroup peripherals
  * The base address for IRQ
  */
 enum

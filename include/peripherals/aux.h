@@ -1,4 +1,5 @@
 /**
+ * \ingroup peripherals
  * @file aux.h
  * @brief Definition of AUX registers addresses (Only for Uart).
  * @details AUX : Auxiliary Peripherals
@@ -10,6 +11,7 @@
 #include <peripherals/gpio.h>
 
 /**
+ * \ingroup peripherals
  * AUX registers addresses.
  */
 enum
