@@ -1,6 +1,6 @@
 # armOS
 
-![armOS-logo](../docs/images/logo_200x200.png)
+![armOS-logo](docs/images/logo_200x200.png)
 
 ![GitHub top language](https://img.shields.io/github/languages/top/thanoskoutr/armOS?color=blueviolet) ![GitHub repo size](https://img.shields.io/github/repo-size/thanoskoutr/armOS?color=informational&logo=GitHub) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/thanoskoutr/armOS?color=blue&logo=GitHub) ![GitHub](https://img.shields.io/github/license/thanoskoutr/armOS?color=brightgreen&logo=Open%20Source%20Initiative) ![travis-ci](https://travis-ci.org/thanoskoutr/armOS.svg?branch=main)
 
