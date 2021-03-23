@@ -61,16 +61,14 @@ void create_processes(size_t proc_num)
 		strcat(proc_args[pid], ", ");
 
 #ifdef AARCH_32
-		// int res = copy_process((uint32_t) &process, (uint32_t) "12345");
-		int res = copy_process((uint32_t) &process, (uint32_t) proc_args[pid]);
+		// int res = copy_process((uint32_t) &process, (uint32_t) proc_args[pid]);
 #elif AARCH_64
-		// int res = copy_process((uint64_t) &process, (uint64_t) "12345");
-		int res = copy_process((uint64_t) &process, (uint64_t) proc_args[pid]);
+		// int res = copy_process((uint64_t) &process, (uint64_t) proc_args[pid]);
 #endif
-		if (res != 0) {
-			printk("Error while starting process %d\n", pid);
-			return;
-		}
+		// if (res != 0) {
+			// printk("Error while starting process %d\n", pid);
+			// return;
+		// }
 		printk("Done\n");
 	}
 }

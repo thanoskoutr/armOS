@@ -29,7 +29,7 @@ const char entry_error_messages[8][32] = {
 	"Fast Interrupt Request (FIQ)"
 };
 #elif AARCH_64
-const char entry_error_messages[16][32] = {
+const char entry_error_messages[18][32] = {
 	"SYNC_INVALID_EL1t",
 	"IRQ_INVALID_EL1t",
 	"FIQ_INVALID_EL1t",
@@ -48,7 +48,10 @@ const char entry_error_messages[16][32] = {
 	"SYNC_INVALID_EL0_32",
 	"IRQ_INVALID_EL0_32",
 	"FIQ_INVALID_EL0_32",
-	"ERROR_INVALID_EL0_32"
+	"ERROR_INVALID_EL0_32",
+
+	"SYNC_ERROR",
+	"SYSCALL_ERROR"
 };
 #endif
 

@@ -73,6 +73,8 @@ typedef struct {
 	int32_t counter; /**< Used to determine how long the current task has been running. */
 	int32_t priority; /**< When a new task is scheduled its priority is copied to counter. */
 	int32_t preempt_count; /**< Non-zero value indicates critical task, that must not be interrupted. */
+	uint32_t stack; /**<  */
+	uint32_t flags; /**<  */
 } task_struct;
 #elif AARCH_64
 typedef struct {
@@ -81,13 +83,19 @@ typedef struct {
 	int64_t counter; /**< Used to determine how long the current task has been running. */
 	int64_t priority; /**< When a new task is scheduled its priority is copied to counter. */
 	int64_t preempt_count; /**< Non-zero value indicates critical task, that must not be interrupted. */
+	uint64_t stack; /**<  */
+	uint64_t flags; /**<  */
 } task_struct;
 #endif
 
 /**
- * Task States
+ * Task State: Running
  */
 #define TASK_RUNNING 0
+/**
+ * Task State: Zombie
+ */
+#define TASK_ZOMBIE 1
 /**
  * Maximum number of concurrent tasks
  */
@@ -119,6 +127,11 @@ extern int nr_tasks;
 #define THREAD_SIZE 4096
 
 /**
+ *
+ */
+#define PF_KTHREAD 0x00000002
+
+/**
  * Defines the init task's @ref task_struct ( @ref kernel_main()) that is run on kernel startup.
  * @details Fields:
  * - cpu_context: All registers initialized to 0.
@@ -132,7 +145,7 @@ extern int nr_tasks;
 #ifdef AARCH_32
 #define INIT_TASK { /* cpu_context */ {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, /* state etc */ 0,0,1,0 }
 #elif AARCH_64
-#define INIT_TASK { /*  cpu_context */ {0,0,0,0,0,0,0,0,0,0,0,0,0}, /* state etc */ 0,0,1,0 }
+#define INIT_TASK { /*  cpu_context */ {0,0,0,0,0,0,0,0,0,0,0,0,0}, /* state etc */ 0,0,1,0,0,PF_KTHREAD }
 #endif
 
 
@@ -195,6 +208,10 @@ extern void schedule();
  * @see handle_timer_3_irq(), _schedule()
  */
 extern void timer_tick();
+
+/**
+ */
+extern void exit_process();
 
 
 #endif

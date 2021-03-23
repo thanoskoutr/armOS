@@ -8,7 +8,6 @@
 
 #include <kernel/uart.h>
 #include <kernel/printk.h>
-#include <kernel/utils.h>
 #include <kernel/irq.h>
 #include <kernel/timer.h>
 #include <kernel/led.h>
@@ -16,9 +15,15 @@
 
 #include <common/string.h>
 
+#include <kernel/mmio.h>
+#include <kernel/sys.h>
+#include <kernel/scheduler.h>
+#include <kernel/fork.h>
+
 #ifdef AARCH_32
 #include <armv6/irq.h>
 #elif AARCH_64
+#include <armv8-a/utils.h>
 #include <armv8-a/irq.h>
 #endif
 
@@ -44,6 +49,55 @@
 	 * Documentation generated for Aarch64 and Raspberry Pi 4.
 	 */
 #endif
+
+void user_process1(char *array)
+{
+	char buf[2] = {0};
+	while (1) {
+		for (int i = 0; i < 5; i++) {
+			buf[0] = array[i];
+			call_sys_write(buf);
+			delay(100000);
+		}
+	}
+}
+
+void user_process()
+{
+	char buf[30] = {0};
+	strcpy(buf, "User process started\n");
+	call_sys_write(buf);
+	unsigned long stack = call_sys_malloc();
+	if (stack < 0) {
+		printk("Error while allocating stack for process 1\n");
+		return;
+	}
+	int err = call_sys_clone((unsigned long) &user_process1, (unsigned long) "12345", stack);
+	if (err < 0) {
+		printk("Error while clonning process 1\n");
+		return;
+	}
+	stack = call_sys_malloc();
+	if (stack < 0) {
+		printk("Error while allocating stack for process 1\n");
+		return;
+	}
+	err = call_sys_clone((unsigned long) &user_process1, (unsigned long) "abcd", stack);
+	if (err < 0) {
+		printk("Error while clonning process 2\n");
+		return;
+	}
+	call_sys_exit();
+}
+
+void kernel_process()
+{
+	printk("Kernel process started. EL %d\n", get_el());
+	int err = move_to_user_mode((unsigned long) &user_process);
+	if (err < 0){
+		printk("Error while moving process to user mode\n");
+	}
+}
 
 /**
  * Main kernel function.
@@ -139,7 +193,18 @@ void kernel_main()
 	// printk("Done\n");
 
 	/* Console */
-	console(device);
+	// console(device);
+
+	/* Syscalls */
+	int res = copy_process(PF_KTHREAD, (unsigned long) &kernel_process, 0, 0);
+	if (res < 0) {
+		printk("error while starting kernel process\n");
+		return;
+	}
+
+	while (1) {
+		schedule();
+	}
 
 	// while (1) {
 	// 	/* Read from serial (dummy) */

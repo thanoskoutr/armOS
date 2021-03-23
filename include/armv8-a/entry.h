@@ -14,6 +14,9 @@
  * Size of all saved registers (31 8-byte registes)
  */
 #define S_FRAME_SIZE		256
+/** Offset of `x0` register in saved stack frame. */
+#define S_X0			0
+
 
 /**
  * \name EL1t
@@ -59,6 +62,15 @@
 #define IRQ_INVALID_EL0_32	13	/**< Interrupt Request exception on EL0_32. */
 #define FIQ_INVALID_EL0_32	14	/**< Fast Interrupt Request exception on EL0_32. */
 #define ERROR_INVALID_EL0_32	15	/**< System Error on EL0_32. */
+/** @} */
+
+/**
+ * \name Syscalls
+ * @{
+ * For errors that are related to Syscalls.
+ */
+#define SYNC_ERROR		16	/**< ESR_ELx, Not supported Exception Class. */
+#define SYSCALL_ERROR		17 	/**< Invalid Syscall number. */
 /** @} */
 
 

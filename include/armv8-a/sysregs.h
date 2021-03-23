@@ -84,4 +84,22 @@
 #define SPSR_VALUE		(SPSR_MASK_ALL | SPSR_EL1h)
 /** @} */
 
+
+/**
+ * \name ESR_EL1
+ * @{
+ * ESR_EL1, Exception Syndrome Register (EL1) \n
+ * Section D13.2.37 of AArch64-Reference-Manual.
+ */
+
+/** Offset of ESR_L1, from which the Exception Class (EC) field starts. */
+#define ESR_ELx_EC_SHIFT	26
+/**
+ * When AArch64 is supported at any Exception level,
+ * SVC instruction execution in AArch64 state.
+ * EC == 0b10101 == 0x15
+ */
+#define ESR_ELx_EC_SVC64	0x15
+/** @} */
+
 #endif

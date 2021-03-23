@@ -8,6 +8,7 @@
 
 #include <kernel/scheduler.h>
 #include <kernel/printk.h>
+#include <kernel/mm.h>
 
 #ifdef AARCH_32
 #include <armv6/irq.h>
@@ -134,7 +135,7 @@ void _schedule()
 		}
 	}
 	// DEBUG_print_tasks();
-	printk("\nSelected for scheduling task %d, located at %d\n", next, task[next]);
+	//printk("\nSelected for scheduling task %d, located at %d\n", next, task[next]);
 
 	/* Finally we switch to the selected task */
 	switch_to(task[next]);
@@ -168,4 +169,20 @@ void timer_tick()
 	irq_enable();
 	_schedule();		/* Call scheduler */
 	irq_disable();		/* Disable interrupts */
+}
+
+void exit_process()
+{
+	preempt_disable();
+	for (int i = 0; i < NR_TASKS; i++) {
+		if (task[i] == current) {
+			task[i]->state = TASK_ZOMBIE;
+			break;
+		}
+	}
+	if (current->stack) {
+		free_page(current->stack);
+	}
+	preempt_enable();
+	schedule();
 }
