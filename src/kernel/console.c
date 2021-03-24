@@ -87,7 +87,7 @@ void console(char *device)
 		/* Read from serial */
 		input = uart_gets();
 		printk("\n");
-		printk("--DEBUG-- input: %s\n", input);
+		// printk("--DEBUG-- input: %s\n", input);
 
 		/* Find given command */
 		command cmd = console_get_cmd(input);
