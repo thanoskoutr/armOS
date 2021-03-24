@@ -13,12 +13,6 @@ build
 # VS Code configs
 .vscode/
 
-# Screenshots
-Screenshot_*
-
-# Config files for testing
-config-test-*.txt
-
 # Doxygen stuff
 html
 latex
