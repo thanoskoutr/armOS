@@ -257,31 +257,27 @@ A complete list of all the technologies used in this project:
 
 ### Manuals
 
-[BROADCOM BCM2835](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/README.md)
-
-[BROADCOM BCM2711](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711/README.md)
-
-[AArch64 memory management](https://developer.arm.com/documentation/101811/latest)
+- [BROADCOM BCM2835](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/README.md)
+- [BROADCOM BCM2711](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2711/README.md)
+- [AArch64 memory management](https://developer.arm.com/documentation/101811/latest)
 
 ### Wikis
 
-[OSDev.org - Raspberry Pi Bare Bones](https://wiki.osdev.org/ARM_RaspberryPi_Tutorial_C)
-
-[ARM Developer](https://developer.arm.com/)
+- [OSDev.org - Raspberry Pi Bare Bones](https://wiki.osdev.org/ARM_RaspberryPi_Tutorial_C)
+- [ARM Developer](https://developer.arm.com/)
 
 ### Repositories
 
-[Linux Kernel - /arch/arm/](https://github.com/torvalds/linux/tree/master/arch/arm)
-
-[Building an Operating System for the Raspberry Pi](https://jsandler18.github.io/)
-
-[Learning operating system development using Linux kernel and Raspberry Pi](https://github.com/s-matyukevich/raspberry-pi-os)
-
-[Writing a "bare metal" operating system for Raspberry Pi 4](https://github.com/isometimes/rpi4-osdev)
+- [Linux Kernel - /arch/arm/](https://github.com/torvalds/linux/tree/master/arch/arm)
+- [Learning operating system development using Linux kernel and Raspberry Pi](https://github.com/s-matyukevich/raspberry-pi-os)
+- [Building an Operating System for the Raspberry Pi](https://jsandler18.github.io/)
+- [Raspberry Pi ARM based bare metal examples](https://github.com/dwelch67/raspberrypi)
+- [Bare metal Raspberry Pi 3 tutorials](https://github.com/bztsrc/raspi3-tutorial)
+- [Writing a "bare metal" operating system for Raspberry Pi 4](https://github.com/isometimes/rpi4-osdev)
 
 ### Book
 
-[The little book about OS development](http://littleosbook.github.io/)
+- [The little book about OS development](http://littleosbook.github.io/)
 
 ## License
 This project is licensed under the MIT license. See [LICENSE](LICENSE.md) for details.
