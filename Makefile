@@ -11,6 +11,9 @@ ARMGNU_64 = aarch64-none-elf
 IMG_NAME = kernel7
 IMG_NAME_64 = kernel8
 
+# Set armstub name
+ARMSTUB_NAME = armstub-new
+
 # Set Raspi Model, if not set
 # RASPI_MODEL ?= 0
 RASPI_MODEL ?= 4
@@ -58,7 +61,7 @@ COMMON_SRC = src/common
 
 KERNEL_VERSION = 0.1.0
 
-.PHONY: clean all build docs docs_pdf clean_docs
+.PHONY: clean all build docs docs_pdf clean_docs release release_armstub
 
 all: build
 
@@ -107,8 +110,24 @@ $(STUB_DIR)/$(BUILD_DIR)/%_s.o: $(STUB_FILES)
 	$(ARMGNU)-gcc $(SFLAGS) $(CFLAGS) -c $< -o $@
 
 armstub: $(OBJ_STUB_FILES)
+	@echo "----- Building armstub -----"
 	$(ARMGNU)-ld --section-start=.text=0 -o ${STUB_DIR}/$(BUILD_DIR)/armstub.elf $<
-	$(ARMGNU)-objcopy ${STUB_DIR}/$(BUILD_DIR)/armstub.elf -O binary armstub-new.bin
+	$(ARMGNU)-objcopy ${STUB_DIR}/$(BUILD_DIR)/armstub.elf -O binary $(ARMSTUB_NAME).bin
+
+
+# Release project
+## Create compressed binaries for version releasing
+release: build
+	@echo "----- Releasing for Raspberry Pi $(value RASPI_MODEL) -----"
+	@echo "----- Releasing for $(value AARCH) -----"
+	tar -czvf $(IMG_NAME)-v$(KERNEL_VERSION).tar.gz $(IMG_NAME).img
+	zip $(IMG_NAME)-v$(KERNEL_VERSION).zip $(IMG_NAME).img
+
+## Create compressed binary for armstub
+release_armstub: armstub
+	@echo "----- Releasing armstub -----"
+	tar -czvf $(ARMSTUB_NAME)-v$(KERNEL_VERSION).tar.gz $(ARMSTUB_NAME).bin
+	zip $(ARMSTUB_NAME)-v$(KERNEL_VERSION).zip $(ARMSTUB_NAME).bin
 
 
 # Generating Documentation
@@ -134,7 +153,7 @@ docs_pdf:
 
 # Clean rules
 clean:
-	rm -rf $(BUILD_DIR) *.img *.elf *.bin $(STUB_DIR)/$(BUILD_DIR)
+	rm -rf $(BUILD_DIR) *.img *.elf *.bin *.gz *.zip $(STUB_DIR)/$(BUILD_DIR)
 
 clean_docs:
 	rm -rf $(DOXYGEN_DIR)
