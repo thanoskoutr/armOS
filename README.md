@@ -157,6 +157,9 @@ This is a minimal console, type 'help' to see the available commands. (Maximum I
 root@pi-4#
 ```
 
+A screencast where, we create 3 processes, run them and kill them:
+![asciicast-gif](docs/images/armOS-procs.gif)
+
 ### Available Commands
 Showing the available commands of the console, using the `help` command:
 ```
