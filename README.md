@@ -283,4 +283,4 @@ A complete list of all the technologies used in this project:
 - [The little book about OS development](http://littleosbook.github.io/)
 
 ## License
-This project is licensed under the MIT license. See [LICENSE](LICENSE.md) for details.
+This project is licensed under the MIT license. See [LICENSE](LICENSE) for details.
