@@ -1,0 +1,9 @@
+<map id="src/kernel/fork.c" name="src/kernel/fork.c">
+<area shape="rect" id="node1" title="Implementation of fork&#45;related functions." alt="" coords="103,5,230,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="58,155,129,181"/>
+<area shape="rect" id="node3" href="$kernel_2scheduler_8h.html" title="Definition of scheduler structs and functions." alt="" coords="23,80,163,107"/>
+<area shape="rect" id="node4" href="$mm_8h.html" title="Definition of basic memory sizes and functions." alt="" coords="188,80,292,107"/>
+<area shape="rect" id="node6" href="$printk_8h.html" title="Definition of printk." alt="" coords="317,80,433,107"/>
+<area shape="rect" id="node5" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="169,155,311,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="337,155,412,181"/>
+</map>

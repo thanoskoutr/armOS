@@ -1,0 +1,12 @@
+<map id="src/kernel/led.c" name="src/kernel/led.c">
+<area shape="rect" id="node1" title="Implementation of functions for manipulating a LED to a GPIO pin." alt="" coords="265,5,385,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="220,155,291,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="29,80,103,107"/>
+<area shape="rect" id="node4" href="$mmio_8h.html" title="Definition of MMIO functions." alt="" coords="128,80,244,107"/>
+<area shape="rect" id="node5" href="$kernel_2gpio_8h.html" title="Definition of functions for manipulating GPIO registers." alt="" coords="405,80,511,107"/>
+<area shape="rect" id="node6" href="$peripherals_2gpio_8h.html" title="Definition of GPIO registers addresses." alt="" coords="417,155,555,181"/>
+<area shape="rect" id="node8" href="$printk_8h.html" title="Definition of printk." alt="" coords="587,80,703,107"/>
+<area shape="rect" id="node10" href="$kernel_2timer_8h.html" title="Definition of basic System Timer functions." alt="" coords="269,80,381,107"/>
+<area shape="rect" id="node7" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="415,229,557,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="607,155,682,181"/>
+</map>

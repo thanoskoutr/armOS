@@ -1,0 +1,11 @@
+<map id="src/kernel/uart.c" name="src/kernel/uart.c">
+<area shape="rect" id="node1" title="Implementation of basic UART functions." alt="" coords="225,5,351,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="275,155,346,181"/>
+<area shape="rect" id="node4" href="$string_8h.html" title="Definition of some string.h functions." alt="" coords="29,80,161,107"/>
+<area shape="rect" id="node5" href="$uart_8h.html" title="Definition of basic UART functions." alt="" coords="236,80,340,107"/>
+<area shape="rect" id="node6" href="$mmio_8h.html" title="Definition of MMIO functions." alt="" coords="365,80,481,107"/>
+<area shape="rect" id="node7" href="$peripherals_2gpio_8h.html" title="Definition of GPIO registers addresses." alt="" coords="501,155,640,181"/>
+<area shape="rect" id="node9" href="$aux_8h.html" title="Definition of AUX registers addresses (Only for Uart)." alt="" coords="557,80,691,107"/>
+<area shape="rect" id="node8" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="499,229,642,256"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="include/peripherals/timer.h" name="include/peripherals/timer.h">
+<area shape="rect" id="node1" title="Definition of System Timer registers addresses." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$timer_8c.html" title="Implementation of basic System Timer functions." alt="" coords="11,95,146,121"/>
+</map>

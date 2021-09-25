@@ -1,0 +1,9 @@
+<map id="src/kernel/printk.c" name="src/kernel/printk.c">
+<area shape="rect" id="node1" title="Implementation of printk." alt="" coords="156,5,295,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node3" href="$printk_8h.html" title="Definition of printk." alt="" coords="33,80,149,107"/>
+<area shape="rect" id="node4" href="$uart_8h.html" title="Definition of basic UART functions." alt="" coords="173,80,277,107"/>
+<area shape="rect" id="node5" href="$string_8h.html" title="Definition of some string.h functions." alt="" coords="302,80,434,107"/>
+<area shape="rect" id="node7" href="$stdlib_8h.html" title="Definition of some stdlib.h functions." alt="" coords="459,80,589,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="331,155,405,181"/>
+</map>

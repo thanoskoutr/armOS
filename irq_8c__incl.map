@@ -1,0 +1,13 @@
+<map id="src/kernel/irq.c" name="src/kernel/irq.c">
+<area shape="rect" id="node1" title="Implementation of interrupt handling functions." alt="" coords="326,5,443,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="124,155,195,181"/>
+<area shape="rect" id="node3" href="$printk_8h.html" title="Definition of printk." alt="" coords="461,80,577,107"/>
+<area shape="rect" id="node5" href="$mmio_8h.html" title="Definition of MMIO functions." alt="" coords="5,80,121,107"/>
+<area shape="rect" id="node6" href="$uart_8h.html" title="Definition of basic UART functions." alt="" coords="333,80,437,107"/>
+<area shape="rect" id="node7" href="$kernel_2timer_8h.html" title="Definition of basic System Timer functions." alt="" coords="197,80,309,107"/>
+<area shape="rect" id="node8" href="$peripherals_2irq_8h.html" title="Definition of IRQ registers addresses." alt="" coords="551,155,679,181"/>
+<area shape="rect" id="node10" href="$aux_8h.html" title="Definition of AUX registers addresses (Only for Uart)." alt="" coords="680,80,815,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="453,155,527,181"/>
+<area shape="rect" id="node9" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="623,229,765,256"/>
+<area shape="rect" id="node11" href="$peripherals_2gpio_8h.html" title="Definition of GPIO registers addresses." alt="" coords="703,155,842,181"/>
+</map>

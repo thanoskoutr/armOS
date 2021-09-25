@@ -1,0 +1,9 @@
+<map id="include/peripherals/gpio.h" name="include/peripherals/gpio.h">
+<area shape="rect" id="node1" title="Definition of GPIO registers addresses." alt="" coords="213,5,360,47"/>
+<area shape="rect" id="node2" href="$gpio_8c.html" title="Implementation of functions for manipulating GPIO registers." alt="" coords="5,102,133,129"/>
+<area shape="rect" id="node3" href="$led_8c.html" title="Implementation of functions for manipulating a LED to a GPIO pin." alt="" coords="153,184,273,211"/>
+<area shape="rect" id="node4" href="$uart_8c.html" title="Implementation of basic UART functions." alt="" coords="339,184,466,211"/>
+<area shape="rect" id="node5" href="$kernel_2gpio_8h.html" title="Definition of functions for manipulating GPIO registers." alt="" coords="208,102,365,129"/>
+<area shape="rect" id="node6" href="$aux_8h.html" title="Definition of AUX registers addresses (Only for Uart)." alt="" coords="440,95,587,136"/>
+<area shape="rect" id="node7" href="$irq_8c.html" title="Implementation of interrupt handling functions." alt="" coords="491,184,608,211"/>
+</map>

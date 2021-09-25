@@ -1,0 +1,10 @@
+<map id="include/kernel/mmio.h" name="include/kernel/mmio.h">
+<area shape="rect" id="node1" title="Definition of MMIO functions." alt="" coords="429,5,595,32"/>
+<area shape="rect" id="node2" href="$gpio_8c.html" title="Implementation of functions for manipulating GPIO registers." alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node3" href="$irq_8c.html" title="Implementation of interrupt handling functions." alt="" coords="157,80,275,107"/>
+<area shape="rect" id="node4" href="$led_8c.html" title="Implementation of functions for manipulating a LED to a GPIO pin." alt="" coords="299,80,419,107"/>
+<area shape="rect" id="node5" href="$mmio_8c.html" title="Implementation of MMIO functions." alt="" coords="443,80,581,107"/>
+<area shape="rect" id="node6" href="$process_8c.html" title="Implementation of functions for creating and killing processes." alt="" coords="606,80,757,107"/>
+<area shape="rect" id="node7" href="$timer_8c.html" title="Implementation of basic System Timer functions." alt="" coords="781,80,915,107"/>
+<area shape="rect" id="node8" href="$uart_8c.html" title="Implementation of basic UART functions." alt="" coords="939,80,1066,107"/>
+</map>

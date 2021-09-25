@@ -1,0 +1,14 @@
+<map id="src/kernel/timer.c" name="src/kernel/timer.c">
+<area shape="rect" id="node1" title="Implementation of basic System Timer functions." alt="" coords="431,5,566,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="347,155,418,181"/>
+<area shape="rect" id="node3" href="$kernel_2timer_8h.html" title="Definition of basic System Timer functions." alt="" coords="373,80,485,107"/>
+<area shape="rect" id="node4" href="$mmio_8h.html" title="Definition of MMIO functions." alt="" coords="510,80,626,107"/>
+<area shape="rect" id="node5" href="$printk_8h.html" title="Definition of printk." alt="" coords="774,80,890,107"/>
+<area shape="rect" id="node7" href="$led_8h.html" title="Definition of functions for manipulating a LED to a GPIO pin." alt="" coords="651,80,749,107"/>
+<area shape="rect" id="node9" href="$console_8h.html" title="Definition of functions and types for a minimal console." alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node10" href="$kernel_2scheduler_8h.html" title="Definition of scheduler structs and functions." alt="" coords="158,80,298,107"/>
+<area shape="rect" id="node11" href="$peripherals_2timer_8h.html" title="Definition of System Timer registers addresses." alt="" coords="914,80,1059,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="795,155,869,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="663,155,737,181"/>
+<area shape="rect" id="node12" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="915,155,1058,181"/>
+</map>

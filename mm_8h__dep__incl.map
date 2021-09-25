@@ -1,0 +1,6 @@
+<map id="include/kernel/mm.h" name="include/kernel/mm.h">
+<area shape="rect" id="node1" title="Definition of basic memory sizes and functions." alt="" coords="142,5,297,32"/>
+<area shape="rect" id="node2" href="$fork_8c.html" title="Implementation of fork&#45;related functions." alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node3" href="$mm_8c.html" title="Implementation of basic memory functions." alt="" coords="156,80,283,107"/>
+<area shape="rect" id="node4" href="$process_8c.html" title="Implementation of functions for creating and killing processes." alt="" coords="307,80,457,107"/>
+</map>

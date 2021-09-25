@@ -1,0 +1,7 @@
+<map id="src/kernel/mm.c" name="src/kernel/mm.c">
+<area shape="rect" id="node1" title="Implementation of basic memory functions." alt="" coords="35,5,162,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node3" href="$mm_8h.html" title="Definition of basic memory sizes and functions." alt="" coords="104,80,208,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="55,155,126,181"/>
+<area shape="rect" id="node5" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="150,155,293,181"/>
+</map>

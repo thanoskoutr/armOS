@@ -1,0 +1,9 @@
+<map id="src/kernel/scheduler.c" name="src/kernel/scheduler.c">
+<area shape="rect" id="node1" title="Implementation of scheduler functions." alt="" coords="111,5,274,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="54,155,125,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="23,80,98,107"/>
+<area shape="rect" id="node4" href="$kernel_2scheduler_8h.html" title="Definition of scheduler structs and functions." alt="" coords="122,80,262,107"/>
+<area shape="rect" id="node5" href="$printk_8h.html" title="Definition of printk." alt="" coords="286,80,402,107"/>
+<area shape="rect" id="node7" href="$armv8-a_2irq_8h.html" title="Definition of armv8&#45;a interrupt initialization functions." alt="" coords="426,80,537,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="307,155,382,181"/>
+</map>

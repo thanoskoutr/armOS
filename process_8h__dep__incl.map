@@ -1,0 +1,4 @@
+<map id="include/kernel/process.h" name="include/kernel/process.h">
+<area shape="rect" id="node1" title="Definition of functions for creating and killing processes." alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node2" href="$console_8c.html" title="Implementation of a minimal console." alt="" coords="19,80,170,107"/>
+</map>

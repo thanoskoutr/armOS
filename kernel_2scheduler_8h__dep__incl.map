@@ -1,0 +1,8 @@
+<map id="include/kernel/scheduler.h" name="include/kernel/scheduler.h">
+<area shape="rect" id="node1" title="Definition of scheduler structs and functions." alt="" coords="311,5,501,32"/>
+<area shape="rect" id="node2" href="$console_8c.html" title="Implementation of a minimal console." alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node3" href="$fork_8c.html" title="Implementation of fork&#45;related functions." alt="" coords="180,80,307,107"/>
+<area shape="rect" id="node4" href="$process_8c.html" title="Implementation of functions for creating and killing processes." alt="" coords="331,80,481,107"/>
+<area shape="rect" id="node5" href="$scheduler_8c.html" title="Implementation of scheduler functions." alt="" coords="506,80,669,107"/>
+<area shape="rect" id="node6" href="$timer_8c.html" title="Implementation of basic System Timer functions." alt="" coords="693,80,828,107"/>
+</map>

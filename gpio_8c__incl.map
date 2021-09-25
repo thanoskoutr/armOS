@@ -1,0 +1,7 @@
+<map id="src/kernel/gpio.c" name="src/kernel/gpio.c">
+<area shape="rect" id="node1" title="Implementation of functions for manipulating GPIO registers." alt="" coords="25,5,153,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,76,181"/>
+<area shape="rect" id="node3" href="$mmio_8h.html" title="Definition of MMIO functions." alt="" coords="31,80,147,107"/>
+<area shape="rect" id="node4" href="$peripherals_2gpio_8h.html" title="Definition of GPIO registers addresses." alt="" coords="171,80,310,107"/>
+<area shape="rect" id="node5" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="169,155,312,181"/>
+</map>

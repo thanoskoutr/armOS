@@ -1,0 +1,15 @@
+<map id="src/kernel/kernel.c" name="src/kernel/kernel.c">
+<area shape="rect" id="node1" title="Main kernel function." alt="" coords="591,5,731,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="354,155,429,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="935,155,1005,181"/>
+<area shape="rect" id="node4" href="$uart_8h.html" title="Definition of basic UART functions." alt="" coords="197,80,301,107"/>
+<area shape="rect" id="node5" href="$printk_8h.html" title="Definition of printk." alt="" coords="5,80,121,107"/>
+<area shape="rect" id="node7" href="$utils_8h.html" title="Definition of basic ARM assembly functions." alt="" coords="482,80,589,107"/>
+<area shape="rect" id="node8" href="$kernel_2irq_8h.html" title="Definition of interrupt handling functions." alt="" coords="613,80,708,107"/>
+<area shape="rect" id="node9" href="$kernel_2timer_8h.html" title="Definition of basic System Timer functions." alt="" coords="1058,80,1170,107"/>
+<area shape="rect" id="node10" href="$led_8h.html" title="Definition of functions for manipulating a LED to a GPIO pin." alt="" coords="733,80,831,107"/>
+<area shape="rect" id="node11" href="$console_8h.html" title="Definition of functions and types for a minimal console." alt="" coords="855,80,983,107"/>
+<area shape="rect" id="node12" href="$string_8h.html" title="Definition of some string.h functions." alt="" coords="325,80,457,107"/>
+<area shape="rect" id="node13" href="$armv8-a_2irq_8h.html" title="Definition of armv8&#45;a interrupt initialization functions." alt="" coords="1195,80,1305,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="26,155,101,181"/>
+</map>

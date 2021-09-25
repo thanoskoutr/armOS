@@ -1,0 +1,9 @@
+<map id="include/kernel/timer.h" name="include/kernel/timer.h">
+<area shape="rect" id="node1" title="Definition of basic System Timer functions." alt="" coords="389,5,551,32"/>
+<area shape="rect" id="node2" href="$console_8c.html" title="Implementation of a minimal console." alt="" coords="5,80,156,107"/>
+<area shape="rect" id="node3" href="$irq_8c.html" title="Implementation of interrupt handling functions." alt="" coords="181,80,298,107"/>
+<area shape="rect" id="node4" href="$kernel_8c.html" title="Main kernel function." alt="" coords="323,80,463,107"/>
+<area shape="rect" id="node5" href="$led_8c.html" title="Implementation of functions for manipulating a LED to a GPIO pin." alt="" coords="487,80,607,107"/>
+<area shape="rect" id="node6" href="$process_8c.html" title="Implementation of functions for creating and killing processes." alt="" coords="632,80,783,107"/>
+<area shape="rect" id="node7" href="$timer_8c.html" title="Implementation of basic System Timer functions." alt="" coords="807,80,941,107"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="include/kernel/gpio.h" name="include/kernel/gpio.h">
+<area shape="rect" id="node1" title="Definition of functions for manipulating GPIO registers." alt="" coords="5,5,163,32"/>
+<area shape="rect" id="node2" href="$led_8c.html" title="Implementation of functions for manipulating a LED to a GPIO pin." alt="" coords="24,80,144,107"/>
+</map>

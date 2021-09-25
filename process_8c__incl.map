@@ -1,0 +1,16 @@
+<map id="src/kernel/process.c" name="src/kernel/process.c">
+<area shape="rect" id="node1" title="Implementation of functions for creating and killing processes." alt="" coords="603,5,753,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="372,155,443,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="1105,155,1179,181"/>
+<area shape="rect" id="node4" href="$printk_8h.html" title="Definition of printk." alt="" coords="755,80,871,107"/>
+<area shape="rect" id="node6" href="$mmio_8h.html" title="Definition of MMIO functions." alt="" coords="5,80,121,107"/>
+<area shape="rect" id="node7" href="$kernel_2timer_8h.html" title="Definition of basic System Timer functions." alt="" coords="146,80,258,107"/>
+<area shape="rect" id="node8" href="$fork_8h.html" title="Definition of fork&#45;related functions." alt="" coords="282,80,386,107"/>
+<area shape="rect" id="node9" href="$kernel_2scheduler_8h.html" title="Definition of scheduler structs and functions." alt="" coords="411,80,551,107"/>
+<area shape="rect" id="node10" href="$uart_8h.html" title="Definition of basic UART functions." alt="" coords="895,80,999,107"/>
+<area shape="rect" id="node11" href="$mm_8h.html" title="Definition of basic memory sizes and functions." alt="" coords="626,80,730,107"/>
+<area shape="rect" id="node13" href="$string_8h.html" title="Definition of some string.h functions." alt="" coords="1024,80,1156,107"/>
+<area shape="rect" id="node14" href="$stdlib_8h.html" title="Definition of some stdlib.h functions." alt="" coords="1231,80,1362,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="775,155,850,181"/>
+<area shape="rect" id="node12" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="607,155,749,181"/>
+</map>

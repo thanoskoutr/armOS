@@ -1,0 +1,4 @@
+<map id="include/peripherals/irq.h" name="include/peripherals/irq.h">
+<area shape="rect" id="node1" title="Definition of IRQ registers addresses." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$irq_8c.html" title="Implementation of interrupt handling functions." alt="" coords="20,95,137,121"/>
+</map>

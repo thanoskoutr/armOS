@@ -1,0 +1,18 @@
+<map id="include/peripherals/base.h" name="include/peripherals/base.h">
+<area shape="rect" id="node1" title="Definition of base MMIO registers addresses." alt="" coords="861,5,1007,47"/>
+<area shape="rect" id="node2" href="$mm_8h.html" title="Definition of basic memory sizes and functions." alt="" coords="223,102,378,129"/>
+<area shape="rect" id="node6" href="$peripherals_2gpio_8h.html" title="Definition of GPIO registers addresses." alt="" coords="690,95,837,136"/>
+<area shape="rect" id="node13" href="$peripherals_2irq_8h.html" title="Definition of IRQ registers addresses." alt="" coords="861,95,1007,136"/>
+<area shape="rect" id="node14" href="$mbox_8h.html" title="Definition of Mailbox registers addresses." alt="" coords="1031,95,1178,136"/>
+<area shape="rect" id="node15" href="$peripherals_2timer_8h.html" title="Definition of System Timer registers addresses." alt="" coords="1202,95,1349,136"/>
+<area shape="rect" id="node3" href="$fork_8c.html" title="Implementation of fork&#45;related functions." alt="" coords="5,191,132,218"/>
+<area shape="rect" id="node4" href="$mm_8c.html" title="Implementation of basic memory functions." alt="" coords="156,191,283,218"/>
+<area shape="rect" id="node5" href="$process_8c.html" title="Implementation of functions for creating and killing processes." alt="" coords="307,191,457,218"/>
+<area shape="rect" id="node7" href="$gpio_8c.html" title="Implementation of functions for manipulating GPIO registers." alt="" coords="482,191,610,218"/>
+<area shape="rect" id="node8" href="$led_8c.html" title="Implementation of functions for manipulating a LED to a GPIO pin." alt="" coords="649,273,769,300"/>
+<area shape="rect" id="node9" href="$uart_8c.html" title="Implementation of basic UART functions." alt="" coords="835,273,961,300"/>
+<area shape="rect" id="node10" href="$kernel_2gpio_8h.html" title="Definition of functions for manipulating GPIO registers." alt="" coords="685,191,842,218"/>
+<area shape="rect" id="node11" href="$aux_8h.html" title="Definition of AUX registers addresses (Only for Uart)." alt="" coords="917,184,1063,225"/>
+<area shape="rect" id="node12" href="$irq_8c.html" title="Implementation of interrupt handling functions." alt="" coords="1023,273,1141,300"/>
+<area shape="rect" id="node16" href="$timer_8c.html" title="Implementation of basic System Timer functions." alt="" coords="1208,191,1343,218"/>
+</map>

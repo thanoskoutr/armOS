@@ -1,0 +1,4 @@
+<map id="include/peripherals/gpio.h" name="include/peripherals/gpio.h">
+<area shape="rect" id="node1" title="Definition of GPIO registers addresses." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$base_8h.html" title="Definition of base MMIO registers addresses." alt="" coords="7,95,150,121"/>
+</map>
