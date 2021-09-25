@@ -2,7 +2,7 @@
 
 ![armOS-logo](docs/images/logo_200x200.png)
 
-![GitHub top language](https://img.shields.io/github/languages/top/thanoskoutr/armOS?color=blueviolet) ![GitHub repo size](https://img.shields.io/github/repo-size/thanoskoutr/armOS?color=informational&logo=GitHub) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/thanoskoutr/armOS?color=blue&logo=GitHub) ![GitHub](https://img.shields.io/github/license/thanoskoutr/armOS?color=brightgreen&logo=Open%20Source%20Initiative) ![travis-ci](https://travis-ci.org/thanoskoutr/armOS.svg?branch=main)
+![GitHub top language](https://img.shields.io/github/languages/top/thanoskoutr/armOS?color=blueviolet) ![GitHub repo size](https://img.shields.io/github/repo-size/thanoskoutr/armOS?color=informational&logo=GitHub) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/thanoskoutr/armOS?color=blue&logo=GitHub) ![GitHub](https://img.shields.io/github/license/thanoskoutr/armOS?color=brightgreen&logo=Open%20Source%20Initiative) ![travis-ci](https://app.travis-ci.com/thanoskoutr/armOS.svg?branch=main)
 
 ![Board](https://img.shields.io/badge/board-Raspberry%20Pi%20Zero%20W-red?style=flat&logo=Raspberry%20Pi) ![Board](https://img.shields.io/badge/board-Raspberry%20Pi%204-red?style=flat&logo=Raspberry%20Pi&logoColor=white) ![chip](https://img.shields.io/badge/chip-BCM2835-orange?style=flat&logo=Broadcom) ![chip](https://img.shields.io/badge/chip-BCM2711-orange?style=flat&logo=Broadcom) ![arch](https://img.shields.io/badge/arch-armv6-lightblue?style=flat) ![arch](https://img.shields.io/badge/arch-armv8--a-lightblue?style=flat)
 
